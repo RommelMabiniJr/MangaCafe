@@ -509,4 +509,176 @@ Public Class Form1
 
         MsgBox("Duration item updated succesfully!", MsgBoxStyle.Information)
     End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+    'MAKE ORDER TAB CODE AREA
+    Private Sub OrderCheckTxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles OrderCheckTxt.KeyPress
+        '97 - 122 = Ascii codes for simple letters
+        '65 - 90  = Ascii codes for capital letters
+        '48 - 57  = Ascii codes for numbers
+
+        If Asc(e.KeyChar) <> 8 Then
+            If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
+                e.Handled = True
+            End If
+        End If
+    End Sub
+
+    Private Sub CheckSelectionOrder_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CheckSelectionOrder.SelectedIndexChanged
+        Try
+            Dim sqlQuery As String = "SELECT serviceName from servicelibrary WHERE serviceType = '" & CheckSelectionOrder.Text & "'"
+            Dim sqlAdapter As New MySqlDataAdapter
+            Dim sqlCommand As New MySqlCommand
+            Dim libraryTable As New DataTable
+            Dim i As Integer
+
+            With sqlCommand
+                .CommandText = sqlQuery
+                .Connection = dbConn
+            End With
+
+            With sqlAdapter
+                .SelectCommand = sqlCommand
+                .Fill(libraryTable)
+            End With
+
+            'To avoid duplicating previously added entries
+            CheckInListBox.Items.Clear()
+
+            For i = 0 To libraryTable.Rows.Count - 1
+                Dim matrlItem As New MaterialListBoxItem With {
+                    .Text = libraryTable.Rows(i)("serviceName")
+                }
+
+                CheckInListBox.Items.Add(matrlItem)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.Message, vbCritical)
+        End Try
+    End Sub
+
+    Private Sub CheckInListBox_SelectedIndexChanged_1(sender As Object, selectedItem As MaterialListBoxItem) Handles CheckInListBox.SelectedIndexChanged
+        Try
+            TxtOrderQuan.Text = "0"
+            TxtOrderTot.Text = "0.00"
+            Dim itemService As MaterialListBoxItem = CheckInListBox.SelectedItem
+
+            Dim sqlQuery As String = "SELECT * from servicelibrary WHERE serviceName = '" & itemService.Text & "'"
+            Dim sqlAdapter As New MySqlDataAdapter
+            Dim sqlCommand As New MySqlCommand
+            Dim svDetailsTable As New DataTable
+
+            With sqlCommand
+                .CommandText = sqlQuery
+                .Connection = dbConn
+            End With
+
+            With sqlAdapter
+                .SelectCommand = sqlCommand
+                .Fill(svDetailsTable)
+            End With
+
+            TxtOrderServName.Text = itemService.Text
+            TxtOrderServPrice.Text = svDetailsTable.Rows(0)("serviceCharge")
+        Catch ex As Exception
+            MsgBox(ex.Message, vbCritical)
+        End Try
+    End Sub
+
+    Private Sub TxtOrderQuan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtOrderQuan.KeyPress
+        If Asc(e.KeyChar) <> 8 Then
+            If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
+                e.Handled = True
+            End If
+        End If
+    End Sub
+
+    Private Sub TxtOrderQuan_TextChanged(sender As Object, e As EventArgs) Handles TxtOrderQuan.TextChanged
+        Dim quan As Integer
+
+        If TxtOrderQuan.Text = "" Then
+            quan = 0
+        Else
+            quan = CInt(TxtOrderQuan.Text)
+
+            Dim price As Double = CDbl(Val(TxtOrderServPrice.Text)) * quan
+
+            TxtOrderTot.Text = Format(price, "0.00")
+        End If
+    End Sub
+
+    Dim ListViewCheckInID As Integer = 0
+    Private Sub CheckAddToCart_Click(sender As Object, e As EventArgs) Handles CheckAddToCart.Click
+        With ListViewCheckInLibrary
+            .Items.Add(TxtOrderServName.Text)
+            With .Items(.Items.Count - 1).SubItems
+                .Add(TxtOrderServPrice.Text)
+                .Add(TxtOrderQuan.Text)
+                .Add(TxtOrderTot.Text)
+            End With
+        End With
+    End Sub
+
+    Dim totCost As Double
+    Public Sub CalcTotalCostCheckIn()
+        'Dim totCost As Double
+
+        CalcDurationCost()
+        CalcAdditionalCost()
+
+        FinalTotalCost.Text = totCost
+    End Sub
+
+    Public Sub CalcDurationCost()
+        Try
+            Dim sqlQuery As String = "SELECT dPrice from durationprices WHERE dName = '" & DurCheckSelection.Text & "'"
+            Dim sqlAdapter As New MySqlDataAdapter
+            Dim sqlCommand As New MySqlCommand
+            Dim durationTable As New DataTable
+
+            With sqlCommand
+                .CommandText = sqlQuery
+                .Connection = dbConn
+            End With
+
+            With sqlAdapter
+                .SelectCommand = sqlCommand
+                .Fill(durationTable)
+            End With
+
+
+            Dim cost As Double, prs As String
+            prs = durationTable.Rows(0)("dPrice")
+            cost = CInt(OrderCheckTxt.Text) * CDbl(Val(prs))
+
+            totCost = cost
+
+        Catch ex As Exception
+            MsgBox("here")
+        End Try
+    End Sub
+
+    Public Sub CalcAdditionalCost()
+        Dim tot As Double
+
+        For i = 0 To ListViewCheckInLibrary.Items.Count - 1
+            Dim item As String = ListViewCheckInLibrary.Items(i).SubItems(3).Text
+            tot = CDbl(Val(item))
+            totCost += tot
+        Next
+    End Sub
+
+    Private Sub MaterialLabel17_Click(sender As Object, e As EventArgs) Handles MaterialLabel17.Click
+        CalcTotalCostCheckIn()
+    End Sub
 End Class

@@ -23,14 +23,12 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim MaterialListBoxItem1 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem2 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem3 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem4 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem5 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem6 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem9 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem10 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem11 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem12 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
+        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
         Me.MaterialTabControl1 = New MaterialSkin.Controls.MaterialTabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -38,10 +36,12 @@ Partial Class Form1
         Me.MaterialTabControl2 = New MaterialSkin.Controls.MaterialTabControl()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
         Me.MaterialCard7 = New MaterialSkin.Controls.MaterialCard()
-        Me.MaterialComboBox3 = New MaterialSkin.Controls.MaterialComboBox()
+        Me.MaterialLabel42 = New MaterialSkin.Controls.MaterialLabel()
+        Me.FinalTotalCost = New MaterialSkin.Controls.MaterialLabel()
+        Me.DurCheckSelection = New MaterialSkin.Controls.MaterialComboBox()
         Me.MaterialButton4 = New MaterialSkin.Controls.MaterialButton()
-        Me.MaterialTextBox21 = New MaterialSkin.Controls.MaterialTextBox2()
-        Me.MaterialListView1 = New MaterialSkin.Controls.MaterialListView()
+        Me.OrderCheckTxt = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.ListViewCheckInLibrary = New MaterialSkin.Controls.MaterialListView()
         Me.ColumnHeader7 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader8 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader10 = New System.Windows.Forms.ColumnHeader()
@@ -49,17 +49,17 @@ Partial Class Form1
         Me.MaterialLabel15 = New MaterialSkin.Controls.MaterialLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.MaterialExpansionPanel2 = New MaterialSkin.Controls.MaterialExpansionPanel()
+        Me.CheckInListBox = New MaterialSkin.Controls.MaterialListBox()
         Me.MaterialTextBox22 = New MaterialSkin.Controls.MaterialTextBox2()
-        Me.MaterialListBox1 = New MaterialSkin.Controls.MaterialListBox()
-        Me.MaterialButton3 = New MaterialSkin.Controls.MaterialButton()
-        Me.MaterialTextBox210 = New MaterialSkin.Controls.MaterialTextBox2()
-        Me.MaterialTextBox29 = New MaterialSkin.Controls.MaterialTextBox2()
-        Me.MaterialTextBox23 = New MaterialSkin.Controls.MaterialTextBox2()
-        Me.MaterialTextBox24 = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.CheckAddToCart = New MaterialSkin.Controls.MaterialButton()
+        Me.TxtOrderTot = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.TxtOrderQuan = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.TxtOrderServName = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.TxtOrderServPrice = New MaterialSkin.Controls.MaterialTextBox2()
         Me.MaterialLabel33 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel27 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel26 = New MaterialSkin.Controls.MaterialLabel()
-        Me.MaterialComboBox4 = New MaterialSkin.Controls.MaterialComboBox()
+        Me.CheckSelectionOrder = New MaterialSkin.Controls.MaterialComboBox()
         Me.MaterialLabel25 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel16 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel17 = New MaterialSkin.Controls.MaterialLabel()
@@ -201,11 +201,15 @@ Partial Class Form1
         Me.MaterialCheckbox7 = New MaterialSkin.Controls.MaterialCheckbox()
         Me.MaterialCheckbox8 = New MaterialSkin.Controls.MaterialCheckbox()
         Me.MaterialCheckbox9 = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.MaterialCheckbox10 = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.MaterialCheckbox11 = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.MaterialCheckbox12 = New MaterialSkin.Controls.MaterialCheckbox()
         Me.MaterialTabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.MaterialCard6.SuspendLayout()
         Me.MaterialTabControl2.SuspendLayout()
         Me.TabPage8.SuspendLayout()
+        Me.MaterialCard7.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.MaterialExpansionPanel2.SuspendLayout()
         Me.TabPage9.SuspendLayout()
@@ -311,10 +315,10 @@ Partial Class Form1
         'TabPage8
         '
         Me.TabPage8.Controls.Add(Me.MaterialCard7)
-        Me.TabPage8.Controls.Add(Me.MaterialComboBox3)
+        Me.TabPage8.Controls.Add(Me.DurCheckSelection)
         Me.TabPage8.Controls.Add(Me.MaterialButton4)
-        Me.TabPage8.Controls.Add(Me.MaterialTextBox21)
-        Me.TabPage8.Controls.Add(Me.MaterialListView1)
+        Me.TabPage8.Controls.Add(Me.OrderCheckTxt)
+        Me.TabPage8.Controls.Add(Me.ListViewCheckInLibrary)
         Me.TabPage8.Controls.Add(Me.MaterialLabel15)
         Me.TabPage8.Controls.Add(Me.GroupBox1)
         Me.TabPage8.Controls.Add(Me.MaterialLabel17)
@@ -329,6 +333,8 @@ Partial Class Form1
         'MaterialCard7
         '
         Me.MaterialCard7.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.MaterialCard7.Controls.Add(Me.MaterialLabel42)
+        Me.MaterialCard7.Controls.Add(Me.FinalTotalCost)
         Me.MaterialCard7.Depth = 0
         Me.MaterialCard7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.MaterialCard7.Location = New System.Drawing.Point(159, 548)
@@ -339,28 +345,54 @@ Partial Class Form1
         Me.MaterialCard7.Size = New System.Drawing.Size(312, 46)
         Me.MaterialCard7.TabIndex = 10
         '
-        'MaterialComboBox3
+        'MaterialLabel42
         '
-        Me.MaterialComboBox3.AutoResize = False
-        Me.MaterialComboBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.MaterialComboBox3.Depth = 0
-        Me.MaterialComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
-        Me.MaterialComboBox3.DropDownHeight = 174
-        Me.MaterialComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.MaterialComboBox3.DropDownWidth = 121
-        Me.MaterialComboBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialComboBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.MaterialComboBox3.FormattingEnabled = True
-        Me.MaterialComboBox3.IntegralHeight = False
-        Me.MaterialComboBox3.ItemHeight = 43
-        Me.MaterialComboBox3.Items.AddRange(New Object() {"Minutes", "Hours", "Overnight"})
-        Me.MaterialComboBox3.Location = New System.Drawing.Point(541, 15)
-        Me.MaterialComboBox3.MaxDropDownItems = 4
-        Me.MaterialComboBox3.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialComboBox3.Name = "MaterialComboBox3"
-        Me.MaterialComboBox3.Size = New System.Drawing.Size(125, 49)
-        Me.MaterialComboBox3.StartIndex = 0
-        Me.MaterialComboBox3.TabIndex = 2
+        Me.MaterialLabel42.Depth = 0
+        Me.MaterialLabel42.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel42.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
+        Me.MaterialLabel42.Location = New System.Drawing.Point(16, 5)
+        Me.MaterialLabel42.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel42.Name = "MaterialLabel42"
+        Me.MaterialLabel42.Size = New System.Drawing.Size(20, 36)
+        Me.MaterialLabel42.TabIndex = 11
+        Me.MaterialLabel42.Text = "$"
+        Me.MaterialLabel42.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'FinalTotalCost
+        '
+        Me.FinalTotalCost.Depth = 0
+        Me.FinalTotalCost.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.FinalTotalCost.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
+        Me.FinalTotalCost.Location = New System.Drawing.Point(42, 10)
+        Me.FinalTotalCost.MouseState = MaterialSkin.MouseState.HOVER
+        Me.FinalTotalCost.Name = "FinalTotalCost"
+        Me.FinalTotalCost.Size = New System.Drawing.Size(253, 28)
+        Me.FinalTotalCost.TabIndex = 0
+        Me.FinalTotalCost.Text = "0.00"
+        Me.FinalTotalCost.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'DurCheckSelection
+        '
+        Me.DurCheckSelection.AutoResize = False
+        Me.DurCheckSelection.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.DurCheckSelection.Depth = 0
+        Me.DurCheckSelection.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.DurCheckSelection.DropDownHeight = 174
+        Me.DurCheckSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.DurCheckSelection.DropDownWidth = 121
+        Me.DurCheckSelection.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.DurCheckSelection.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.DurCheckSelection.FormattingEnabled = True
+        Me.DurCheckSelection.IntegralHeight = False
+        Me.DurCheckSelection.ItemHeight = 43
+        Me.DurCheckSelection.Items.AddRange(New Object() {"Minutes", "Hours", "Overnight"})
+        Me.DurCheckSelection.Location = New System.Drawing.Point(541, 15)
+        Me.DurCheckSelection.MaxDropDownItems = 4
+        Me.DurCheckSelection.MouseState = MaterialSkin.MouseState.OUT
+        Me.DurCheckSelection.Name = "DurCheckSelection"
+        Me.DurCheckSelection.Size = New System.Drawing.Size(125, 49)
+        Me.DurCheckSelection.StartIndex = 0
+        Me.DurCheckSelection.TabIndex = 2
         '
         'MaterialButton4
         '
@@ -382,52 +414,52 @@ Partial Class Form1
         Me.MaterialButton4.UseAccentColor = False
         Me.MaterialButton4.UseVisualStyleBackColor = True
         '
-        'MaterialTextBox21
+        'OrderCheckTxt
         '
-        Me.MaterialTextBox21.AnimateReadOnly = False
-        Me.MaterialTextBox21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.MaterialTextBox21.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.MaterialTextBox21.Depth = 0
-        Me.MaterialTextBox21.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialTextBox21.HideSelection = True
-        Me.MaterialTextBox21.LeadingIcon = Nothing
-        Me.MaterialTextBox21.Location = New System.Drawing.Point(386, 15)
-        Me.MaterialTextBox21.MaxLength = 32767
-        Me.MaterialTextBox21.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialTextBox21.Name = "MaterialTextBox21"
-        Me.MaterialTextBox21.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.MaterialTextBox21.PrefixSuffixText = Nothing
-        Me.MaterialTextBox21.ReadOnly = False
-        Me.MaterialTextBox21.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.MaterialTextBox21.SelectedText = ""
-        Me.MaterialTextBox21.SelectionLength = 0
-        Me.MaterialTextBox21.SelectionStart = 0
-        Me.MaterialTextBox21.ShortcutsEnabled = True
-        Me.MaterialTextBox21.Size = New System.Drawing.Size(140, 48)
-        Me.MaterialTextBox21.TabIndex = 1
-        Me.MaterialTextBox21.TabStop = False
-        Me.MaterialTextBox21.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.MaterialTextBox21.TrailingIcon = Nothing
-        Me.MaterialTextBox21.UseSystemPasswordChar = False
+        Me.OrderCheckTxt.AnimateReadOnly = False
+        Me.OrderCheckTxt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.OrderCheckTxt.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.OrderCheckTxt.Depth = 0
+        Me.OrderCheckTxt.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.OrderCheckTxt.HideSelection = True
+        Me.OrderCheckTxt.LeadingIcon = Nothing
+        Me.OrderCheckTxt.Location = New System.Drawing.Point(386, 15)
+        Me.OrderCheckTxt.MaxLength = 32767
+        Me.OrderCheckTxt.MouseState = MaterialSkin.MouseState.OUT
+        Me.OrderCheckTxt.Name = "OrderCheckTxt"
+        Me.OrderCheckTxt.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.OrderCheckTxt.PrefixSuffixText = Nothing
+        Me.OrderCheckTxt.ReadOnly = False
+        Me.OrderCheckTxt.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.OrderCheckTxt.SelectedText = ""
+        Me.OrderCheckTxt.SelectionLength = 0
+        Me.OrderCheckTxt.SelectionStart = 0
+        Me.OrderCheckTxt.ShortcutsEnabled = True
+        Me.OrderCheckTxt.Size = New System.Drawing.Size(140, 48)
+        Me.OrderCheckTxt.TabIndex = 1
+        Me.OrderCheckTxt.TabStop = False
+        Me.OrderCheckTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.OrderCheckTxt.TrailingIcon = Nothing
+        Me.OrderCheckTxt.UseSystemPasswordChar = False
         '
-        'MaterialListView1
+        'ListViewCheckInLibrary
         '
-        Me.MaterialListView1.AutoSizeTable = False
-        Me.MaterialListView1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.MaterialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.MaterialListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader10, Me.ColumnHeader11})
-        Me.MaterialListView1.Depth = 0
-        Me.MaterialListView1.FullRowSelect = True
-        Me.MaterialListView1.Location = New System.Drawing.Point(44, 399)
-        Me.MaterialListView1.MinimumSize = New System.Drawing.Size(200, 100)
-        Me.MaterialListView1.MouseLocation = New System.Drawing.Point(-1, -1)
-        Me.MaterialListView1.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialListView1.Name = "MaterialListView1"
-        Me.MaterialListView1.OwnerDraw = True
-        Me.MaterialListView1.Size = New System.Drawing.Size(622, 127)
-        Me.MaterialListView1.TabIndex = 1
-        Me.MaterialListView1.UseCompatibleStateImageBehavior = False
-        Me.MaterialListView1.View = System.Windows.Forms.View.Details
+        Me.ListViewCheckInLibrary.AutoSizeTable = False
+        Me.ListViewCheckInLibrary.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.ListViewCheckInLibrary.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ListViewCheckInLibrary.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader10, Me.ColumnHeader11})
+        Me.ListViewCheckInLibrary.Depth = 0
+        Me.ListViewCheckInLibrary.FullRowSelect = True
+        Me.ListViewCheckInLibrary.Location = New System.Drawing.Point(44, 399)
+        Me.ListViewCheckInLibrary.MinimumSize = New System.Drawing.Size(200, 100)
+        Me.ListViewCheckInLibrary.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.ListViewCheckInLibrary.MouseState = MaterialSkin.MouseState.OUT
+        Me.ListViewCheckInLibrary.Name = "ListViewCheckInLibrary"
+        Me.ListViewCheckInLibrary.OwnerDraw = True
+        Me.ListViewCheckInLibrary.Size = New System.Drawing.Size(622, 127)
+        Me.ListViewCheckInLibrary.TabIndex = 1
+        Me.ListViewCheckInLibrary.UseCompatibleStateImageBehavior = False
+        Me.ListViewCheckInLibrary.View = System.Windows.Forms.View.Details
         '
         'ColumnHeader7
         '
@@ -465,15 +497,15 @@ Partial Class Form1
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.MaterialExpansionPanel2)
-        Me.GroupBox1.Controls.Add(Me.MaterialButton3)
-        Me.GroupBox1.Controls.Add(Me.MaterialTextBox210)
-        Me.GroupBox1.Controls.Add(Me.MaterialTextBox29)
-        Me.GroupBox1.Controls.Add(Me.MaterialTextBox23)
-        Me.GroupBox1.Controls.Add(Me.MaterialTextBox24)
+        Me.GroupBox1.Controls.Add(Me.CheckAddToCart)
+        Me.GroupBox1.Controls.Add(Me.TxtOrderTot)
+        Me.GroupBox1.Controls.Add(Me.TxtOrderQuan)
+        Me.GroupBox1.Controls.Add(Me.TxtOrderServName)
+        Me.GroupBox1.Controls.Add(Me.TxtOrderServPrice)
         Me.GroupBox1.Controls.Add(Me.MaterialLabel33)
         Me.GroupBox1.Controls.Add(Me.MaterialLabel27)
         Me.GroupBox1.Controls.Add(Me.MaterialLabel26)
-        Me.GroupBox1.Controls.Add(Me.MaterialComboBox4)
+        Me.GroupBox1.Controls.Add(Me.CheckSelectionOrder)
         Me.GroupBox1.Controls.Add(Me.MaterialLabel25)
         Me.GroupBox1.Controls.Add(Me.MaterialLabel16)
         Me.GroupBox1.Location = New System.Drawing.Point(44, 80)
@@ -487,22 +519,41 @@ Partial Class Form1
         '
         Me.MaterialExpansionPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.MaterialExpansionPanel2.Collapse = True
+        Me.MaterialExpansionPanel2.Controls.Add(Me.CheckInListBox)
         Me.MaterialExpansionPanel2.Controls.Add(Me.MaterialTextBox22)
-        Me.MaterialExpansionPanel2.Controls.Add(Me.MaterialListBox1)
         Me.MaterialExpansionPanel2.Depth = 0
         Me.MaterialExpansionPanel2.Description = ""
-        Me.MaterialExpansionPanel2.ExpandHeight = 277
+        Me.MaterialExpansionPanel2.ExpandHeight = 337
         Me.MaterialExpansionPanel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.MaterialExpansionPanel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.MaterialExpansionPanel2.Location = New System.Drawing.Point(411, 31)
+        Me.MaterialExpansionPanel2.Location = New System.Drawing.Point(316, 31)
         Me.MaterialExpansionPanel2.Margin = New System.Windows.Forms.Padding(16, 1, 16, 0)
         Me.MaterialExpansionPanel2.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialExpansionPanel2.Name = "MaterialExpansionPanel2"
         Me.MaterialExpansionPanel2.Padding = New System.Windows.Forms.Padding(24, 64, 24, 16)
-        Me.MaterialExpansionPanel2.Size = New System.Drawing.Size(196, 48)
+        Me.MaterialExpansionPanel2.Size = New System.Drawing.Size(291, 48)
         Me.MaterialExpansionPanel2.TabIndex = 10
         Me.MaterialExpansionPanel2.Title = "Choose a service"
         Me.MaterialExpansionPanel2.ValidationButtonEnable = True
+        '
+        'CheckInListBox
+        '
+        Me.CheckInListBox.AccessibleRole = System.Windows.Forms.AccessibleRole.ListItem
+        Me.CheckInListBox.BackColor = System.Drawing.Color.White
+        Me.CheckInListBox.BorderColor = System.Drawing.Color.LightGray
+        Me.CheckInListBox.Depth = 0
+        Me.CheckInListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        MaterialListBoxItem9.SecondaryText = ""
+        MaterialListBoxItem9.Tag = Nothing
+        MaterialListBoxItem9.Text = "ListBoxItem"
+        Me.CheckInListBox.Items.Add(MaterialListBoxItem9)
+        Me.CheckInListBox.Location = New System.Drawing.Point(15, 102)
+        Me.CheckInListBox.MouseState = MaterialSkin.MouseState.HOVER
+        Me.CheckInListBox.Name = "CheckInListBox"
+        Me.CheckInListBox.SelectedIndex = -1
+        Me.CheckInListBox.SelectedItem = Nothing
+        Me.CheckInListBox.Size = New System.Drawing.Size(249, 158)
+        Me.CheckInListBox.TabIndex = 13
         '
         'MaterialTextBox22
         '
@@ -513,7 +564,7 @@ Partial Class Form1
         Me.MaterialTextBox22.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.MaterialTextBox22.HideSelection = True
         Me.MaterialTextBox22.LeadingIcon = Nothing
-        Me.MaterialTextBox22.Location = New System.Drawing.Point(15, 60)
+        Me.MaterialTextBox22.Location = New System.Drawing.Point(15, 46)
         Me.MaterialTextBox22.MaxLength = 32767
         Me.MaterialTextBox22.MouseState = MaterialSkin.MouseState.OUT
         Me.MaterialTextBox22.Name = "MaterialTextBox22"
@@ -525,169 +576,144 @@ Partial Class Form1
         Me.MaterialTextBox22.SelectionLength = 0
         Me.MaterialTextBox22.SelectionStart = 0
         Me.MaterialTextBox22.ShortcutsEnabled = True
-        Me.MaterialTextBox22.Size = New System.Drawing.Size(167, 48)
+        Me.MaterialTextBox22.Size = New System.Drawing.Size(249, 48)
         Me.MaterialTextBox22.TabIndex = 6
         Me.MaterialTextBox22.TabStop = False
         Me.MaterialTextBox22.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.MaterialTextBox22.TrailingIcon = Nothing
         Me.MaterialTextBox22.UseSystemPasswordChar = False
         '
-        'MaterialListBox1
+        'CheckAddToCart
         '
-        Me.MaterialListBox1.BackColor = System.Drawing.Color.White
-        Me.MaterialListBox1.BorderColor = System.Drawing.Color.LightGray
-        Me.MaterialListBox1.Depth = 0
-        Me.MaterialListBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem1.SecondaryText = ""
-        MaterialListBoxItem1.Tag = Nothing
-        MaterialListBoxItem1.Text = "Piatos"
-        MaterialListBoxItem2.SecondaryText = ""
-        MaterialListBoxItem2.Tag = Nothing
-        MaterialListBoxItem2.Text = "Ramen"
-        MaterialListBoxItem3.SecondaryText = ""
-        MaterialListBoxItem3.Tag = Nothing
-        MaterialListBoxItem3.Text = "Chocolate"
-        Me.MaterialListBox1.Items.Add(MaterialListBoxItem1)
-        Me.MaterialListBox1.Items.Add(MaterialListBoxItem2)
-        Me.MaterialListBox1.Items.Add(MaterialListBoxItem3)
-        Me.MaterialListBox1.Location = New System.Drawing.Point(15, 124)
-        Me.MaterialListBox1.MouseState = MaterialSkin.MouseState.HOVER
-        Me.MaterialListBox1.Name = "MaterialListBox1"
-        Me.MaterialListBox1.SelectedIndex = -1
-        Me.MaterialListBox1.SelectedItem = Nothing
-        Me.MaterialListBox1.Size = New System.Drawing.Size(167, 75)
-        Me.MaterialListBox1.TabIndex = 5
+        Me.CheckAddToCart.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.CheckAddToCart.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.CheckAddToCart.Depth = 0
+        Me.CheckAddToCart.HighEmphasis = True
+        Me.CheckAddToCart.Icon = Nothing
+        Me.CheckAddToCart.Location = New System.Drawing.Point(493, 224)
+        Me.CheckAddToCart.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.CheckAddToCart.MouseState = MaterialSkin.MouseState.HOVER
+        Me.CheckAddToCart.Name = "CheckAddToCart"
+        Me.CheckAddToCart.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.CheckAddToCart.Size = New System.Drawing.Size(114, 36)
+        Me.CheckAddToCart.TabIndex = 9
+        Me.CheckAddToCart.Text = "Add to Cart"
+        Me.CheckAddToCart.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.CheckAddToCart.UseAccentColor = False
+        Me.CheckAddToCart.UseVisualStyleBackColor = True
         '
-        'MaterialButton3
+        'TxtOrderTot
         '
-        Me.MaterialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.MaterialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
-        Me.MaterialButton3.Depth = 0
-        Me.MaterialButton3.HighEmphasis = True
-        Me.MaterialButton3.Icon = Nothing
-        Me.MaterialButton3.Location = New System.Drawing.Point(493, 224)
-        Me.MaterialButton3.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-        Me.MaterialButton3.MouseState = MaterialSkin.MouseState.HOVER
-        Me.MaterialButton3.Name = "MaterialButton3"
-        Me.MaterialButton3.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.MaterialButton3.Size = New System.Drawing.Size(114, 36)
-        Me.MaterialButton3.TabIndex = 9
-        Me.MaterialButton3.Text = "Add to Cart"
-        Me.MaterialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
-        Me.MaterialButton3.UseAccentColor = False
-        Me.MaterialButton3.UseVisualStyleBackColor = True
+        Me.TxtOrderTot.AnimateReadOnly = False
+        Me.TxtOrderTot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.TxtOrderTot.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.TxtOrderTot.Depth = 0
+        Me.TxtOrderTot.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.TxtOrderTot.HideSelection = True
+        Me.TxtOrderTot.LeadingIcon = Nothing
+        Me.TxtOrderTot.Location = New System.Drawing.Point(115, 217)
+        Me.TxtOrderTot.MaxLength = 32767
+        Me.TxtOrderTot.MouseState = MaterialSkin.MouseState.OUT
+        Me.TxtOrderTot.Name = "TxtOrderTot"
+        Me.TxtOrderTot.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.TxtOrderTot.PrefixSuffixText = Nothing
+        Me.TxtOrderTot.ReadOnly = True
+        Me.TxtOrderTot.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TxtOrderTot.SelectedText = ""
+        Me.TxtOrderTot.SelectionLength = 0
+        Me.TxtOrderTot.SelectionStart = 0
+        Me.TxtOrderTot.ShortcutsEnabled = True
+        Me.TxtOrderTot.Size = New System.Drawing.Size(190, 48)
+        Me.TxtOrderTot.TabIndex = 7
+        Me.TxtOrderTot.TabStop = False
+        Me.TxtOrderTot.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.TxtOrderTot.TrailingIcon = Nothing
+        Me.TxtOrderTot.UseSystemPasswordChar = False
         '
-        'MaterialTextBox210
+        'TxtOrderQuan
         '
-        Me.MaterialTextBox210.AnimateReadOnly = False
-        Me.MaterialTextBox210.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.MaterialTextBox210.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.MaterialTextBox210.Depth = 0
-        Me.MaterialTextBox210.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialTextBox210.HideSelection = True
-        Me.MaterialTextBox210.LeadingIcon = Nothing
-        Me.MaterialTextBox210.Location = New System.Drawing.Point(115, 217)
-        Me.MaterialTextBox210.MaxLength = 32767
-        Me.MaterialTextBox210.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialTextBox210.Name = "MaterialTextBox210"
-        Me.MaterialTextBox210.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.MaterialTextBox210.PrefixSuffixText = Nothing
-        Me.MaterialTextBox210.ReadOnly = False
-        Me.MaterialTextBox210.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.MaterialTextBox210.SelectedText = ""
-        Me.MaterialTextBox210.SelectionLength = 0
-        Me.MaterialTextBox210.SelectionStart = 0
-        Me.MaterialTextBox210.ShortcutsEnabled = True
-        Me.MaterialTextBox210.Size = New System.Drawing.Size(190, 48)
-        Me.MaterialTextBox210.TabIndex = 7
-        Me.MaterialTextBox210.TabStop = False
-        Me.MaterialTextBox210.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.MaterialTextBox210.TrailingIcon = Nothing
-        Me.MaterialTextBox210.UseSystemPasswordChar = False
+        Me.TxtOrderQuan.AnimateReadOnly = False
+        Me.TxtOrderQuan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.TxtOrderQuan.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.TxtOrderQuan.Depth = 0
+        Me.TxtOrderQuan.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.TxtOrderQuan.HideSelection = True
+        Me.TxtOrderQuan.LeadingIcon = Nothing
+        Me.TxtOrderQuan.Location = New System.Drawing.Point(497, 141)
+        Me.TxtOrderQuan.MaxLength = 32767
+        Me.TxtOrderQuan.MouseState = MaterialSkin.MouseState.OUT
+        Me.TxtOrderQuan.Name = "TxtOrderQuan"
+        Me.TxtOrderQuan.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.TxtOrderQuan.PrefixSuffixText = Nothing
+        Me.TxtOrderQuan.ReadOnly = False
+        Me.TxtOrderQuan.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TxtOrderQuan.SelectedText = ""
+        Me.TxtOrderQuan.SelectionLength = 0
+        Me.TxtOrderQuan.SelectionStart = 0
+        Me.TxtOrderQuan.ShortcutsEnabled = True
+        Me.TxtOrderQuan.Size = New System.Drawing.Size(105, 48)
+        Me.TxtOrderQuan.TabIndex = 7
+        Me.TxtOrderQuan.TabStop = False
+        Me.TxtOrderQuan.Text = "0"
+        Me.TxtOrderQuan.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.TxtOrderQuan.TrailingIcon = Nothing
+        Me.TxtOrderQuan.UseSystemPasswordChar = False
         '
-        'MaterialTextBox29
+        'TxtOrderServName
         '
-        Me.MaterialTextBox29.AnimateReadOnly = False
-        Me.MaterialTextBox29.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.MaterialTextBox29.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.MaterialTextBox29.Depth = 0
-        Me.MaterialTextBox29.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialTextBox29.HideSelection = True
-        Me.MaterialTextBox29.LeadingIcon = Nothing
-        Me.MaterialTextBox29.Location = New System.Drawing.Point(497, 141)
-        Me.MaterialTextBox29.MaxLength = 32767
-        Me.MaterialTextBox29.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialTextBox29.Name = "MaterialTextBox29"
-        Me.MaterialTextBox29.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.MaterialTextBox29.PrefixSuffixText = Nothing
-        Me.MaterialTextBox29.ReadOnly = False
-        Me.MaterialTextBox29.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.MaterialTextBox29.SelectedText = ""
-        Me.MaterialTextBox29.SelectionLength = 0
-        Me.MaterialTextBox29.SelectionStart = 0
-        Me.MaterialTextBox29.ShortcutsEnabled = True
-        Me.MaterialTextBox29.Size = New System.Drawing.Size(105, 48)
-        Me.MaterialTextBox29.TabIndex = 7
-        Me.MaterialTextBox29.TabStop = False
-        Me.MaterialTextBox29.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.MaterialTextBox29.TrailingIcon = Nothing
-        Me.MaterialTextBox29.UseSystemPasswordChar = False
+        Me.TxtOrderServName.AnimateReadOnly = False
+        Me.TxtOrderServName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.TxtOrderServName.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.TxtOrderServName.Depth = 0
+        Me.TxtOrderServName.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.TxtOrderServName.HideSelection = True
+        Me.TxtOrderServName.LeadingIcon = Nothing
+        Me.TxtOrderServName.Location = New System.Drawing.Point(17, 141)
+        Me.TxtOrderServName.MaxLength = 32767
+        Me.TxtOrderServName.MouseState = MaterialSkin.MouseState.OUT
+        Me.TxtOrderServName.Name = "TxtOrderServName"
+        Me.TxtOrderServName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.TxtOrderServName.PrefixSuffixText = Nothing
+        Me.TxtOrderServName.ReadOnly = True
+        Me.TxtOrderServName.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TxtOrderServName.SelectedText = ""
+        Me.TxtOrderServName.SelectionLength = 0
+        Me.TxtOrderServName.SelectionStart = 0
+        Me.TxtOrderServName.ShortcutsEnabled = True
+        Me.TxtOrderServName.Size = New System.Drawing.Size(288, 48)
+        Me.TxtOrderServName.TabIndex = 7
+        Me.TxtOrderServName.TabStop = False
+        Me.TxtOrderServName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.TxtOrderServName.TrailingIcon = Nothing
+        Me.TxtOrderServName.UseSystemPasswordChar = False
         '
-        'MaterialTextBox23
+        'TxtOrderServPrice
         '
-        Me.MaterialTextBox23.AnimateReadOnly = False
-        Me.MaterialTextBox23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.MaterialTextBox23.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.MaterialTextBox23.Depth = 0
-        Me.MaterialTextBox23.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialTextBox23.HideSelection = True
-        Me.MaterialTextBox23.LeadingIcon = Nothing
-        Me.MaterialTextBox23.Location = New System.Drawing.Point(17, 141)
-        Me.MaterialTextBox23.MaxLength = 32767
-        Me.MaterialTextBox23.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialTextBox23.Name = "MaterialTextBox23"
-        Me.MaterialTextBox23.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.MaterialTextBox23.PrefixSuffixText = Nothing
-        Me.MaterialTextBox23.ReadOnly = False
-        Me.MaterialTextBox23.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.MaterialTextBox23.SelectedText = ""
-        Me.MaterialTextBox23.SelectionLength = 0
-        Me.MaterialTextBox23.SelectionStart = 0
-        Me.MaterialTextBox23.ShortcutsEnabled = True
-        Me.MaterialTextBox23.Size = New System.Drawing.Size(288, 48)
-        Me.MaterialTextBox23.TabIndex = 7
-        Me.MaterialTextBox23.TabStop = False
-        Me.MaterialTextBox23.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.MaterialTextBox23.TrailingIcon = Nothing
-        Me.MaterialTextBox23.UseSystemPasswordChar = False
-        '
-        'MaterialTextBox24
-        '
-        Me.MaterialTextBox24.AnimateReadOnly = False
-        Me.MaterialTextBox24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.MaterialTextBox24.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.MaterialTextBox24.Depth = 0
-        Me.MaterialTextBox24.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialTextBox24.HideSelection = True
-        Me.MaterialTextBox24.LeadingIcon = Nothing
-        Me.MaterialTextBox24.Location = New System.Drawing.Point(336, 141)
-        Me.MaterialTextBox24.MaxLength = 32767
-        Me.MaterialTextBox24.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialTextBox24.Name = "MaterialTextBox24"
-        Me.MaterialTextBox24.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.MaterialTextBox24.PrefixSuffixText = Nothing
-        Me.MaterialTextBox24.ReadOnly = False
-        Me.MaterialTextBox24.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.MaterialTextBox24.SelectedText = ""
-        Me.MaterialTextBox24.SelectionLength = 0
-        Me.MaterialTextBox24.SelectionStart = 0
-        Me.MaterialTextBox24.ShortcutsEnabled = True
-        Me.MaterialTextBox24.Size = New System.Drawing.Size(136, 48)
-        Me.MaterialTextBox24.TabIndex = 7
-        Me.MaterialTextBox24.TabStop = False
-        Me.MaterialTextBox24.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.MaterialTextBox24.TrailingIcon = Nothing
-        Me.MaterialTextBox24.UseSystemPasswordChar = False
+        Me.TxtOrderServPrice.AnimateReadOnly = False
+        Me.TxtOrderServPrice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.TxtOrderServPrice.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.TxtOrderServPrice.Depth = 0
+        Me.TxtOrderServPrice.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.TxtOrderServPrice.HideSelection = True
+        Me.TxtOrderServPrice.LeadingIcon = Nothing
+        Me.TxtOrderServPrice.Location = New System.Drawing.Point(336, 141)
+        Me.TxtOrderServPrice.MaxLength = 32767
+        Me.TxtOrderServPrice.MouseState = MaterialSkin.MouseState.OUT
+        Me.TxtOrderServPrice.Name = "TxtOrderServPrice"
+        Me.TxtOrderServPrice.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.TxtOrderServPrice.PrefixSuffixText = Nothing
+        Me.TxtOrderServPrice.ReadOnly = True
+        Me.TxtOrderServPrice.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TxtOrderServPrice.SelectedText = ""
+        Me.TxtOrderServPrice.SelectionLength = 0
+        Me.TxtOrderServPrice.SelectionStart = 0
+        Me.TxtOrderServPrice.ShortcutsEnabled = True
+        Me.TxtOrderServPrice.Size = New System.Drawing.Size(136, 48)
+        Me.TxtOrderServPrice.TabIndex = 7
+        Me.TxtOrderServPrice.TabStop = False
+        Me.TxtOrderServPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.TxtOrderServPrice.TrailingIcon = Nothing
+        Me.TxtOrderServPrice.UseSystemPasswordChar = False
         '
         'MaterialLabel33
         '
@@ -728,28 +754,28 @@ Partial Class Form1
         Me.MaterialLabel26.TabIndex = 6
         Me.MaterialLabel26.Text = "Price"
         '
-        'MaterialComboBox4
+        'CheckSelectionOrder
         '
-        Me.MaterialComboBox4.AutoResize = False
-        Me.MaterialComboBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.MaterialComboBox4.Depth = 0
-        Me.MaterialComboBox4.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
-        Me.MaterialComboBox4.DropDownHeight = 174
-        Me.MaterialComboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.MaterialComboBox4.DropDownWidth = 121
-        Me.MaterialComboBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialComboBox4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.MaterialComboBox4.FormattingEnabled = True
-        Me.MaterialComboBox4.IntegralHeight = False
-        Me.MaterialComboBox4.ItemHeight = 43
-        Me.MaterialComboBox4.Items.AddRange(New Object() {"Food & Beverages", "Entertainment", "Room", "Hardware"})
-        Me.MaterialComboBox4.Location = New System.Drawing.Point(198, 30)
-        Me.MaterialComboBox4.MaxDropDownItems = 4
-        Me.MaterialComboBox4.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialComboBox4.Name = "MaterialComboBox4"
-        Me.MaterialComboBox4.Size = New System.Drawing.Size(190, 49)
-        Me.MaterialComboBox4.StartIndex = 0
-        Me.MaterialComboBox4.TabIndex = 3
+        Me.CheckSelectionOrder.AutoResize = False
+        Me.CheckSelectionOrder.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.CheckSelectionOrder.Depth = 0
+        Me.CheckSelectionOrder.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.CheckSelectionOrder.DropDownHeight = 174
+        Me.CheckSelectionOrder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CheckSelectionOrder.DropDownWidth = 121
+        Me.CheckSelectionOrder.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.CheckSelectionOrder.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.CheckSelectionOrder.FormattingEnabled = True
+        Me.CheckSelectionOrder.IntegralHeight = False
+        Me.CheckSelectionOrder.ItemHeight = 43
+        Me.CheckSelectionOrder.Items.AddRange(New Object() {"Food & Beverages", "Entertainment", "Room", "Houseware"})
+        Me.CheckSelectionOrder.Location = New System.Drawing.Point(107, 30)
+        Me.CheckSelectionOrder.MaxDropDownItems = 4
+        Me.CheckSelectionOrder.MouseState = MaterialSkin.MouseState.OUT
+        Me.CheckSelectionOrder.Name = "CheckSelectionOrder"
+        Me.CheckSelectionOrder.Size = New System.Drawing.Size(190, 49)
+        Me.CheckSelectionOrder.StartIndex = 0
+        Me.CheckSelectionOrder.TabIndex = 3
         '
         'MaterialLabel25
         '
@@ -770,7 +796,7 @@ Partial Class Form1
         Me.MaterialLabel16.Depth = 0
         Me.MaterialLabel16.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.MaterialLabel16.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1
-        Me.MaterialLabel16.Location = New System.Drawing.Point(115, 46)
+        Me.MaterialLabel16.Location = New System.Drawing.Point(24, 46)
         Me.MaterialLabel16.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel16.Name = "MaterialLabel16"
         Me.MaterialLabel16.Size = New System.Drawing.Size(64, 19)
@@ -783,12 +809,12 @@ Partial Class Form1
         Me.MaterialLabel17.Depth = 0
         Me.MaterialLabel17.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
         Me.MaterialLabel17.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
-        Me.MaterialLabel17.Location = New System.Drawing.Point(61, 557)
+        Me.MaterialLabel17.Location = New System.Drawing.Point(37, 557)
         Me.MaterialLabel17.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel17.Name = "MaterialLabel17"
-        Me.MaterialLabel17.Size = New System.Drawing.Size(75, 29)
+        Me.MaterialLabel17.Size = New System.Drawing.Size(110, 29)
         Me.MaterialLabel17.TabIndex = 0
-        Me.MaterialLabel17.Text = "TOTAL"
+        Me.MaterialLabel17.Text = "Calc Total"
         Me.MaterialLabel17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TabPage9
@@ -1035,18 +1061,18 @@ Partial Class Form1
         Me.MaterialListBox2.BorderColor = System.Drawing.Color.LightGray
         Me.MaterialListBox2.Depth = 0
         Me.MaterialListBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem4.SecondaryText = ""
-        MaterialListBoxItem4.Tag = Nothing
-        MaterialListBoxItem4.Text = "Piatos"
-        MaterialListBoxItem5.SecondaryText = ""
-        MaterialListBoxItem5.Tag = Nothing
-        MaterialListBoxItem5.Text = "Ramen"
-        MaterialListBoxItem6.SecondaryText = ""
-        MaterialListBoxItem6.Tag = Nothing
-        MaterialListBoxItem6.Text = "Chocolate"
-        Me.MaterialListBox2.Items.Add(MaterialListBoxItem4)
-        Me.MaterialListBox2.Items.Add(MaterialListBoxItem5)
-        Me.MaterialListBox2.Items.Add(MaterialListBoxItem6)
+        MaterialListBoxItem10.SecondaryText = ""
+        MaterialListBoxItem10.Tag = Nothing
+        MaterialListBoxItem10.Text = "Piatos"
+        MaterialListBoxItem11.SecondaryText = ""
+        MaterialListBoxItem11.Tag = Nothing
+        MaterialListBoxItem11.Text = "Ramen"
+        MaterialListBoxItem12.SecondaryText = ""
+        MaterialListBoxItem12.Tag = Nothing
+        MaterialListBoxItem12.Text = "Chocolate"
+        Me.MaterialListBox2.Items.Add(MaterialListBoxItem10)
+        Me.MaterialListBox2.Items.Add(MaterialListBoxItem11)
+        Me.MaterialListBox2.Items.Add(MaterialListBoxItem12)
         Me.MaterialListBox2.Location = New System.Drawing.Point(15, 118)
         Me.MaterialListBox2.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialListBox2.Name = "MaterialListBox2"
@@ -2828,8 +2854,8 @@ Partial Class Form1
         Me.ListViewMangaLibrary.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListViewMangaLibrary.Depth = 0
         Me.ListViewMangaLibrary.FullRowSelect = True
-        ListViewItem1.StateImageIndex = 0
-        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
+        ListViewItem3.StateImageIndex = 0
+        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem3})
         Me.ListViewMangaLibrary.Location = New System.Drawing.Point(46, 155)
         Me.ListViewMangaLibrary.MinimumSize = New System.Drawing.Size(200, 100)
         Me.ListViewMangaLibrary.MouseLocation = New System.Drawing.Point(-1, -1)
@@ -3052,6 +3078,54 @@ Partial Class Form1
         Me.MaterialCheckbox9.Text = "MaterialCheckbox9"
         Me.MaterialCheckbox9.UseVisualStyleBackColor = True
         '
+        'MaterialCheckbox10
+        '
+        Me.MaterialCheckbox10.AutoSize = True
+        Me.MaterialCheckbox10.Depth = 0
+        Me.MaterialCheckbox10.Location = New System.Drawing.Point(0, 0)
+        Me.MaterialCheckbox10.Margin = New System.Windows.Forms.Padding(0)
+        Me.MaterialCheckbox10.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.MaterialCheckbox10.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialCheckbox10.Name = "MaterialCheckbox10"
+        Me.MaterialCheckbox10.ReadOnly = False
+        Me.MaterialCheckbox10.Ripple = True
+        Me.MaterialCheckbox10.Size = New System.Drawing.Size(10, 10)
+        Me.MaterialCheckbox10.TabIndex = 0
+        Me.MaterialCheckbox10.Text = "Ramen"
+        Me.MaterialCheckbox10.UseVisualStyleBackColor = True
+        '
+        'MaterialCheckbox11
+        '
+        Me.MaterialCheckbox11.AutoSize = True
+        Me.MaterialCheckbox11.Depth = 0
+        Me.MaterialCheckbox11.Location = New System.Drawing.Point(0, 0)
+        Me.MaterialCheckbox11.Margin = New System.Windows.Forms.Padding(0)
+        Me.MaterialCheckbox11.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.MaterialCheckbox11.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialCheckbox11.Name = "MaterialCheckbox11"
+        Me.MaterialCheckbox11.ReadOnly = False
+        Me.MaterialCheckbox11.Ripple = True
+        Me.MaterialCheckbox11.Size = New System.Drawing.Size(10, 10)
+        Me.MaterialCheckbox11.TabIndex = 0
+        Me.MaterialCheckbox11.Text = "Piatos"
+        Me.MaterialCheckbox11.UseVisualStyleBackColor = True
+        '
+        'MaterialCheckbox12
+        '
+        Me.MaterialCheckbox12.AutoSize = True
+        Me.MaterialCheckbox12.Depth = 0
+        Me.MaterialCheckbox12.Location = New System.Drawing.Point(0, 0)
+        Me.MaterialCheckbox12.Margin = New System.Windows.Forms.Padding(0)
+        Me.MaterialCheckbox12.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.MaterialCheckbox12.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialCheckbox12.Name = "MaterialCheckbox12"
+        Me.MaterialCheckbox12.ReadOnly = False
+        Me.MaterialCheckbox12.Ripple = True
+        Me.MaterialCheckbox12.Size = New System.Drawing.Size(10, 10)
+        Me.MaterialCheckbox12.TabIndex = 0
+        Me.MaterialCheckbox12.Text = "Cola"
+        Me.MaterialCheckbox12.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 25.0!)
@@ -3071,6 +3145,7 @@ Partial Class Form1
         Me.MaterialTabControl2.ResumeLayout(False)
         Me.TabPage8.ResumeLayout(False)
         Me.TabPage8.PerformLayout()
+        Me.MaterialCard7.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.MaterialExpansionPanel2.ResumeLayout(False)
@@ -3189,7 +3264,7 @@ Partial Class Form1
     Friend WithEvents MaterialTextBox5 As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents MaterialLabel21 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialTextBox6 As MaterialSkin.Controls.MaterialTextBox
-    Friend WithEvents MaterialButton3 As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents CheckAddToCart As MaterialSkin.Controls.MaterialButton
     Friend WithEvents MaterialCard5 As MaterialSkin.Controls.MaterialCard
     Friend WithEvents MaterialLabel19 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents TxtAddServiceType As MaterialSkin.Controls.MaterialComboBox
@@ -3222,30 +3297,28 @@ Partial Class Form1
     Friend WithEvents TabPage9 As TabPage
     Friend WithEvents MaterialTabSelector4 As MaterialSkin.Controls.MaterialTabSelector
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents MaterialTextBox21 As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents OrderCheckTxt As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents MaterialLabel15 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents MaterialListView1 As MaterialSkin.Controls.MaterialListView
+    Friend WithEvents ListViewCheckInLibrary As MaterialSkin.Controls.MaterialListView
     Friend WithEvents ColumnHeader7 As ColumnHeader
     Friend WithEvents ColumnHeader8 As ColumnHeader
     Friend WithEvents ColumnHeader10 As ColumnHeader
     Friend WithEvents ColumnHeader11 As ColumnHeader
-    Friend WithEvents MaterialComboBox4 As MaterialSkin.Controls.MaterialComboBox
+    Friend WithEvents CheckSelectionOrder As MaterialSkin.Controls.MaterialComboBox
     Friend WithEvents MaterialLabel16 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents MaterialTextBox29 As MaterialSkin.Controls.MaterialTextBox2
-    Friend WithEvents MaterialTextBox24 As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents TxtOrderQuan As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents TxtOrderServPrice As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents MaterialLabel27 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel26 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel25 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents MaterialComboBox3 As MaterialSkin.Controls.MaterialComboBox
+    Friend WithEvents DurCheckSelection As MaterialSkin.Controls.MaterialComboBox
     Friend WithEvents MaterialExpansionPanel2 As MaterialSkin.Controls.MaterialExpansionPanel
     Friend WithEvents MaterialTextBox22 As MaterialSkin.Controls.MaterialTextBox2
-    Friend WithEvents MaterialListBox1 As MaterialSkin.Controls.MaterialListBox
     Friend WithEvents MaterialButton4 As MaterialSkin.Controls.MaterialButton
-    Friend WithEvents MaterialTextBox23 As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents TxtOrderServName As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents MaterialLabel17 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents MaterialTextBox210 As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents TxtOrderTot As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents MaterialLabel33 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents MaterialCard7 As MaterialSkin.Controls.MaterialCard
     Friend WithEvents MaterialTextBox211 As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents MaterialLabel18 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents GroupBox2 As GroupBox
@@ -3284,4 +3357,11 @@ Partial Class Form1
     Friend WithEvents TxtCheckInEdit As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents TxtRentEdit As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents RentSelection As MaterialSkin.Controls.MaterialComboBox
+    Friend WithEvents MaterialCheckbox10 As MaterialSkin.Controls.MaterialCheckbox
+    Friend WithEvents MaterialCheckbox11 As MaterialSkin.Controls.MaterialCheckbox
+    Friend WithEvents MaterialCheckbox12 As MaterialSkin.Controls.MaterialCheckbox
+    Friend WithEvents CheckInListBox As MaterialSkin.Controls.MaterialListBox
+    Friend WithEvents MaterialCard7 As MaterialSkin.Controls.MaterialCard
+    Friend WithEvents MaterialLabel42 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents FinalTotalCost As MaterialSkin.Controls.MaterialLabel
 End Class
