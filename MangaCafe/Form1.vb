@@ -426,4 +426,87 @@ Public Class Form1
 
         End If
     End Sub
+
+
+    Private Sub BtnEditRent_Click(sender As Object, e As EventArgs) Handles BtnEditRent.Click
+        BtnSaveRent.Enabled = True
+    End Sub
+
+    Private Sub BtnEditCheckIn_Click(sender As Object, e As EventArgs) Handles BtnEditCheckIn.Click
+        BtnSaveCheckIn.Enabled = True
+    End Sub
+
+    Private Sub CheckInSelection_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CheckInSelection.SelectedIndexChanged
+        Try
+            Dim sqlQuery As String = "SELECT dPrice from durationprices WHERE dName = '" & CheckInSelection.Text & "'"
+            Dim sqlAdapter As New MySqlDataAdapter
+            Dim sqlCommand As New MySqlCommand
+            Dim durationTable As New DataTable
+
+            With sqlCommand
+                .CommandText = sqlQuery
+                .Connection = dbConn
+            End With
+
+            With sqlAdapter
+                .SelectCommand = sqlCommand
+                .Fill(durationTable)
+            End With
+
+            TxtCheckInEdit.Text = durationTable.Rows(0)("dPrice")
+            BtnSaveCheckIn.Enabled = False
+        Catch ex As Exception
+            MsgBox(ex.Message, vbCritical)
+        End Try
+    End Sub
+
+    Private Sub RentSelection_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RentSelection.SelectedIndexChanged
+        Try
+            Dim sqlQuery As String = "SELECT dPrice from durationprices WHERE dName = '" & RentSelection.Text & "'"
+            Dim sqlAdapter As New MySqlDataAdapter
+            Dim sqlCommand As New MySqlCommand
+            Dim durationTable As New DataTable
+
+            With sqlCommand
+                .CommandText = sqlQuery
+                .Connection = dbConn
+            End With
+
+            With sqlAdapter
+                .SelectCommand = sqlCommand
+                .Fill(durationTable)
+            End With
+
+            TxtRentEdit.Text = durationTable.Rows(0)("dPrice")
+            BtnSaveRent.Enabled = False
+        Catch ex As Exception
+            MsgBox(ex.Message, vbCritical)
+        End Try
+    End Sub
+
+    Private Sub BtnSaveCheckIn_Click(sender As Object, e As EventArgs) Handles BtnSaveCheckIn.Click
+        Dim sqlQuery As String = "UPDATE durationprices SET dPrice = '" & TxtCheckInEdit.Text & "' WHERE dName = '" & CheckInSelection.Text & "'"
+        Dim sqlCommand As New MySqlCommand
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+            .ExecuteNonQuery()
+        End With
+
+        MsgBox("Duration item updated succesfully!", MsgBoxStyle.Information)
+    End Sub
+
+    Private Sub BtnSaveRent_Click(sender As Object, e As EventArgs) Handles BtnSaveRent.Click
+        Dim sqlQuery As String = "UPDATE durationprices SET dPrice = '" & TxtRentEdit.Text & "' WHERE dName = '" & RentSelection.Text & "'"
+        Dim sqlCommand As New MySqlCommand
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+            .ExecuteNonQuery()
+        End With
+
+        MsgBox("Duration item updated succesfully!", MsgBoxStyle.Information)
+    End Sub
 End Class
