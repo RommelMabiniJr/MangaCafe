@@ -28,7 +28,7 @@ Public Class Form1
             dbConn.Open()
         End If
 
-        PopulateLibrary()
+        PopulateMgLibrary()
         PopulateServiceLibrary()
     End Sub
 
@@ -47,7 +47,7 @@ Public Class Form1
 
 
     'LIBRARY TAB OR SECTION CODE AREA
-    Public Sub PopulateLibrary()
+    Public Sub PopulateMgLibrary()
         Dim sqlQuery As String = "SELECT mgID, mgTitle, mgCopies, mgPrice FROM mangalibrary"
         Dim sqlAdapter As New MySqlDataAdapter
         Dim sqlCommand As New MySqlCommand
@@ -143,7 +143,7 @@ Public Class Form1
 
 
             MsgBox("Manga added succesfully!")
-            PopulateLibrary()
+            PopulateMgLibrary()
 
             PanelAddToLibrary.Hide()
             panelToLibraryShow = False
@@ -182,7 +182,7 @@ Public Class Form1
         End With
 
         MsgBox("Manga updated succesfully!", MsgBoxStyle.Information)
-        PopulateLibrary()
+        PopulateMgLibrary()
         SaveImg(ImgCoverEdit, OpenFileDialog2)
 
         coverFileName = String.Empty
@@ -247,7 +247,7 @@ Public Class Form1
                 End With
 
                 MsgBox("Manga deleted succesfully!", MsgBoxStyle.Information)
-                PopulateLibrary()
+                PopulateMgLibrary()
             End If
 
         End If
@@ -456,7 +456,7 @@ Public Class Form1
             TxtCheckInEdit.Text = durationTable.Rows(0)("dPrice")
             BtnSaveCheckIn.Enabled = False
         Catch ex As Exception
-            MsgBox(ex.Message, vbCritical)
+            'MsgBox(ex.Message, vbCritical)
         End Try
     End Sub
 
@@ -480,7 +480,7 @@ Public Class Form1
             TxtRentEdit.Text = durationTable.Rows(0)("dPrice")
             BtnSaveRent.Enabled = False
         Catch ex As Exception
-            MsgBox(ex.Message, vbCritical)
+            'MsgBox(ex.Message, vbCritical)
         End Try
     End Sub
 
@@ -521,7 +521,13 @@ Public Class Form1
 
 
 
-    'MAKE ORDER TAB CODE AREA
+
+
+
+
+
+    'MAKE ORDER TAB AREA
+    'CHECK IN CODE PORTION
     Private Sub OrderCheckTxt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles OrderCheckTxt.KeyPress
         '97 - 122 = Ascii codes for simple letters
         '65 - 90  = Ascii codes for capital letters
@@ -563,7 +569,7 @@ Public Class Form1
                 CheckInListBox.Items.Add(matrlItem)
             Next
         Catch ex As Exception
-            MsgBox(ex.Message, vbCritical)
+            'MsgBox(ex.Message, vbCritical)
         End Try
     End Sub
 
@@ -631,7 +637,6 @@ Public Class Form1
 
     Dim totCost As Double
     Public Sub CalcTotalCostCheckIn()
-        'Dim totCost As Double
 
         CalcDurationCost()
         CalcAdditionalCost()
@@ -664,7 +669,7 @@ Public Class Form1
             totCost = cost
 
         Catch ex As Exception
-            MsgBox("here")
+            MsgBox("Please input a duration!")
         End Try
     End Sub
 
@@ -678,7 +683,35 @@ Public Class Form1
         Next
     End Sub
 
-    Private Sub MaterialLabel17_Click(sender As Object, e As EventArgs) Handles MaterialLabel17.Click
+    Private Sub CalcTotBtnCheckIn_Click(sender As Object, e As EventArgs) Handles CalcTotBtnCheckIn.Click
         CalcTotalCostCheckIn()
     End Sub
+
+
+
+
+
+
+
+
+
+
+    'RENT ONLY CODE PORTION
+    Private Sub RentNumVol_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RentNumVol.KeyPress
+        If Asc(e.KeyChar) <> 8 Then
+            If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
+                e.Handled = True
+            End If
+        End If
+    End Sub
+
+    Private Sub RentDuration_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RentDuration.KeyPress
+        If Asc(e.KeyChar) <> 8 Then
+            If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
+                e.Handled = True
+            End If
+        End If
+    End Sub
+
+
 End Class
