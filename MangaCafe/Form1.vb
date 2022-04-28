@@ -1,5 +1,6 @@
 ﻿Imports MaterialSkin
 Imports MySql.Data.MySqlClient
+Imports System.ComponentModel
 Imports System.IO
 
 Public Class Form1
@@ -8,6 +9,7 @@ Public Class Form1
     Public mangaID As Integer
     Public serviceID As Integer
     Public coverFileName As String
+    Dim _bDocumentChanged As Boolean
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim SkinManager As MaterialSkinManager = MaterialSkinManager.Instance
@@ -30,6 +32,10 @@ Public Class Form1
 
         PopulateMgLibrary()
         PopulateServiceLibrary()
+    End Sub
+
+    Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        revertMgLibraryUnsavedChanges()
     End Sub
 
 
@@ -645,16 +651,16 @@ Public Class Form1
         End With
     End Sub
 
-    Dim totCost As Double
+    Dim CheckInTotCost As Double
     Public Sub CalcTotalCostCheckIn()
 
-        CalcDurationCost()
-        CalcAdditionalCost()
+        CalcDurationCostCheckIn()
+        CalcAdditionalCostCheckIn()
 
-        FinalTotalCost.Text = totCost
+        FinalTotalCost.Text = CheckInTotCost
     End Sub
 
-    Public Sub CalcDurationCost()
+    Public Sub CalcDurationCostCheckIn()
         Try
             Dim sqlQuery As String = "SELECT dPrice from durationprices WHERE dName = '" & DurCheckSelection.Text & "'"
             Dim sqlAdapter As New MySqlDataAdapter
@@ -676,20 +682,20 @@ Public Class Form1
             prs = durationTable.Rows(0)("dPrice")
             cost = CInt(OrderCheckTxt.Text) * CDbl(Val(prs))
 
-            totCost = cost
+            CheckInTotCost = cost
 
         Catch ex As Exception
             MsgBox("Please input a duration!")
         End Try
     End Sub
 
-    Public Sub CalcAdditionalCost()
+    Public Sub CalcAdditionalCostCheckIn()
         Dim tot As Double
 
         For i = 0 To ListViewCheckInLibrary.Items.Count - 1
             Dim item As String = ListViewCheckInLibrary.Items(i).SubItems(3).Text
             tot = CDbl(Val(item))
-            totCost += tot
+            CheckInTotCost += tot
         Next
     End Sub
 
@@ -707,7 +713,7 @@ Public Class Form1
 
 
     'RENT ONLY CODE PORTION
-    Private Sub RentNumVol_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RentNumVol.KeyPress
+    Private Sub RentNumVol_KeyPress(sender As Object, e As KeyPressEventArgs)
         If Asc(e.KeyChar) <> 8 Then
             If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
                 e.Handled = True
@@ -755,6 +761,7 @@ Public Class Form1
             RentMgTitle.Text = itemMg.Text
             RentMgPrice.Text = mgDetailsTable.Rows(0)("mgPrice")
             RentMgCopies.Text = mgDetailsTable.Rows(0)("mgCopies")
+            RentMgOnRent.Text = mgDetailsTable.Rows(0)("mgOnRent")
 
             'Show associated cover of the mg selected
             Dim accessDirectory As String = "D:\MangaCafeSavedImages\"
@@ -772,14 +779,155 @@ Public Class Form1
         If RentMgQuan.Text = "" Then
             quan = 0
         Else
-            If CInt(RentMgQuan.Text) <= CInt(RentMgCopies.Text) Then
+            Dim copiesSubRent As Integer = CInt(RentMgCopies.Text) - CInt(RentMgOnRent.Text)
+            If CInt(RentMgQuan.Text) <= copiesSubRent Then
                 quan = CInt(RentMgQuan.Text)
 
                 Dim price As Double = CDbl(Val(RentMgPrice.Text)) * quan
                 RentMgTotal.Text = Format(price, "0.00")
             Else
-                MsgBox("Not enough copies on hand, # of Copies available: " & RentMgCopies.Text & "")
+                MsgBox("Not enough copies on hand!" & vbCrLf & " # of Copies available: " & copiesSubRent & "")
             End If
         End If
     End Sub
+
+    Private Sub RentAddToCart_Click(sender As Object, e As EventArgs) Handles RentAddToCart.Click
+        Dim sqlQuery As String = "UPDATE mangalibrary SET mgOnRent = mgOnRent + '" & RentMgQuan.Text & "' WHERE mgTitle = '" & RentMgTitle.Text & "'"
+        Dim sqlCommand As New MySqlCommand
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+            .ExecuteNonQuery()
+        End With
+
+        With RentListView
+            .Items.Add(RentMgTitle.Text)
+            With .Items(.Items.Count - 1).SubItems
+                .Add(RentMgPrice.Text)
+                .Add(RentMgQuan.Text)
+                .Add(RentMgTotal.Text)
+            End With
+        End With
+
+        Dim intVal As Integer = CInt(RentNumVol.Text) + CInt(RentMgQuan.Text)
+        RentNumVol.Text = intVal
+    End Sub
+
+
+    Dim RentTotCost As Double
+
+    Public Sub CalcTotalCostRent()
+        CalcDurationCostRent()
+        CalcAdditionalCostRent()
+
+        RentFinalTot.Text = RentTotCost
+    End Sub
+
+    Public Sub CalcDurationCostRent()
+        Try
+            Dim sqlQuery As String = "SELECT dPrice from durationprices WHERE dName = '" & RentDurSelection.Text & "'"
+            Dim sqlAdapter As New MySqlDataAdapter
+            Dim sqlCommand As New MySqlCommand
+            Dim durationTable As New DataTable
+
+            With sqlCommand
+                .CommandText = sqlQuery
+                .Connection = dbConn
+            End With
+
+            With sqlAdapter
+                .SelectCommand = sqlCommand
+                .Fill(durationTable)
+            End With
+
+
+            Dim cost As Double, prs As String
+            prs = durationTable.Rows(0)("dPrice")
+            cost = CInt(RentDuration.Text) * CDbl(Val(prs))
+
+            RentTotCost = cost
+
+        Catch ex As Exception
+            MsgBox("Please input a duration!")
+        End Try
+    End Sub
+
+    Public Sub CalcAdditionalCostRent()
+        Dim tot As Double
+
+        For i = 0 To RentListView.Items.Count - 1
+            Dim item As String = RentListView.Items(i).SubItems(3).Text
+            tot = CDbl(Val(item))
+            RentTotCost += tot
+        Next
+    End Sub
+
+    Private Sub MaterialLabel40_Click(sender As Object, e As EventArgs) Handles MaterialLabel40.Click
+        CalcTotalCostRent()
+    End Sub
+
+    Public Sub deleteItemInLV(listVW As ListView)
+        Dim response As Integer
+
+        For Each i As ListViewItem In listVW.SelectedItems
+            response = MsgBox("Are you sure you want to remove item: " & vbCrLf & "     " + listVW.Items(listVW.FocusedItem.Index).Text, vbYesNo, "Confirm Delete")
+            If response = vbYes Then
+
+                'In order for us to still have reference to focused item before deletion
+                If listVW.Columns(0).Text = "Title" Then
+                    Dim quanVal, titleVal As String
+                    quanVal = listVW.Items(listVW.FocusedItem.Index).SubItems(2).Text
+                    titleVal = listVW.Items(listVW.FocusedItem.Index).Text
+
+                    Dim sqlQuery As String = "UPDATE mangalibrary SET mgOnRent = mgOnRent - '" & quanVal & "' WHERE mgTitle = '" & titleVal & "'"
+                    Dim sqlCommand As New MySqlCommand
+
+                    With sqlCommand
+                        .CommandText = sqlQuery
+                        .Connection = dbConn
+                        .ExecuteNonQuery()
+                    End With
+
+                    Dim intVal As Integer = CInt(RentNumVol.Text) - CInt(quanVal)
+                    RentNumVol.Text = intVal
+                End If
+
+                listVW.Items.Remove(i)
+            End If
+
+        Next
+    End Sub
+
+    Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem.Click
+
+        'for dynamic retrieval of listview name where the contextmenustrip is opened
+        Dim lvNameCms As ContextMenuStrip = CType(RemoveToolStripMenuItem.Owner, ContextMenuStrip)
+        deleteItemInLV(lvNameCms.SourceControl)
+    End Sub
+
+    Public Sub revertMgLibraryUnsavedChanges()
+        If RentListView.Items.Count > 0 Then
+            Dim response As Integer
+            response = MsgBox("There are unsaved changes in your document, confirm exit?", vbYesNo, "Unsaved Changes in Document")
+
+            If response = vbYes Then
+                For i = 0 To RentListView.Items.Count - 1
+                    Dim onRent As String = RentListView.Items(i).SubItems(2).Text
+                    Dim mangTitle As String = RentListView.Items(i).Text
+
+                    Dim sqlQuery As String = "UPDATE mangalibrary SET mgOnRent = mgOnRent - '" & onRent & "' WHERE mgTitle = '" & mangTitle & "'"
+                    Dim sqlCommand As New MySqlCommand
+
+                    With sqlCommand
+                        .CommandText = sqlQuery
+                        .Connection = dbConn
+                        .ExecuteNonQuery()
+                    End With
+                Next
+            End If
+        End If
+    End Sub
+
 End Class
+

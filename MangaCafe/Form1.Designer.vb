@@ -23,10 +23,10 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim MaterialListBoxItem6 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem5 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem7 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem8 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
+        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
         Me.MaterialTabControl1 = New MaterialSkin.Controls.MaterialTabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -45,6 +45,8 @@ Partial Class Form1
         Me.ColumnHeader8 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader10 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader11 = New System.Windows.Forms.ColumnHeader()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaterialLabel15 = New MaterialSkin.Controls.MaterialLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.MaterialExpansionPanel2 = New MaterialSkin.Controls.MaterialExpansionPanel()
@@ -64,22 +66,25 @@ Partial Class Form1
         Me.MaterialLabel17 = New MaterialSkin.Controls.MaterialLabel()
         Me.TabPage9 = New System.Windows.Forms.TabPage()
         Me.MaterialCard4 = New MaterialSkin.Controls.MaterialCard()
+        Me.MaterialLabel39 = New MaterialSkin.Controls.MaterialLabel()
+        Me.RentFinalTot = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialButton6 = New MaterialSkin.Controls.MaterialButton()
-        Me.MaterialListView2 = New MaterialSkin.Controls.MaterialListView()
+        Me.RentListView = New MaterialSkin.Controls.MaterialListView()
         Me.ColumnHeader12 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader13 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader14 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader16 = New System.Windows.Forms.ColumnHeader()
         Me.MaterialLabel40 = New MaterialSkin.Controls.MaterialLabel()
-        Me.RentNumVol = New MaterialSkin.Controls.MaterialTextBox2()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.MaterialExpansionPanel3 = New MaterialSkin.Controls.MaterialExpansionPanel()
+        Me.MaterialLabel43 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel21 = New MaterialSkin.Controls.MaterialLabel()
+        Me.RentMgOnRent = New MaterialSkin.Controls.MaterialLabel()
         Me.RentMgCover = New System.Windows.Forms.PictureBox()
         Me.RentMgCopies = New MaterialSkin.Controls.MaterialLabel()
-        Me.MaterialLabel21 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialTextBox212 = New MaterialSkin.Controls.MaterialTextBox2()
         Me.RentListBox = New MaterialSkin.Controls.MaterialListBox()
-        Me.MaterialButton5 = New MaterialSkin.Controls.MaterialButton()
+        Me.RentAddToCart = New MaterialSkin.Controls.MaterialButton()
         Me.RentMgTotal = New MaterialSkin.Controls.MaterialTextBox2()
         Me.RentMgQuan = New MaterialSkin.Controls.MaterialTextBox2()
         Me.RentMgTitle = New MaterialSkin.Controls.MaterialTextBox2()
@@ -88,9 +93,10 @@ Partial Class Form1
         Me.MaterialLabel35 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel36 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel37 = New MaterialSkin.Controls.MaterialLabel()
-        Me.MaterialComboBox5 = New MaterialSkin.Controls.MaterialComboBox()
+        Me.RentDurSelection = New MaterialSkin.Controls.MaterialComboBox()
         Me.RentDuration = New MaterialSkin.Controls.MaterialTextBox2()
         Me.MaterialLabel18 = New MaterialSkin.Controls.MaterialLabel()
+        Me.RentNumVol = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel38 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialTabSelector4 = New MaterialSkin.Controls.MaterialTabSelector()
         Me.MaterialLabel28 = New MaterialSkin.Controls.MaterialLabel()
@@ -203,14 +209,13 @@ Partial Class Form1
         Me.MaterialCheckbox10 = New MaterialSkin.Controls.MaterialCheckbox()
         Me.MaterialCheckbox11 = New MaterialSkin.Controls.MaterialCheckbox()
         Me.MaterialCheckbox12 = New MaterialSkin.Controls.MaterialCheckbox()
-        Me.MaterialLabel39 = New MaterialSkin.Controls.MaterialLabel()
-        Me.RentFinalTot = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialTabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.MaterialCard6.SuspendLayout()
         Me.MaterialTabControl2.SuspendLayout()
         Me.TabPage8.SuspendLayout()
         Me.MaterialCard7.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.MaterialExpansionPanel2.SuspendLayout()
         Me.TabPage9.SuspendLayout()
@@ -471,6 +476,7 @@ Partial Class Form1
         Me.ListViewCheckInLibrary.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.ListViewCheckInLibrary.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ListViewCheckInLibrary.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader10, Me.ColumnHeader11})
+        Me.ListViewCheckInLibrary.ContextMenuStrip = Me.ContextMenuStrip1
         Me.ListViewCheckInLibrary.Depth = 0
         Me.ListViewCheckInLibrary.FullRowSelect = True
         Me.ListViewCheckInLibrary.Location = New System.Drawing.Point(44, 399)
@@ -503,6 +509,21 @@ Partial Class Form1
         '
         Me.ColumnHeader11.Text = "Total"
         Me.ColumnHeader11.Width = 150
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
+        Me.ContextMenuStrip1.ShowImageMargin = False
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(124, 36)
+        '
+        'RemoveToolStripMenuItem
+        '
+        Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
+        Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(123, 32)
+        Me.RemoveToolStripMenuItem.Text = "Remove"
         '
         'MaterialLabel15
         '
@@ -566,10 +587,10 @@ Partial Class Form1
         Me.CheckInListBox.BorderColor = System.Drawing.Color.LightGray
         Me.CheckInListBox.Depth = 0
         Me.CheckInListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem6.SecondaryText = ""
-        MaterialListBoxItem6.Tag = Nothing
-        MaterialListBoxItem6.Text = "ListBoxItem"
-        Me.CheckInListBox.Items.Add(MaterialListBoxItem6)
+        MaterialListBoxItem7.SecondaryText = ""
+        MaterialListBoxItem7.Tag = Nothing
+        MaterialListBoxItem7.Text = "ListBoxItem"
+        Me.CheckInListBox.Items.Add(MaterialListBoxItem7)
         Me.CheckInListBox.Location = New System.Drawing.Point(15, 102)
         Me.CheckInListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.CheckInListBox.Name = "CheckInListBox"
@@ -844,13 +865,13 @@ Partial Class Form1
         '
         Me.TabPage9.Controls.Add(Me.MaterialCard4)
         Me.TabPage9.Controls.Add(Me.MaterialButton6)
-        Me.TabPage9.Controls.Add(Me.MaterialListView2)
+        Me.TabPage9.Controls.Add(Me.RentListView)
         Me.TabPage9.Controls.Add(Me.MaterialLabel40)
-        Me.TabPage9.Controls.Add(Me.RentNumVol)
         Me.TabPage9.Controls.Add(Me.GroupBox2)
-        Me.TabPage9.Controls.Add(Me.MaterialComboBox5)
+        Me.TabPage9.Controls.Add(Me.RentDurSelection)
         Me.TabPage9.Controls.Add(Me.RentDuration)
         Me.TabPage9.Controls.Add(Me.MaterialLabel18)
+        Me.TabPage9.Controls.Add(Me.RentNumVol)
         Me.TabPage9.Controls.Add(Me.MaterialLabel38)
         Me.TabPage9.Location = New System.Drawing.Point(4, 34)
         Me.TabPage9.Name = "TabPage9"
@@ -875,6 +896,32 @@ Partial Class Form1
         Me.MaterialCard4.Size = New System.Drawing.Size(312, 46)
         Me.MaterialCard4.TabIndex = 15
         '
+        'MaterialLabel39
+        '
+        Me.MaterialLabel39.Depth = 0
+        Me.MaterialLabel39.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel39.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
+        Me.MaterialLabel39.Location = New System.Drawing.Point(17, 5)
+        Me.MaterialLabel39.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel39.Name = "MaterialLabel39"
+        Me.MaterialLabel39.Size = New System.Drawing.Size(20, 36)
+        Me.MaterialLabel39.TabIndex = 13
+        Me.MaterialLabel39.Text = "$"
+        Me.MaterialLabel39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'RentFinalTot
+        '
+        Me.RentFinalTot.Depth = 0
+        Me.RentFinalTot.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.RentFinalTot.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
+        Me.RentFinalTot.Location = New System.Drawing.Point(43, 10)
+        Me.RentFinalTot.MouseState = MaterialSkin.MouseState.HOVER
+        Me.RentFinalTot.Name = "RentFinalTot"
+        Me.RentFinalTot.Size = New System.Drawing.Size(253, 28)
+        Me.RentFinalTot.TabIndex = 12
+        Me.RentFinalTot.Text = "0.00"
+        Me.RentFinalTot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'MaterialButton6
         '
         Me.MaterialButton6.AutoSize = False
@@ -895,44 +942,46 @@ Partial Class Form1
         Me.MaterialButton6.UseAccentColor = False
         Me.MaterialButton6.UseVisualStyleBackColor = True
         '
-        'MaterialListView2
+        'RentListView
         '
-        Me.MaterialListView2.AutoSizeTable = False
-        Me.MaterialListView2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.MaterialListView2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.MaterialListView2.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader12, Me.ColumnHeader13, Me.ColumnHeader14, Me.ColumnHeader16})
-        Me.MaterialListView2.Depth = 0
-        Me.MaterialListView2.FullRowSelect = True
-        Me.MaterialListView2.Location = New System.Drawing.Point(44, 400)
-        Me.MaterialListView2.MinimumSize = New System.Drawing.Size(200, 100)
-        Me.MaterialListView2.MouseLocation = New System.Drawing.Point(-1, -1)
-        Me.MaterialListView2.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialListView2.Name = "MaterialListView2"
-        Me.MaterialListView2.OwnerDraw = True
-        Me.MaterialListView2.Size = New System.Drawing.Size(622, 127)
-        Me.MaterialListView2.TabIndex = 13
-        Me.MaterialListView2.UseCompatibleStateImageBehavior = False
-        Me.MaterialListView2.View = System.Windows.Forms.View.Details
+        Me.RentListView.AutoSizeTable = False
+        Me.RentListView.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.RentListView.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.RentListView.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader12, Me.ColumnHeader13, Me.ColumnHeader14, Me.ColumnHeader16})
+        Me.RentListView.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.RentListView.Depth = 0
+        Me.RentListView.FullRowSelect = True
+        Me.RentListView.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.RentListView.Location = New System.Drawing.Point(44, 400)
+        Me.RentListView.MinimumSize = New System.Drawing.Size(200, 100)
+        Me.RentListView.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.RentListView.MouseState = MaterialSkin.MouseState.OUT
+        Me.RentListView.Name = "RentListView"
+        Me.RentListView.OwnerDraw = True
+        Me.RentListView.Size = New System.Drawing.Size(622, 127)
+        Me.RentListView.TabIndex = 13
+        Me.RentListView.UseCompatibleStateImageBehavior = False
+        Me.RentListView.View = System.Windows.Forms.View.Details
         '
         'ColumnHeader12
         '
         Me.ColumnHeader12.Text = "Title"
-        Me.ColumnHeader12.Width = 250
+        Me.ColumnHeader12.Width = 300
         '
         'ColumnHeader13
         '
         Me.ColumnHeader13.Text = "Price"
-        Me.ColumnHeader13.Width = 150
+        Me.ColumnHeader13.Width = 130
         '
         'ColumnHeader14
         '
         Me.ColumnHeader14.Text = "Quantity"
-        Me.ColumnHeader14.Width = 150
+        Me.ColumnHeader14.Width = 110
         '
         'ColumnHeader16
         '
         Me.ColumnHeader16.Text = "Total"
-        Me.ColumnHeader16.Width = 150
+        Me.ColumnHeader16.Width = 110
         '
         'MaterialLabel40
         '
@@ -948,38 +997,10 @@ Partial Class Form1
         Me.MaterialLabel40.Text = "TOTAL"
         Me.MaterialLabel40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'RentNumVol
-        '
-        Me.RentNumVol.AnimateReadOnly = False
-        Me.RentNumVol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.RentNumVol.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.RentNumVol.Depth = 0
-        Me.RentNumVol.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.RentNumVol.HideSelection = True
-        Me.RentNumVol.LeadingIcon = Nothing
-        Me.RentNumVol.Location = New System.Drawing.Point(140, 15)
-        Me.RentNumVol.MaxLength = 32767
-        Me.RentNumVol.MouseState = MaterialSkin.MouseState.OUT
-        Me.RentNumVol.Name = "RentNumVol"
-        Me.RentNumVol.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.RentNumVol.PrefixSuffixText = Nothing
-        Me.RentNumVol.ReadOnly = False
-        Me.RentNumVol.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.RentNumVol.SelectedText = ""
-        Me.RentNumVol.SelectionLength = 0
-        Me.RentNumVol.SelectionStart = 0
-        Me.RentNumVol.ShortcutsEnabled = True
-        Me.RentNumVol.Size = New System.Drawing.Size(146, 48)
-        Me.RentNumVol.TabIndex = 11
-        Me.RentNumVol.TabStop = False
-        Me.RentNumVol.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.RentNumVol.TrailingIcon = Nothing
-        Me.RentNumVol.UseSystemPasswordChar = False
-        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.MaterialExpansionPanel3)
-        Me.GroupBox2.Controls.Add(Me.MaterialButton5)
+        Me.GroupBox2.Controls.Add(Me.RentAddToCart)
         Me.GroupBox2.Controls.Add(Me.RentMgTotal)
         Me.GroupBox2.Controls.Add(Me.RentMgQuan)
         Me.GroupBox2.Controls.Add(Me.RentMgTitle)
@@ -999,9 +1020,11 @@ Partial Class Form1
         '
         Me.MaterialExpansionPanel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.MaterialExpansionPanel3.Collapse = True
+        Me.MaterialExpansionPanel3.Controls.Add(Me.MaterialLabel43)
+        Me.MaterialExpansionPanel3.Controls.Add(Me.MaterialLabel21)
+        Me.MaterialExpansionPanel3.Controls.Add(Me.RentMgOnRent)
         Me.MaterialExpansionPanel3.Controls.Add(Me.RentMgCover)
         Me.MaterialExpansionPanel3.Controls.Add(Me.RentMgCopies)
-        Me.MaterialExpansionPanel3.Controls.Add(Me.MaterialLabel21)
         Me.MaterialExpansionPanel3.Controls.Add(Me.MaterialTextBox212)
         Me.MaterialExpansionPanel3.Controls.Add(Me.RentListBox)
         Me.MaterialExpansionPanel3.Depth = 0
@@ -1019,9 +1042,46 @@ Partial Class Form1
         Me.MaterialExpansionPanel3.Title = "Choose a manga"
         Me.MaterialExpansionPanel3.ValidationButtonEnable = True
         '
+        'MaterialLabel43
+        '
+        Me.MaterialLabel43.AutoSize = True
+        Me.MaterialLabel43.Depth = 0
+        Me.MaterialLabel43.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel43.Location = New System.Drawing.Point(466, 126)
+        Me.MaterialLabel43.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel43.Name = "MaterialLabel43"
+        Me.MaterialLabel43.Size = New System.Drawing.Size(117, 19)
+        Me.MaterialLabel43.TabIndex = 13
+        Me.MaterialLabel43.Text = "Currently in Rent"
+        '
+        'MaterialLabel21
+        '
+        Me.MaterialLabel21.AutoSize = True
+        Me.MaterialLabel21.Depth = 0
+        Me.MaterialLabel21.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel21.Location = New System.Drawing.Point(495, 50)
+        Me.MaterialLabel21.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel21.Name = "MaterialLabel21"
+        Me.MaterialLabel21.Size = New System.Drawing.Size(49, 19)
+        Me.MaterialLabel21.TabIndex = 13
+        Me.MaterialLabel21.Text = "Copies"
+        '
+        'RentMgOnRent
+        '
+        Me.RentMgOnRent.Depth = 0
+        Me.RentMgOnRent.Font = New System.Drawing.Font("Roboto", 34.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.RentMgOnRent.FontType = MaterialSkin.MaterialSkinManager.fontType.H4
+        Me.RentMgOnRent.Location = New System.Drawing.Point(468, 144)
+        Me.RentMgOnRent.MouseState = MaterialSkin.MouseState.HOVER
+        Me.RentMgOnRent.Name = "RentMgOnRent"
+        Me.RentMgOnRent.Size = New System.Drawing.Size(105, 53)
+        Me.RentMgOnRent.TabIndex = 9
+        Me.RentMgOnRent.Text = "0"
+        Me.RentMgOnRent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'RentMgCover
         '
-        Me.RentMgCover.Location = New System.Drawing.Point(368, 54)
+        Me.RentMgCover.Location = New System.Drawing.Point(354, 51)
         Me.RentMgCover.Name = "RentMgCover"
         Me.RentMgCover.Size = New System.Drawing.Size(104, 139)
         Me.RentMgCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1033,25 +1093,13 @@ Partial Class Form1
         Me.RentMgCopies.Depth = 0
         Me.RentMgCopies.Font = New System.Drawing.Font("Roboto", 34.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
         Me.RentMgCopies.FontType = MaterialSkin.MaterialSkinManager.fontType.H4
-        Me.RentMgCopies.Location = New System.Drawing.Point(478, 140)
+        Me.RentMgCopies.Location = New System.Drawing.Point(468, 69)
         Me.RentMgCopies.MouseState = MaterialSkin.MouseState.HOVER
         Me.RentMgCopies.Name = "RentMgCopies"
         Me.RentMgCopies.Size = New System.Drawing.Size(105, 53)
         Me.RentMgCopies.TabIndex = 9
         Me.RentMgCopies.Text = "0"
         Me.RentMgCopies.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'MaterialLabel21
-        '
-        Me.MaterialLabel21.AutoSize = True
-        Me.MaterialLabel21.Depth = 0
-        Me.MaterialLabel21.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel21.Location = New System.Drawing.Point(500, 112)
-        Me.MaterialLabel21.MouseState = MaterialSkin.MouseState.HOVER
-        Me.MaterialLabel21.Name = "MaterialLabel21"
-        Me.MaterialLabel21.Size = New System.Drawing.Size(61, 19)
-        Me.MaterialLabel21.TabIndex = 7
-        Me.MaterialLabel21.Text = "On hand"
         '
         'MaterialTextBox212
         '
@@ -1087,10 +1135,10 @@ Partial Class Form1
         Me.RentListBox.BorderColor = System.Drawing.Color.LightGray
         Me.RentListBox.Depth = 0
         Me.RentListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem5.SecondaryText = ""
-        MaterialListBoxItem5.Tag = Nothing
-        MaterialListBoxItem5.Text = ""
-        Me.RentListBox.Items.Add(MaterialListBoxItem5)
+        MaterialListBoxItem8.SecondaryText = ""
+        MaterialListBoxItem8.Tag = Nothing
+        MaterialListBoxItem8.Text = ""
+        Me.RentListBox.Items.Add(MaterialListBoxItem8)
         Me.RentListBox.Location = New System.Drawing.Point(15, 118)
         Me.RentListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.RentListBox.Name = "RentListBox"
@@ -1099,24 +1147,24 @@ Partial Class Form1
         Me.RentListBox.Size = New System.Drawing.Size(323, 75)
         Me.RentListBox.TabIndex = 5
         '
-        'MaterialButton5
+        'RentAddToCart
         '
-        Me.MaterialButton5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.MaterialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
-        Me.MaterialButton5.Depth = 0
-        Me.MaterialButton5.HighEmphasis = True
-        Me.MaterialButton5.Icon = Nothing
-        Me.MaterialButton5.Location = New System.Drawing.Point(493, 224)
-        Me.MaterialButton5.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-        Me.MaterialButton5.MouseState = MaterialSkin.MouseState.HOVER
-        Me.MaterialButton5.Name = "MaterialButton5"
-        Me.MaterialButton5.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.MaterialButton5.Size = New System.Drawing.Size(114, 36)
-        Me.MaterialButton5.TabIndex = 9
-        Me.MaterialButton5.Text = "Add to Cart"
-        Me.MaterialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
-        Me.MaterialButton5.UseAccentColor = False
-        Me.MaterialButton5.UseVisualStyleBackColor = True
+        Me.RentAddToCart.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.RentAddToCart.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.RentAddToCart.Depth = 0
+        Me.RentAddToCart.HighEmphasis = True
+        Me.RentAddToCart.Icon = Nothing
+        Me.RentAddToCart.Location = New System.Drawing.Point(493, 224)
+        Me.RentAddToCart.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.RentAddToCart.MouseState = MaterialSkin.MouseState.HOVER
+        Me.RentAddToCart.Name = "RentAddToCart"
+        Me.RentAddToCart.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.RentAddToCart.Size = New System.Drawing.Size(114, 36)
+        Me.RentAddToCart.TabIndex = 9
+        Me.RentAddToCart.Text = "Add to Cart"
+        Me.RentAddToCart.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.RentAddToCart.UseAccentColor = False
+        Me.RentAddToCart.UseVisualStyleBackColor = True
         '
         'RentMgTotal
         '
@@ -1282,28 +1330,28 @@ Partial Class Form1
         Me.MaterialLabel37.TabIndex = 0
         Me.MaterialLabel37.Text = "Title"
         '
-        'MaterialComboBox5
+        'RentDurSelection
         '
-        Me.MaterialComboBox5.AutoResize = False
-        Me.MaterialComboBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.MaterialComboBox5.Depth = 0
-        Me.MaterialComboBox5.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
-        Me.MaterialComboBox5.DropDownHeight = 174
-        Me.MaterialComboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.MaterialComboBox5.DropDownWidth = 121
-        Me.MaterialComboBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialComboBox5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.MaterialComboBox5.FormattingEnabled = True
-        Me.MaterialComboBox5.IntegralHeight = False
-        Me.MaterialComboBox5.ItemHeight = 43
-        Me.MaterialComboBox5.Items.AddRange(New Object() {"Days", "Weeks", "Months"})
-        Me.MaterialComboBox5.Location = New System.Drawing.Point(541, 15)
-        Me.MaterialComboBox5.MaxDropDownItems = 4
-        Me.MaterialComboBox5.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialComboBox5.Name = "MaterialComboBox5"
-        Me.MaterialComboBox5.Size = New System.Drawing.Size(125, 49)
-        Me.MaterialComboBox5.StartIndex = 0
-        Me.MaterialComboBox5.TabIndex = 5
+        Me.RentDurSelection.AutoResize = False
+        Me.RentDurSelection.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.RentDurSelection.Depth = 0
+        Me.RentDurSelection.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.RentDurSelection.DropDownHeight = 174
+        Me.RentDurSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.RentDurSelection.DropDownWidth = 121
+        Me.RentDurSelection.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.RentDurSelection.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.RentDurSelection.FormattingEnabled = True
+        Me.RentDurSelection.IntegralHeight = False
+        Me.RentDurSelection.ItemHeight = 43
+        Me.RentDurSelection.Items.AddRange(New Object() {"Days", "Weeks", "Months"})
+        Me.RentDurSelection.Location = New System.Drawing.Point(541, 15)
+        Me.RentDurSelection.MaxDropDownItems = 4
+        Me.RentDurSelection.MouseState = MaterialSkin.MouseState.OUT
+        Me.RentDurSelection.Name = "RentDurSelection"
+        Me.RentDurSelection.Size = New System.Drawing.Size(125, 49)
+        Me.RentDurSelection.StartIndex = 0
+        Me.RentDurSelection.TabIndex = 5
         '
         'RentDuration
         '
@@ -1345,6 +1393,19 @@ Partial Class Form1
         Me.MaterialLabel18.Size = New System.Drawing.Size(62, 19)
         Me.MaterialLabel18.TabIndex = 3
         Me.MaterialLabel18.Text = "Duration"
+        '
+        'RentNumVol
+        '
+        Me.RentNumVol.AutoSize = True
+        Me.RentNumVol.Depth = 0
+        Me.RentNumVol.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.RentNumVol.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
+        Me.RentNumVol.Location = New System.Drawing.Point(143, 25)
+        Me.RentNumVol.MouseState = MaterialSkin.MouseState.HOVER
+        Me.RentNumVol.Name = "RentNumVol"
+        Me.RentNumVol.Size = New System.Drawing.Size(14, 29)
+        Me.RentNumVol.TabIndex = 0
+        Me.RentNumVol.Text = "0"
         '
         'MaterialLabel38
         '
@@ -1585,6 +1646,7 @@ Partial Class Form1
         'MaterialExpansionPanel1
         '
         Me.MaterialExpansionPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.MaterialExpansionPanel1.Collapse = True
         Me.MaterialExpansionPanel1.Controls.Add(Me.GroupBox4)
         Me.MaterialExpansionPanel1.Controls.Add(Me.GroupBox3)
         Me.MaterialExpansionPanel1.Depth = 0
@@ -1593,11 +1655,11 @@ Partial Class Form1
         Me.MaterialExpansionPanel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.MaterialExpansionPanel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.MaterialExpansionPanel1.Location = New System.Drawing.Point(577, 121)
-        Me.MaterialExpansionPanel1.Margin = New System.Windows.Forms.Padding(16)
+        Me.MaterialExpansionPanel1.Margin = New System.Windows.Forms.Padding(16, 1, 16, 0)
         Me.MaterialExpansionPanel1.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialExpansionPanel1.Name = "MaterialExpansionPanel1"
         Me.MaterialExpansionPanel1.Padding = New System.Windows.Forms.Padding(24, 64, 24, 16)
-        Me.MaterialExpansionPanel1.Size = New System.Drawing.Size(614, 602)
+        Me.MaterialExpansionPanel1.Size = New System.Drawing.Size(614, 48)
         Me.MaterialExpansionPanel1.TabIndex = 13
         Me.MaterialExpansionPanel1.Title = "Duration "
         '
@@ -2872,8 +2934,8 @@ Partial Class Form1
         Me.ListViewMangaLibrary.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListViewMangaLibrary.Depth = 0
         Me.ListViewMangaLibrary.FullRowSelect = True
-        ListViewItem3.StateImageIndex = 0
-        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem3})
+        ListViewItem4.StateImageIndex = 0
+        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4})
         Me.ListViewMangaLibrary.Location = New System.Drawing.Point(46, 155)
         Me.ListViewMangaLibrary.MinimumSize = New System.Drawing.Size(200, 100)
         Me.ListViewMangaLibrary.MouseLocation = New System.Drawing.Point(-1, -1)
@@ -3144,32 +3206,6 @@ Partial Class Form1
         Me.MaterialCheckbox12.Text = "Cola"
         Me.MaterialCheckbox12.UseVisualStyleBackColor = True
         '
-        'MaterialLabel39
-        '
-        Me.MaterialLabel39.Depth = 0
-        Me.MaterialLabel39.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel39.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
-        Me.MaterialLabel39.Location = New System.Drawing.Point(17, 5)
-        Me.MaterialLabel39.MouseState = MaterialSkin.MouseState.HOVER
-        Me.MaterialLabel39.Name = "MaterialLabel39"
-        Me.MaterialLabel39.Size = New System.Drawing.Size(20, 36)
-        Me.MaterialLabel39.TabIndex = 13
-        Me.MaterialLabel39.Text = "$"
-        Me.MaterialLabel39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'RentFinalTot
-        '
-        Me.RentFinalTot.Depth = 0
-        Me.RentFinalTot.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
-        Me.RentFinalTot.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
-        Me.RentFinalTot.Location = New System.Drawing.Point(43, 10)
-        Me.RentFinalTot.MouseState = MaterialSkin.MouseState.HOVER
-        Me.RentFinalTot.Name = "RentFinalTot"
-        Me.RentFinalTot.Size = New System.Drawing.Size(253, 28)
-        Me.RentFinalTot.TabIndex = 12
-        Me.RentFinalTot.Text = "0.00"
-        Me.RentFinalTot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 25.0!)
@@ -3190,6 +3226,7 @@ Partial Class Form1
         Me.TabPage8.ResumeLayout(False)
         Me.TabPage8.PerformLayout()
         Me.MaterialCard7.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.MaterialExpansionPanel2.ResumeLayout(False)
@@ -3303,11 +3340,10 @@ Partial Class Form1
     Friend WithEvents MaterialCheckbox9 As MaterialSkin.Controls.MaterialCheckbox
     Friend WithEvents TxtServiceType As MaterialSkin.Controls.MaterialComboBox
     Friend WithEvents MaterialLabel13 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents MaterialComboBox5 As MaterialSkin.Controls.MaterialComboBox
+    Friend WithEvents RentDurSelection As MaterialSkin.Controls.MaterialComboBox
     Friend WithEvents CheckInSelection As MaterialSkin.Controls.MaterialComboBox
     Friend WithEvents MaterialTextBox4 As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents MaterialTextBox5 As MaterialSkin.Controls.MaterialTextBox
-    Friend WithEvents MaterialLabel21 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialTextBox6 As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents CheckAddToCart As MaterialSkin.Controls.MaterialButton
     Friend WithEvents MaterialCard5 As MaterialSkin.Controls.MaterialCard
@@ -3370,7 +3406,7 @@ Partial Class Form1
     Friend WithEvents MaterialExpansionPanel3 As MaterialSkin.Controls.MaterialExpansionPanel
     Friend WithEvents MaterialTextBox212 As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents RentListBox As MaterialSkin.Controls.MaterialListBox
-    Friend WithEvents MaterialButton5 As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents RentAddToCart As MaterialSkin.Controls.MaterialButton
     Friend WithEvents RentMgTotal As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents RentMgQuan As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents RentMgTitle As MaterialSkin.Controls.MaterialTextBox2
@@ -3380,11 +3416,10 @@ Partial Class Form1
     Friend WithEvents MaterialLabel36 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel37 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel38 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents RentNumVol As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents RentMgCopies As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialCard4 As MaterialSkin.Controls.MaterialCard
     Friend WithEvents MaterialButton6 As MaterialSkin.Controls.MaterialButton
-    Friend WithEvents MaterialListView2 As MaterialSkin.Controls.MaterialListView
+    Friend WithEvents RentListView As MaterialSkin.Controls.MaterialListView
     Friend WithEvents ColumnHeader12 As ColumnHeader
     Friend WithEvents ColumnHeader13 As ColumnHeader
     Friend WithEvents ColumnHeader14 As ColumnHeader
@@ -3412,4 +3447,10 @@ Partial Class Form1
     Friend WithEvents CalcTotBtnCheckIn As MaterialSkin.Controls.MaterialButton
     Friend WithEvents MaterialLabel39 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents RentFinalTot As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel21 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel43 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents RentMgOnRent As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents RemoveToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RentNumVol As MaterialSkin.Controls.MaterialLabel
 End Class
