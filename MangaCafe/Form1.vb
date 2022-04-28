@@ -731,4 +731,55 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub RentListBox_SelectedIndexChanged(sender As Object, selectedItem As MaterialListBoxItem) Handles RentListBox.SelectedIndexChanged
+        Try
+            RentMgQuan.Text = "0"
+            RentMgTotal.Text = "0.00"
+            Dim itemMg As MaterialListBoxItem = RentListBox.SelectedItem
+
+            Dim sqlQuery As String = "SELECT * from mangalibrary WHERE mgTitle = '" & Replace(itemMg.Text, "'", "''") & "'"
+            Dim sqlAdapter As New MySqlDataAdapter
+            Dim sqlCommand As New MySqlCommand
+            Dim mgDetailsTable As New DataTable
+
+            With sqlCommand
+                .CommandText = sqlQuery
+                .Connection = dbConn
+            End With
+
+            With sqlAdapter
+                .SelectCommand = sqlCommand
+                .Fill(mgDetailsTable)
+            End With
+
+            RentMgTitle.Text = itemMg.Text
+            RentMgPrice.Text = mgDetailsTable.Rows(0)("mgPrice")
+            RentMgCopies.Text = mgDetailsTable.Rows(0)("mgCopies")
+
+            'Show associated cover of the mg selected
+            Dim accessDirectory As String = "D:\MangaCafeSavedImages\"
+            Dim fname As String = mgDetailsTable.Rows(0)("mgCover")
+            Dim filepath As String = Path.Combine(accessDirectory, fname)
+            RentMgCover.Image = Image.FromFile(filepath)
+        Catch ex As Exception
+            MsgBox(ex.Message, vbCritical)
+        End Try
+    End Sub
+
+    Private Sub RentMgQuan_TextChanged(sender As Object, e As EventArgs) Handles RentMgQuan.TextChanged
+        Dim quan As Integer
+
+        If RentMgQuan.Text = "" Then
+            quan = 0
+        Else
+            If CInt(RentMgQuan.Text) <= CInt(RentMgCopies.Text) Then
+                quan = CInt(RentMgQuan.Text)
+
+                Dim price As Double = CDbl(Val(RentMgPrice.Text)) * quan
+                RentMgTotal.Text = Format(price, "0.00")
+            Else
+                MsgBox("Not enough copies on hand, # of Copies available: " & RentMgCopies.Text & "")
+            End If
+        End If
+    End Sub
 End Class
