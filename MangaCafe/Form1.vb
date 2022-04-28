@@ -67,8 +67,18 @@ Public Class Form1
 
         'To avoid duplicating previously added entries
         ListViewMangaLibrary.Items.Clear()
+        RentListBox.Items.Clear()
 
         For i = 0 To libraryTable.Rows.Count - 1
+
+            'Make the manga list box from other tab populate as well
+            Dim matrlItem As New MaterialListBoxItem With {
+                    .Text = libraryTable.Rows(i)("mgTitle")
+                }
+
+            RentListBox.Items.Add(matrlItem)
+
+
             With ListViewMangaLibrary
                 .Items.Add(libraryTable.Rows(i)("mgID"))
                 With .Items(.Items.Count - 1).SubItems
@@ -713,5 +723,12 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub RentMgQuan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RentMgQuan.KeyPress
+        If Asc(e.KeyChar) <> 8 Then
+            If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
+                e.Handled = True
+            End If
+        End If
+    End Sub
 
 End Class
