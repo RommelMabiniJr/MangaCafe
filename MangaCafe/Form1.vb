@@ -686,17 +686,23 @@ Public Class Form1
 
         Catch ex As Exception
             MsgBox("Please input a duration!")
+            CheckInTotCost = 0.00
         End Try
     End Sub
 
     Public Sub CalcAdditionalCostCheckIn()
         Dim tot As Double
 
-        For i = 0 To ListViewCheckInLibrary.Items.Count - 1
-            Dim item As String = ListViewCheckInLibrary.Items(i).SubItems(3).Text
-            tot = CDbl(Val(item))
-            CheckInTotCost += tot
-        Next
+        If ListViewCheckInLibrary.Items.Count - 1 < 0 Then
+            tot = 0.00
+        Else
+            For i = 0 To ListViewCheckInLibrary.Items.Count - 1
+                Dim item As String = ListViewCheckInLibrary.Items(i).SubItems(3).Text
+                tot = CDbl(Val(item))
+                CheckInTotCost += tot
+            Next
+        End If
+
     End Sub
 
     Private Sub CalcTotBtnCheckIn_Click(sender As Object, e As EventArgs) Handles CalcTotBtnCheckIn.Click
@@ -850,17 +856,21 @@ Public Class Form1
 
         Catch ex As Exception
             MsgBox("Please input a duration!")
+            RentTotCost = 0.00
         End Try
     End Sub
 
     Public Sub CalcAdditionalCostRent()
         Dim tot As Double
-
-        For i = 0 To RentListView.Items.Count - 1
-            Dim item As String = RentListView.Items(i).SubItems(3).Text
-            tot = CDbl(Val(item))
-            RentTotCost += tot
-        Next
+        If ListViewCheckInLibrary.Items.Count - 1 < 0 Then
+            tot = 0.00
+        Else
+            For i = 0 To RentListView.Items.Count - 1
+                Dim item As String = RentListView.Items(i).SubItems(3).Text
+                tot = CDbl(Val(item))
+                RentTotCost += tot
+            Next
+        End If
     End Sub
 
     Private Sub MaterialLabel40_Click(sender As Object, e As EventArgs) Handles MaterialLabel40.Click
@@ -869,7 +879,6 @@ Public Class Form1
 
     Public Sub deleteItemInLV(listVW As ListView)
         Dim response As Integer
-
         For Each i As ListViewItem In listVW.SelectedItems
             response = MsgBox("Are you sure you want to remove item: " & vbCrLf & "     " + listVW.Items(listVW.FocusedItem.Index).Text, vbYesNo, "Confirm Delete")
             If response = vbYes Then

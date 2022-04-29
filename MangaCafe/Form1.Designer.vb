@@ -23,13 +23,14 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim MaterialListBoxItem7 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem8 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem1 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem2 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
+        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
         Me.MaterialTabControl1 = New MaterialSkin.Controls.MaterialTabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.DateLbl = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialCard6 = New MaterialSkin.Controls.MaterialCard()
         Me.MaterialTabControl2 = New MaterialSkin.Controls.MaterialTabControl()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
@@ -38,7 +39,7 @@ Partial Class Form1
         Me.MaterialLabel42 = New MaterialSkin.Controls.MaterialLabel()
         Me.FinalTotalCost = New MaterialSkin.Controls.MaterialLabel()
         Me.DurCheckSelection = New MaterialSkin.Controls.MaterialComboBox()
-        Me.MaterialButton4 = New MaterialSkin.Controls.MaterialButton()
+        Me.BtnConfrmCheck = New MaterialSkin.Controls.MaterialButton()
         Me.OrderCheckTxt = New MaterialSkin.Controls.MaterialTextBox2()
         Me.ListViewCheckInLibrary = New MaterialSkin.Controls.MaterialListView()
         Me.ColumnHeader7 = New System.Windows.Forms.ColumnHeader()
@@ -101,13 +102,13 @@ Partial Class Form1
         Me.MaterialTabSelector4 = New MaterialSkin.Controls.MaterialTabSelector()
         Me.MaterialLabel28 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel29 = New MaterialSkin.Controls.MaterialLabel()
-        Me.MaterialTextBox25 = New MaterialSkin.Controls.MaterialTextBox2()
-        Me.MaterialTextBox26 = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.CustName = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.CustEmail = New MaterialSkin.Controls.MaterialTextBox2()
         Me.MaterialLabel31 = New MaterialSkin.Controls.MaterialLabel()
-        Me.MaterialTextBox28 = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.CustPhone = New MaterialSkin.Controls.MaterialTextBox2()
         Me.MaterialLabel32 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel30 = New MaterialSkin.Controls.MaterialLabel()
-        Me.MaterialTextBox27 = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.CustAddress = New MaterialSkin.Controls.MaterialTextBox2()
         Me.MaterialDivider2 = New MaterialSkin.Controls.MaterialDivider()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
         Me.MaterialExpansionPanel1 = New MaterialSkin.Controls.MaterialExpansionPanel()
@@ -209,6 +210,7 @@ Partial Class Form1
         Me.MaterialCheckbox10 = New MaterialSkin.Controls.MaterialCheckbox()
         Me.MaterialCheckbox11 = New MaterialSkin.Controls.MaterialCheckbox()
         Me.MaterialCheckbox12 = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.MaterialTabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.MaterialCard6.SuspendLayout()
@@ -271,16 +273,17 @@ Partial Class Form1
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.DateLbl)
         Me.TabPage2.Controls.Add(Me.MaterialCard6)
         Me.TabPage2.Controls.Add(Me.MaterialLabel28)
         Me.TabPage2.Controls.Add(Me.MaterialLabel29)
-        Me.TabPage2.Controls.Add(Me.MaterialTextBox25)
-        Me.TabPage2.Controls.Add(Me.MaterialTextBox26)
+        Me.TabPage2.Controls.Add(Me.CustName)
+        Me.TabPage2.Controls.Add(Me.CustEmail)
         Me.TabPage2.Controls.Add(Me.MaterialLabel31)
-        Me.TabPage2.Controls.Add(Me.MaterialTextBox28)
+        Me.TabPage2.Controls.Add(Me.CustPhone)
         Me.TabPage2.Controls.Add(Me.MaterialLabel32)
         Me.TabPage2.Controls.Add(Me.MaterialLabel30)
-        Me.TabPage2.Controls.Add(Me.MaterialTextBox27)
+        Me.TabPage2.Controls.Add(Me.CustAddress)
         Me.TabPage2.Controls.Add(Me.MaterialDivider2)
         Me.TabPage2.ImageKey = "icons8-add-new-24.png"
         Me.TabPage2.Location = New System.Drawing.Point(4, 34)
@@ -290,6 +293,18 @@ Partial Class Form1
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Make Order"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'DateLbl
+        '
+        Me.DateLbl.AutoSize = True
+        Me.DateLbl.Depth = 0
+        Me.DateLbl.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.DateLbl.Location = New System.Drawing.Point(1053, 15)
+        Me.DateLbl.MouseState = MaterialSkin.MouseState.HOVER
+        Me.DateLbl.Name = "DateLbl"
+        Me.DateLbl.Size = New System.Drawing.Size(116, 19)
+        Me.DateLbl.TabIndex = 14
+        Me.DateLbl.Text = "MaterialLabel41"
         '
         'MaterialCard6
         '
@@ -324,7 +339,7 @@ Partial Class Form1
         Me.TabPage8.Controls.Add(Me.CalcTotBtnCheckIn)
         Me.TabPage8.Controls.Add(Me.MaterialCard7)
         Me.TabPage8.Controls.Add(Me.DurCheckSelection)
-        Me.TabPage8.Controls.Add(Me.MaterialButton4)
+        Me.TabPage8.Controls.Add(Me.BtnConfrmCheck)
         Me.TabPage8.Controls.Add(Me.OrderCheckTxt)
         Me.TabPage8.Controls.Add(Me.ListViewCheckInLibrary)
         Me.TabPage8.Controls.Add(Me.MaterialLabel15)
@@ -422,25 +437,25 @@ Partial Class Form1
         Me.DurCheckSelection.StartIndex = 0
         Me.DurCheckSelection.TabIndex = 2
         '
-        'MaterialButton4
+        'BtnConfrmCheck
         '
-        Me.MaterialButton4.AutoSize = False
-        Me.MaterialButton4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.MaterialButton4.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
-        Me.MaterialButton4.Depth = 0
-        Me.MaterialButton4.HighEmphasis = True
-        Me.MaterialButton4.Icon = Nothing
-        Me.MaterialButton4.Location = New System.Drawing.Point(510, 554)
-        Me.MaterialButton4.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-        Me.MaterialButton4.MouseState = MaterialSkin.MouseState.HOVER
-        Me.MaterialButton4.Name = "MaterialButton4"
-        Me.MaterialButton4.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.MaterialButton4.Size = New System.Drawing.Size(155, 36)
-        Me.MaterialButton4.TabIndex = 9
-        Me.MaterialButton4.Text = "Confirm Order"
-        Me.MaterialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
-        Me.MaterialButton4.UseAccentColor = False
-        Me.MaterialButton4.UseVisualStyleBackColor = True
+        Me.BtnConfrmCheck.AutoSize = False
+        Me.BtnConfrmCheck.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.BtnConfrmCheck.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.BtnConfrmCheck.Depth = 0
+        Me.BtnConfrmCheck.HighEmphasis = True
+        Me.BtnConfrmCheck.Icon = Nothing
+        Me.BtnConfrmCheck.Location = New System.Drawing.Point(510, 554)
+        Me.BtnConfrmCheck.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.BtnConfrmCheck.MouseState = MaterialSkin.MouseState.HOVER
+        Me.BtnConfrmCheck.Name = "BtnConfrmCheck"
+        Me.BtnConfrmCheck.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.BtnConfrmCheck.Size = New System.Drawing.Size(155, 36)
+        Me.BtnConfrmCheck.TabIndex = 9
+        Me.BtnConfrmCheck.Text = "Confirm Order"
+        Me.BtnConfrmCheck.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.BtnConfrmCheck.UseAccentColor = False
+        Me.BtnConfrmCheck.UseVisualStyleBackColor = True
         '
         'OrderCheckTxt
         '
@@ -521,6 +536,7 @@ Partial Class Form1
         '
         'RemoveToolStripMenuItem
         '
+        Me.RemoveToolStripMenuItem.ForeColor = System.Drawing.Color.DarkOrange
         Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
         Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(123, 32)
         Me.RemoveToolStripMenuItem.Text = "Remove"
@@ -587,10 +603,10 @@ Partial Class Form1
         Me.CheckInListBox.BorderColor = System.Drawing.Color.LightGray
         Me.CheckInListBox.Depth = 0
         Me.CheckInListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem7.SecondaryText = ""
-        MaterialListBoxItem7.Tag = Nothing
-        MaterialListBoxItem7.Text = "ListBoxItem"
-        Me.CheckInListBox.Items.Add(MaterialListBoxItem7)
+        MaterialListBoxItem1.SecondaryText = ""
+        MaterialListBoxItem1.Tag = Nothing
+        MaterialListBoxItem1.Text = "ListBoxItem"
+        Me.CheckInListBox.Items.Add(MaterialListBoxItem1)
         Me.CheckInListBox.Location = New System.Drawing.Point(15, 102)
         Me.CheckInListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.CheckInListBox.Name = "CheckInListBox"
@@ -1135,10 +1151,10 @@ Partial Class Form1
         Me.RentListBox.BorderColor = System.Drawing.Color.LightGray
         Me.RentListBox.Depth = 0
         Me.RentListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem8.SecondaryText = ""
-        MaterialListBoxItem8.Tag = Nothing
-        MaterialListBoxItem8.Text = ""
-        Me.RentListBox.Items.Add(MaterialListBoxItem8)
+        MaterialListBoxItem2.SecondaryText = ""
+        MaterialListBoxItem2.Tag = Nothing
+        MaterialListBoxItem2.Text = ""
+        Me.RentListBox.Items.Add(MaterialListBoxItem2)
         Me.RentListBox.Location = New System.Drawing.Point(15, 118)
         Me.RentListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.RentListBox.Name = "RentListBox"
@@ -1459,63 +1475,63 @@ Partial Class Form1
         Me.MaterialLabel29.TabIndex = 4
         Me.MaterialLabel29.Text = "Customer Information"
         '
-        'MaterialTextBox25
+        'CustName
         '
-        Me.MaterialTextBox25.AnimateReadOnly = False
-        Me.MaterialTextBox25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.MaterialTextBox25.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.MaterialTextBox25.Depth = 0
-        Me.MaterialTextBox25.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialTextBox25.HideSelection = True
-        Me.MaterialTextBox25.LeadingIcon = Nothing
-        Me.MaterialTextBox25.Location = New System.Drawing.Point(44, 219)
-        Me.MaterialTextBox25.MaxLength = 32767
-        Me.MaterialTextBox25.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialTextBox25.Name = "MaterialTextBox25"
-        Me.MaterialTextBox25.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.MaterialTextBox25.PrefixSuffixText = Nothing
-        Me.MaterialTextBox25.ReadOnly = False
-        Me.MaterialTextBox25.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.MaterialTextBox25.SelectedText = ""
-        Me.MaterialTextBox25.SelectionLength = 0
-        Me.MaterialTextBox25.SelectionStart = 0
-        Me.MaterialTextBox25.ShortcutsEnabled = True
-        Me.MaterialTextBox25.Size = New System.Drawing.Size(310, 48)
-        Me.MaterialTextBox25.TabIndex = 5
-        Me.MaterialTextBox25.TabStop = False
-        Me.MaterialTextBox25.Text = "Rommel B. Mabini Jr."
-        Me.MaterialTextBox25.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.MaterialTextBox25.TrailingIcon = Nothing
-        Me.MaterialTextBox25.UseSystemPasswordChar = False
+        Me.CustName.AnimateReadOnly = False
+        Me.CustName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.CustName.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.CustName.Depth = 0
+        Me.CustName.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.CustName.HideSelection = True
+        Me.CustName.LeadingIcon = Nothing
+        Me.CustName.Location = New System.Drawing.Point(44, 219)
+        Me.CustName.MaxLength = 32767
+        Me.CustName.MouseState = MaterialSkin.MouseState.OUT
+        Me.CustName.Name = "CustName"
+        Me.CustName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.CustName.PrefixSuffixText = Nothing
+        Me.CustName.ReadOnly = False
+        Me.CustName.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CustName.SelectedText = ""
+        Me.CustName.SelectionLength = 0
+        Me.CustName.SelectionStart = 0
+        Me.CustName.ShortcutsEnabled = True
+        Me.CustName.Size = New System.Drawing.Size(310, 48)
+        Me.CustName.TabIndex = 5
+        Me.CustName.TabStop = False
+        Me.CustName.Text = "Rommel B. Mabini Jr."
+        Me.CustName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.CustName.TrailingIcon = Nothing
+        Me.CustName.UseSystemPasswordChar = False
         '
-        'MaterialTextBox26
+        'CustEmail
         '
-        Me.MaterialTextBox26.AnimateReadOnly = False
-        Me.MaterialTextBox26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.MaterialTextBox26.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.MaterialTextBox26.Depth = 0
-        Me.MaterialTextBox26.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialTextBox26.HideSelection = True
-        Me.MaterialTextBox26.LeadingIcon = Nothing
-        Me.MaterialTextBox26.Location = New System.Drawing.Point(44, 340)
-        Me.MaterialTextBox26.MaxLength = 32767
-        Me.MaterialTextBox26.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialTextBox26.Name = "MaterialTextBox26"
-        Me.MaterialTextBox26.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.MaterialTextBox26.PrefixSuffixText = Nothing
-        Me.MaterialTextBox26.ReadOnly = False
-        Me.MaterialTextBox26.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.MaterialTextBox26.SelectedText = ""
-        Me.MaterialTextBox26.SelectionLength = 0
-        Me.MaterialTextBox26.SelectionStart = 0
-        Me.MaterialTextBox26.ShortcutsEnabled = True
-        Me.MaterialTextBox26.Size = New System.Drawing.Size(310, 48)
-        Me.MaterialTextBox26.TabIndex = 6
-        Me.MaterialTextBox26.TabStop = False
-        Me.MaterialTextBox26.Text = "rommelbrillantesmabinijr@gmail.com"
-        Me.MaterialTextBox26.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.MaterialTextBox26.TrailingIcon = Nothing
-        Me.MaterialTextBox26.UseSystemPasswordChar = False
+        Me.CustEmail.AnimateReadOnly = False
+        Me.CustEmail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.CustEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.CustEmail.Depth = 0
+        Me.CustEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.CustEmail.HideSelection = True
+        Me.CustEmail.LeadingIcon = Nothing
+        Me.CustEmail.Location = New System.Drawing.Point(44, 340)
+        Me.CustEmail.MaxLength = 32767
+        Me.CustEmail.MouseState = MaterialSkin.MouseState.OUT
+        Me.CustEmail.Name = "CustEmail"
+        Me.CustEmail.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.CustEmail.PrefixSuffixText = Nothing
+        Me.CustEmail.ReadOnly = False
+        Me.CustEmail.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CustEmail.SelectedText = ""
+        Me.CustEmail.SelectionLength = 0
+        Me.CustEmail.SelectionStart = 0
+        Me.CustEmail.ShortcutsEnabled = True
+        Me.CustEmail.Size = New System.Drawing.Size(310, 48)
+        Me.CustEmail.TabIndex = 6
+        Me.CustEmail.TabStop = False
+        Me.CustEmail.Text = "rommelbrillantesmabinijr@gmail.com"
+        Me.CustEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.CustEmail.TrailingIcon = Nothing
+        Me.CustEmail.UseSystemPasswordChar = False
         '
         'MaterialLabel31
         '
@@ -1530,34 +1546,34 @@ Partial Class Form1
         Me.MaterialLabel31.TabIndex = 10
         Me.MaterialLabel31.Text = "Email"
         '
-        'MaterialTextBox28
+        'CustPhone
         '
-        Me.MaterialTextBox28.AnimateReadOnly = False
-        Me.MaterialTextBox28.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.MaterialTextBox28.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.MaterialTextBox28.Depth = 0
-        Me.MaterialTextBox28.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialTextBox28.HideSelection = True
-        Me.MaterialTextBox28.LeadingIcon = Nothing
-        Me.MaterialTextBox28.Location = New System.Drawing.Point(44, 593)
-        Me.MaterialTextBox28.MaxLength = 32767
-        Me.MaterialTextBox28.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialTextBox28.Name = "MaterialTextBox28"
-        Me.MaterialTextBox28.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.MaterialTextBox28.PrefixSuffixText = Nothing
-        Me.MaterialTextBox28.ReadOnly = False
-        Me.MaterialTextBox28.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.MaterialTextBox28.SelectedText = ""
-        Me.MaterialTextBox28.SelectionLength = 0
-        Me.MaterialTextBox28.SelectionStart = 0
-        Me.MaterialTextBox28.ShortcutsEnabled = True
-        Me.MaterialTextBox28.Size = New System.Drawing.Size(310, 48)
-        Me.MaterialTextBox28.TabIndex = 7
-        Me.MaterialTextBox28.TabStop = False
-        Me.MaterialTextBox28.Text = "09164329617"
-        Me.MaterialTextBox28.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.MaterialTextBox28.TrailingIcon = Nothing
-        Me.MaterialTextBox28.UseSystemPasswordChar = False
+        Me.CustPhone.AnimateReadOnly = False
+        Me.CustPhone.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.CustPhone.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.CustPhone.Depth = 0
+        Me.CustPhone.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.CustPhone.HideSelection = True
+        Me.CustPhone.LeadingIcon = Nothing
+        Me.CustPhone.Location = New System.Drawing.Point(44, 593)
+        Me.CustPhone.MaxLength = 32767
+        Me.CustPhone.MouseState = MaterialSkin.MouseState.OUT
+        Me.CustPhone.Name = "CustPhone"
+        Me.CustPhone.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.CustPhone.PrefixSuffixText = Nothing
+        Me.CustPhone.ReadOnly = False
+        Me.CustPhone.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CustPhone.SelectedText = ""
+        Me.CustPhone.SelectionLength = 0
+        Me.CustPhone.SelectionStart = 0
+        Me.CustPhone.ShortcutsEnabled = True
+        Me.CustPhone.Size = New System.Drawing.Size(310, 48)
+        Me.CustPhone.TabIndex = 7
+        Me.CustPhone.TabStop = False
+        Me.CustPhone.Text = "09164329617"
+        Me.CustPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.CustPhone.TrailingIcon = Nothing
+        Me.CustPhone.UseSystemPasswordChar = False
         '
         'MaterialLabel32
         '
@@ -1585,34 +1601,34 @@ Partial Class Form1
         Me.MaterialLabel30.TabIndex = 12
         Me.MaterialLabel30.Text = "Address"
         '
-        'MaterialTextBox27
+        'CustAddress
         '
-        Me.MaterialTextBox27.AnimateReadOnly = False
-        Me.MaterialTextBox27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.MaterialTextBox27.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.MaterialTextBox27.Depth = 0
-        Me.MaterialTextBox27.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialTextBox27.HideSelection = True
-        Me.MaterialTextBox27.LeadingIcon = Nothing
-        Me.MaterialTextBox27.Location = New System.Drawing.Point(44, 464)
-        Me.MaterialTextBox27.MaxLength = 32767
-        Me.MaterialTextBox27.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialTextBox27.Name = "MaterialTextBox27"
-        Me.MaterialTextBox27.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.MaterialTextBox27.PrefixSuffixText = Nothing
-        Me.MaterialTextBox27.ReadOnly = False
-        Me.MaterialTextBox27.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.MaterialTextBox27.SelectedText = ""
-        Me.MaterialTextBox27.SelectionLength = 0
-        Me.MaterialTextBox27.SelectionStart = 0
-        Me.MaterialTextBox27.ShortcutsEnabled = True
-        Me.MaterialTextBox27.Size = New System.Drawing.Size(310, 48)
-        Me.MaterialTextBox27.TabIndex = 8
-        Me.MaterialTextBox27.TabStop = False
-        Me.MaterialTextBox27.Text = "Brgy. Buntay, Abuyog, Leyte"
-        Me.MaterialTextBox27.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.MaterialTextBox27.TrailingIcon = Nothing
-        Me.MaterialTextBox27.UseSystemPasswordChar = False
+        Me.CustAddress.AnimateReadOnly = False
+        Me.CustAddress.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.CustAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.CustAddress.Depth = 0
+        Me.CustAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.CustAddress.HideSelection = True
+        Me.CustAddress.LeadingIcon = Nothing
+        Me.CustAddress.Location = New System.Drawing.Point(44, 464)
+        Me.CustAddress.MaxLength = 32767
+        Me.CustAddress.MouseState = MaterialSkin.MouseState.OUT
+        Me.CustAddress.Name = "CustAddress"
+        Me.CustAddress.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.CustAddress.PrefixSuffixText = Nothing
+        Me.CustAddress.ReadOnly = False
+        Me.CustAddress.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.CustAddress.SelectedText = ""
+        Me.CustAddress.SelectionLength = 0
+        Me.CustAddress.SelectionStart = 0
+        Me.CustAddress.ShortcutsEnabled = True
+        Me.CustAddress.Size = New System.Drawing.Size(310, 48)
+        Me.CustAddress.TabIndex = 8
+        Me.CustAddress.TabStop = False
+        Me.CustAddress.Text = "Brgy. Buntay, Abuyog, Leyte"
+        Me.CustAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.CustAddress.TrailingIcon = Nothing
+        Me.CustAddress.UseSystemPasswordChar = False
         '
         'MaterialDivider2
         '
@@ -2934,8 +2950,8 @@ Partial Class Form1
         Me.ListViewMangaLibrary.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListViewMangaLibrary.Depth = 0
         Me.ListViewMangaLibrary.FullRowSelect = True
-        ListViewItem4.StateImageIndex = 0
-        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4})
+        ListViewItem1.StateImageIndex = 0
+        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
         Me.ListViewMangaLibrary.Location = New System.Drawing.Point(46, 155)
         Me.ListViewMangaLibrary.MinimumSize = New System.Drawing.Size(200, 100)
         Me.ListViewMangaLibrary.MouseLocation = New System.Drawing.Point(-1, -1)
@@ -3206,6 +3222,10 @@ Partial Class Form1
         Me.MaterialCheckbox12.Text = "Cola"
         Me.MaterialCheckbox12.UseVisualStyleBackColor = True
         '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 25.0!)
@@ -3362,13 +3382,13 @@ Partial Class Form1
     Friend WithEvents MaterialTabSelector2 As MaterialSkin.Controls.MaterialTabSelector
     Friend WithEvents MaterialLabel28 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel29 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents MaterialTextBox25 As MaterialSkin.Controls.MaterialTextBox2
-    Friend WithEvents MaterialTextBox26 As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents CustName As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents CustEmail As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents MaterialLabel31 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents MaterialTextBox28 As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents CustPhone As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents MaterialLabel32 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel30 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents MaterialTextBox27 As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents CustAddress As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents MaterialDivider2 As MaterialSkin.Controls.MaterialDivider
     Friend WithEvents MaterialExpansionPanel1 As MaterialSkin.Controls.MaterialExpansionPanel
     Friend WithEvents MaterialTabSelector3 As MaterialSkin.Controls.MaterialTabSelector
@@ -3395,7 +3415,7 @@ Partial Class Form1
     Friend WithEvents DurCheckSelection As MaterialSkin.Controls.MaterialComboBox
     Friend WithEvents MaterialExpansionPanel2 As MaterialSkin.Controls.MaterialExpansionPanel
     Friend WithEvents MaterialTextBox22 As MaterialSkin.Controls.MaterialTextBox2
-    Friend WithEvents MaterialButton4 As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents BtnConfrmCheck As MaterialSkin.Controls.MaterialButton
     Friend WithEvents TxtOrderServName As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents MaterialLabel17 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents TxtOrderTot As MaterialSkin.Controls.MaterialTextBox2
@@ -3453,4 +3473,6 @@ Partial Class Form1
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents RemoveToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RentNumVol As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents DateLbl As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents Timer1 As Timer
 End Class
