@@ -938,5 +938,85 @@ Public Class Form1
         End If
     End Sub
 
+
+
+
+
+    'IMPORTANT: RECEIPT PORTION THAT INCLUDES JOINED QUERIES FROM MULTIPLE TABLES
+    Private Sub BtnConfrmCheck_Click(sender As Object, e As EventArgs) Handles BtnConfrmCheck.Click
+        'Insert in receipt table 
+        Dim sqlQuery As String = "INSERT INTO receipttb(custName, custEmail, custAddress, custPhone, rcptType, rcptTotal) VALUES('" & Replace(CustName.Text, "'", "''") & "','" & CustEmail.Text & "','" & CustAddress.Text & "','" & CustPhone.Text & "','" & "Check In" & "','" & FinalTotalCost.Text & "')"
+        Dim sqlCommand As New MySqlCommand
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+            .ExecuteNonQuery()
+        End With
+
+
+        'First, retrieve the id of receipt we added lately
+        Dim sqlQuery1 As String = "SELECT * from receipttb ORDER BY rcptID DESC LIMIT 1"
+        Dim sqlAdapter1 As New MySqlDataAdapter
+        Dim sqlCommand1 As New MySqlCommand
+        Dim rcptlatest As New DataTable
+
+        With sqlCommand1
+            .CommandText = sqlQuery1
+            .Connection = dbConn
+        End With
+
+        With sqlAdapter1
+            .SelectCommand = sqlCommand1
+            .Fill(rcptlatest)
+        End With
+
+        Dim receiptID As String = rcptlatest.Rows(0)("rcptID")
+
+
+
+
+        For i = 0 To ListViewCheckInLibrary.Items.Count - 1
+            Dim itmName, itmPrice, itmQuan, itmTot, itmID As String
+            itmName = ListViewCheckInLibrary.Items(i).Text
+            itmPrice = ListViewCheckInLibrary.Items(i).SubItems(1).Text
+            itmQuan = ListViewCheckInLibrary.Items(i).SubItems(2).Text
+            itmTot = ListViewCheckInLibrary.Items(i).SubItems(3).Text
+
+
+            'Second, search the ID for the following service to use for inserting in rcptitemlist table
+            Dim sqlQuery2 As String = "SELECT serviceID from servicelibrary WHERE serviceName = '" & itmName & "'"
+            Dim sqlAdapter2 As New MySqlDataAdapter
+            Dim sqlCommand2 As New MySqlCommand
+            Dim srvTb As New DataTable
+
+            With sqlCommand2
+                .CommandText = sqlQuery2
+                .Connection = dbConn
+            End With
+
+            With sqlAdapter2
+                .SelectCommand = sqlCommand2
+                .Fill(srvTb)
+            End With
+
+            itmID = srvTb.Rows(0)("serviceID")
+
+
+            Dim sqlQuery3 As String = "INSERT INTO rcptitemlist(rcpt_ID, item_ID, ril_Price, ril_Quan, ril_Total) VALUES('" & receiptID & "','" & itmID & "','" & itmPrice & "','" & itmQuan & "','" & itmTot & "')"
+            Dim sqlCommand3 As New MySqlCommand
+
+            With sqlCommand3
+                .CommandText = sqlQuery3
+                .Connection = dbConn
+                .ExecuteNonQuery()
+            End With
+        Next
+
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        DateLbl.Text = Format(Now, "yyyy-mm-dd hh:mm:ss")
+    End Sub
 End Class
 
