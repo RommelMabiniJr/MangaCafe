@@ -23,10 +23,10 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim MaterialListBoxItem1 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem2 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem5 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem6 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
+        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
         Me.MaterialTabControl1 = New MaterialSkin.Controls.MaterialTabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -69,7 +69,7 @@ Partial Class Form1
         Me.MaterialCard4 = New MaterialSkin.Controls.MaterialCard()
         Me.MaterialLabel39 = New MaterialSkin.Controls.MaterialLabel()
         Me.RentFinalTot = New MaterialSkin.Controls.MaterialLabel()
-        Me.MaterialButton6 = New MaterialSkin.Controls.MaterialButton()
+        Me.ConfirmOrdRent = New MaterialSkin.Controls.MaterialButton()
         Me.RentListView = New MaterialSkin.Controls.MaterialListView()
         Me.ColumnHeader12 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader13 = New System.Windows.Forms.ColumnHeader()
@@ -603,10 +603,10 @@ Partial Class Form1
         Me.CheckInListBox.BorderColor = System.Drawing.Color.LightGray
         Me.CheckInListBox.Depth = 0
         Me.CheckInListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem1.SecondaryText = ""
-        MaterialListBoxItem1.Tag = Nothing
-        MaterialListBoxItem1.Text = "ListBoxItem"
-        Me.CheckInListBox.Items.Add(MaterialListBoxItem1)
+        MaterialListBoxItem5.SecondaryText = ""
+        MaterialListBoxItem5.Tag = Nothing
+        MaterialListBoxItem5.Text = "ListBoxItem"
+        Me.CheckInListBox.Items.Add(MaterialListBoxItem5)
         Me.CheckInListBox.Location = New System.Drawing.Point(15, 102)
         Me.CheckInListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.CheckInListBox.Name = "CheckInListBox"
@@ -880,7 +880,7 @@ Partial Class Form1
         'TabPage9
         '
         Me.TabPage9.Controls.Add(Me.MaterialCard4)
-        Me.TabPage9.Controls.Add(Me.MaterialButton6)
+        Me.TabPage9.Controls.Add(Me.ConfirmOrdRent)
         Me.TabPage9.Controls.Add(Me.RentListView)
         Me.TabPage9.Controls.Add(Me.MaterialLabel40)
         Me.TabPage9.Controls.Add(Me.GroupBox2)
@@ -938,25 +938,25 @@ Partial Class Form1
         Me.RentFinalTot.Text = "0.00"
         Me.RentFinalTot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'MaterialButton6
+        'ConfirmOrdRent
         '
-        Me.MaterialButton6.AutoSize = False
-        Me.MaterialButton6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.MaterialButton6.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
-        Me.MaterialButton6.Depth = 0
-        Me.MaterialButton6.HighEmphasis = True
-        Me.MaterialButton6.Icon = Nothing
-        Me.MaterialButton6.Location = New System.Drawing.Point(510, 555)
-        Me.MaterialButton6.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-        Me.MaterialButton6.MouseState = MaterialSkin.MouseState.HOVER
-        Me.MaterialButton6.Name = "MaterialButton6"
-        Me.MaterialButton6.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.MaterialButton6.Size = New System.Drawing.Size(155, 36)
-        Me.MaterialButton6.TabIndex = 14
-        Me.MaterialButton6.Text = "Confirm Order"
-        Me.MaterialButton6.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
-        Me.MaterialButton6.UseAccentColor = False
-        Me.MaterialButton6.UseVisualStyleBackColor = True
+        Me.ConfirmOrdRent.AutoSize = False
+        Me.ConfirmOrdRent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ConfirmOrdRent.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.ConfirmOrdRent.Depth = 0
+        Me.ConfirmOrdRent.HighEmphasis = True
+        Me.ConfirmOrdRent.Icon = Nothing
+        Me.ConfirmOrdRent.Location = New System.Drawing.Point(510, 555)
+        Me.ConfirmOrdRent.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.ConfirmOrdRent.MouseState = MaterialSkin.MouseState.HOVER
+        Me.ConfirmOrdRent.Name = "ConfirmOrdRent"
+        Me.ConfirmOrdRent.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.ConfirmOrdRent.Size = New System.Drawing.Size(155, 36)
+        Me.ConfirmOrdRent.TabIndex = 14
+        Me.ConfirmOrdRent.Text = "Confirm Order"
+        Me.ConfirmOrdRent.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.ConfirmOrdRent.UseAccentColor = False
+        Me.ConfirmOrdRent.UseVisualStyleBackColor = True
         '
         'RentListView
         '
@@ -1151,10 +1151,10 @@ Partial Class Form1
         Me.RentListBox.BorderColor = System.Drawing.Color.LightGray
         Me.RentListBox.Depth = 0
         Me.RentListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem2.SecondaryText = ""
-        MaterialListBoxItem2.Tag = Nothing
-        MaterialListBoxItem2.Text = ""
-        Me.RentListBox.Items.Add(MaterialListBoxItem2)
+        MaterialListBoxItem6.SecondaryText = ""
+        MaterialListBoxItem6.Tag = Nothing
+        MaterialListBoxItem6.Text = ""
+        Me.RentListBox.Items.Add(MaterialListBoxItem6)
         Me.RentListBox.Location = New System.Drawing.Point(15, 118)
         Me.RentListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.RentListBox.Name = "RentListBox"
@@ -2950,8 +2950,8 @@ Partial Class Form1
         Me.ListViewMangaLibrary.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListViewMangaLibrary.Depth = 0
         Me.ListViewMangaLibrary.FullRowSelect = True
-        ListViewItem1.StateImageIndex = 0
-        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
+        ListViewItem3.StateImageIndex = 0
+        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem3})
         Me.ListViewMangaLibrary.Location = New System.Drawing.Point(46, 155)
         Me.ListViewMangaLibrary.MinimumSize = New System.Drawing.Size(200, 100)
         Me.ListViewMangaLibrary.MouseLocation = New System.Drawing.Point(-1, -1)
@@ -3438,7 +3438,7 @@ Partial Class Form1
     Friend WithEvents MaterialLabel38 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents RentMgCopies As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialCard4 As MaterialSkin.Controls.MaterialCard
-    Friend WithEvents MaterialButton6 As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents ConfirmOrdRent As MaterialSkin.Controls.MaterialButton
     Friend WithEvents RentListView As MaterialSkin.Controls.MaterialListView
     Friend WithEvents ColumnHeader12 As ColumnHeader
     Friend WithEvents ColumnHeader13 As ColumnHeader
