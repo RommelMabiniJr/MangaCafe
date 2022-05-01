@@ -23,10 +23,10 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim MaterialListBoxItem5 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem6 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem3 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem4 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
+        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
         Me.MaterialTabControl1 = New MaterialSkin.Controls.MaterialTabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -193,6 +193,18 @@ Partial Class Form1
         Me.ColumnHeader3 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader4 = New System.Windows.Forms.ColumnHeader()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.MaterialLabel44 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel41 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialListView4 = New MaterialSkin.Controls.MaterialListView()
+        Me.ColumnHeader21 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader22 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader23 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader24 = New System.Windows.Forms.ColumnHeader()
+        Me.MaterialListView3 = New MaterialSkin.Controls.MaterialListView()
+        Me.ColumnHeader17 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader18 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader19 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader20 = New System.Windows.Forms.ColumnHeader()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -237,6 +249,7 @@ Partial Class Form1
         CType(Me.ImgCoverAdd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MaterialCard1.SuspendLayout()
         CType(Me.ImgCoverEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage4.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -603,10 +616,10 @@ Partial Class Form1
         Me.CheckInListBox.BorderColor = System.Drawing.Color.LightGray
         Me.CheckInListBox.Depth = 0
         Me.CheckInListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem5.SecondaryText = ""
-        MaterialListBoxItem5.Tag = Nothing
-        MaterialListBoxItem5.Text = "ListBoxItem"
-        Me.CheckInListBox.Items.Add(MaterialListBoxItem5)
+        MaterialListBoxItem3.SecondaryText = ""
+        MaterialListBoxItem3.Tag = Nothing
+        MaterialListBoxItem3.Text = "ListBoxItem"
+        Me.CheckInListBox.Items.Add(MaterialListBoxItem3)
         Me.CheckInListBox.Location = New System.Drawing.Point(15, 102)
         Me.CheckInListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.CheckInListBox.Name = "CheckInListBox"
@@ -1151,10 +1164,10 @@ Partial Class Form1
         Me.RentListBox.BorderColor = System.Drawing.Color.LightGray
         Me.RentListBox.Depth = 0
         Me.RentListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem6.SecondaryText = ""
-        MaterialListBoxItem6.Tag = Nothing
-        MaterialListBoxItem6.Text = ""
-        Me.RentListBox.Items.Add(MaterialListBoxItem6)
+        MaterialListBoxItem4.SecondaryText = ""
+        MaterialListBoxItem4.Tag = Nothing
+        MaterialListBoxItem4.Text = ""
+        Me.RentListBox.Items.Add(MaterialListBoxItem4)
         Me.RentListBox.Location = New System.Drawing.Point(15, 118)
         Me.RentListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.RentListBox.Name = "RentListBox"
@@ -2950,8 +2963,8 @@ Partial Class Form1
         Me.ListViewMangaLibrary.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListViewMangaLibrary.Depth = 0
         Me.ListViewMangaLibrary.FullRowSelect = True
-        ListViewItem3.StateImageIndex = 0
-        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem3})
+        ListViewItem2.StateImageIndex = 0
+        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem2})
         Me.ListViewMangaLibrary.Location = New System.Drawing.Point(46, 155)
         Me.ListViewMangaLibrary.MinimumSize = New System.Drawing.Size(200, 100)
         Me.ListViewMangaLibrary.MouseLocation = New System.Drawing.Point(-1, -1)
@@ -2985,6 +2998,10 @@ Partial Class Form1
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.MaterialLabel44)
+        Me.TabPage4.Controls.Add(Me.MaterialLabel41)
+        Me.TabPage4.Controls.Add(Me.MaterialListView4)
+        Me.TabPage4.Controls.Add(Me.MaterialListView3)
         Me.TabPage4.ImageKey = "icons8-purchase-order-26.png"
         Me.TabPage4.Location = New System.Drawing.Point(4, 34)
         Me.TabPage4.Name = "TabPage4"
@@ -2992,6 +3009,108 @@ Partial Class Form1
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Purchase History"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'MaterialLabel44
+        '
+        Me.MaterialLabel44.AutoSize = True
+        Me.MaterialLabel44.Depth = 0
+        Me.MaterialLabel44.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel44.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
+        Me.MaterialLabel44.Location = New System.Drawing.Point(865, 92)
+        Me.MaterialLabel44.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel44.Name = "MaterialLabel44"
+        Me.MaterialLabel44.Size = New System.Drawing.Size(103, 29)
+        Me.MaterialLabel44.TabIndex = 2
+        Me.MaterialLabel44.Text = "Rent Only"
+        '
+        'MaterialLabel41
+        '
+        Me.MaterialLabel41.AutoSize = True
+        Me.MaterialLabel41.Depth = 0
+        Me.MaterialLabel41.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel41.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
+        Me.MaterialLabel41.Location = New System.Drawing.Point(263, 92)
+        Me.MaterialLabel41.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel41.Name = "MaterialLabel41"
+        Me.MaterialLabel41.Size = New System.Drawing.Size(94, 29)
+        Me.MaterialLabel41.TabIndex = 2
+        Me.MaterialLabel41.Text = "Check In"
+        '
+        'MaterialListView4
+        '
+        Me.MaterialListView4.AutoSizeTable = False
+        Me.MaterialListView4.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.MaterialListView4.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.MaterialListView4.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader21, Me.ColumnHeader22, Me.ColumnHeader23, Me.ColumnHeader24})
+        Me.MaterialListView4.Depth = 0
+        Me.MaterialListView4.FullRowSelect = True
+        Me.MaterialListView4.Location = New System.Drawing.Point(634, 170)
+        Me.MaterialListView4.MinimumSize = New System.Drawing.Size(200, 100)
+        Me.MaterialListView4.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.MaterialListView4.MouseState = MaterialSkin.MouseState.OUT
+        Me.MaterialListView4.Name = "MaterialListView4"
+        Me.MaterialListView4.OwnerDraw = True
+        Me.MaterialListView4.Size = New System.Drawing.Size(570, 434)
+        Me.MaterialListView4.TabIndex = 1
+        Me.MaterialListView4.UseCompatibleStateImageBehavior = False
+        Me.MaterialListView4.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader21
+        '
+        Me.ColumnHeader21.Text = "ID"
+        '
+        'ColumnHeader22
+        '
+        Me.ColumnHeader22.Text = "Customer Name"
+        Me.ColumnHeader22.Width = 250
+        '
+        'ColumnHeader23
+        '
+        Me.ColumnHeader23.Text = "Date"
+        Me.ColumnHeader23.Width = 200
+        '
+        'ColumnHeader24
+        '
+        Me.ColumnHeader24.Text = "Total"
+        Me.ColumnHeader24.Width = 100
+        '
+        'MaterialListView3
+        '
+        Me.MaterialListView3.AutoSizeTable = False
+        Me.MaterialListView3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.MaterialListView3.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.MaterialListView3.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader17, Me.ColumnHeader18, Me.ColumnHeader19, Me.ColumnHeader20})
+        Me.MaterialListView3.Depth = 0
+        Me.MaterialListView3.FullRowSelect = True
+        Me.MaterialListView3.Location = New System.Drawing.Point(27, 170)
+        Me.MaterialListView3.MinimumSize = New System.Drawing.Size(200, 100)
+        Me.MaterialListView3.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.MaterialListView3.MouseState = MaterialSkin.MouseState.OUT
+        Me.MaterialListView3.Name = "MaterialListView3"
+        Me.MaterialListView3.OwnerDraw = True
+        Me.MaterialListView3.Size = New System.Drawing.Size(570, 434)
+        Me.MaterialListView3.TabIndex = 0
+        Me.MaterialListView3.UseCompatibleStateImageBehavior = False
+        Me.MaterialListView3.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader17
+        '
+        Me.ColumnHeader17.Text = "ID"
+        '
+        'ColumnHeader18
+        '
+        Me.ColumnHeader18.Text = "Customer Name"
+        Me.ColumnHeader18.Width = 250
+        '
+        'ColumnHeader19
+        '
+        Me.ColumnHeader19.Text = "Date"
+        Me.ColumnHeader19.Width = 200
+        '
+        'ColumnHeader20
+        '
+        Me.ColumnHeader20.Text = "Total"
+        Me.ColumnHeader20.Width = 100
         '
         'TabPage5
         '
@@ -3279,6 +3398,8 @@ Partial Class Form1
         CType(Me.ImgCoverAdd, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MaterialCard1.ResumeLayout(False)
         CType(Me.ImgCoverEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabPage4.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -3475,4 +3596,16 @@ Partial Class Form1
     Friend WithEvents RentNumVol As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents DateLbl As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents MaterialListView4 As MaterialSkin.Controls.MaterialListView
+    Friend WithEvents ColumnHeader21 As ColumnHeader
+    Friend WithEvents ColumnHeader22 As ColumnHeader
+    Friend WithEvents ColumnHeader23 As ColumnHeader
+    Friend WithEvents ColumnHeader24 As ColumnHeader
+    Friend WithEvents MaterialListView3 As MaterialSkin.Controls.MaterialListView
+    Friend WithEvents ColumnHeader17 As ColumnHeader
+    Friend WithEvents ColumnHeader18 As ColumnHeader
+    Friend WithEvents ColumnHeader19 As ColumnHeader
+    Friend WithEvents ColumnHeader20 As ColumnHeader
+    Friend WithEvents MaterialLabel41 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel44 As MaterialSkin.Controls.MaterialLabel
 End Class

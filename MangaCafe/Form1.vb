@@ -705,7 +705,6 @@ Public Class Form1
         If ListViewCheckInLibrary.Items.Count - 1 < 0 Then
             tot = 0.00
         Else
-            MsgBox(ListViewCheckInLibrary.Items.Count - 1)
             For i = 0 To ListViewCheckInLibrary.Items.Count - 1
                 Dim item As String = ListViewCheckInLibrary.Items(i).SubItems(3).Text
                 tot = CDbl(Val(item))
@@ -727,7 +726,7 @@ Public Class Form1
             MsgBox("Please fill out the duration box!")
         Else
             'Insert in receipt table 
-            Dim sqlQuery As String = "INSERT INTO receipttb(custName, custEmail, custAddress, custPhone, rcptType, rcptTotal) VALUES('" & Replace(CustName.Text, "'", "''") & "','" & CustEmail.Text & "','" & CustAddress.Text & "','" & CustPhone.Text & "','" & "Check In" & "','" & FinalTotalCost.Text & "')"
+            Dim sqlQuery As String = "INSERT INTO receipttb(custName, custEmail, custAddress, custPhone, rcptType, durName, durAmount, rcptTotal) VALUES('" & Replace(CustName.Text, "'", "''") & "','" & CustEmail.Text & "','" & CustAddress.Text & "','" & CustPhone.Text & "','" & "Check In" & "','" & DurCheckSelection.Text & "','" & OrderCheckTxt.Text & "','" & FinalTotalCost.Text & "')"
             Dim sqlCommand As New MySqlCommand
 
             With sqlCommand
@@ -793,12 +792,13 @@ Public Class Form1
                     .Connection = dbConn
                     .ExecuteNonQuery()
                 End With
-
-                Dim response As Integer = MsgBox("Order purchased succesfully!" + vbCrLf + vbCrLf + "Proceed to print receipt?", vbYesNo, "MangaKissa")
-                If response = vbYes Then
-                    printCheckInReceiptNow()
-                End If
             Next
+
+
+            Dim response As Integer = MsgBox("Order purchased succesfully!" + vbCrLf + vbCrLf + "Proceed to print receipt?", vbYesNo, "MangaKissa")
+            If response = vbYes Then
+                printCheckInReceiptNow()
+            End If
         End If
     End Sub
 
@@ -1264,12 +1264,13 @@ Public Class Form1
                     .Connection = dbConn
                     .ExecuteNonQuery()
                 End With
-
-                Dim response As Integer = MsgBox("Order purchased succesfully!" + vbCrLf + vbCrLf + "Proceed to print receipt?", vbYesNo, "MangaKissa")
-                If response = vbYes Then
-                    printRentOnlyReceiptNow()
-                End If
             Next
+
+
+            Dim response As Integer = MsgBox("Order purchased succesfully!" + vbCrLf + vbCrLf + "Proceed to print receipt?", vbYesNo, "MangaKissa")
+            If response = vbYes Then
+                printRentOnlyReceiptNow()
+            End If
         End If
     End Sub
 
