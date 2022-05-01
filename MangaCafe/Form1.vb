@@ -34,6 +34,7 @@ Public Class Form1
 
         PopulateMgLibrary()
         PopulateServiceLibrary()
+        populatePurchaseHistroy()
     End Sub
 
     Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -799,6 +800,8 @@ Public Class Form1
             If response = vbYes Then
                 printCheckInReceiptNow()
             End If
+
+            populatePurchaseHistroy()
         End If
     End Sub
 
@@ -1198,7 +1201,7 @@ Public Class Form1
             MsgBox("Please fill out the duration box!")
         Else
             'Insert in receipt table 
-            Dim sqlQuery As String = "INSERT INTO receipttb(custName, custEmail, custAddress, custPhone, rcptType, rcptTotal) VALUES('" & Replace(CustName.Text, "'", "''") & "','" & CustEmail.Text & "','" & CustAddress.Text & "','" & CustPhone.Text & "','" & "Rent Only" & "','" & FinalTotalCost.Text & "')"
+            Dim sqlQuery As String = "INSERT INTO receipttb(custName, custEmail, custAddress, custPhone, rcptType, durName, durAmount, rcptTotal) VALUES('" & Replace(CustName.Text, "'", "''") & "','" & CustEmail.Text & "','" & CustAddress.Text & "','" & CustPhone.Text & "','" & "Rent Only" & "','" & RentDurSelection.Text & "','" & RentDuration.Text & "','" & RentFinalTot.Text & "')"
             Dim sqlCommand As New MySqlCommand
 
             With sqlCommand
@@ -1271,6 +1274,8 @@ Public Class Form1
             If response = vbYes Then
                 printRentOnlyReceiptNow()
             End If
+
+            populatePurchaseHistroy()
         End If
     End Sub
 
@@ -1291,7 +1296,7 @@ Public Class Form1
 
         rowcount = RentListView.Items.Count
         longpaper2 = rowcount * 15
-        longpaper2 = longpaper + 280
+        longpaper2 = longpaper2 + 280
     End Sub
     Private Sub PrintRentMgRcpt_BeginPrint(sender As Object, e As Printing.PrintEventArgs) Handles PrintRentMgRcpt.BeginPrint
         Dim pagesetup As New PageSettings
@@ -1398,6 +1403,287 @@ Public Class Form1
 
         e.Graphics.DrawString("~Thanks for shopping~", f10, Brushes.Black, centermargin, 75 + height2, center)
         e.Graphics.DrawString("~MangaKissa~", f10, Brushes.Black, centermargin, 90 + height2, center)
+    End Sub
+
+
+
+
+
+
+    'PURCHASE HISTORY TAB PORTION
+    Private Sub populatePurchaseHistroy()
+        Dim sqlQuery As String = "SELECT rcptID, custName, rcptType, rcptDate, rcptTotal FROM receipttb"
+        Dim sqlAdapter As New MySqlDataAdapter
+        Dim sqlCommand As New MySqlCommand
+        Dim libraryTable As New DataTable
+        Dim i As Integer
+
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+        End With
+
+        With sqlAdapter
+            .SelectCommand = sqlCommand
+            .Fill(libraryTable)
+        End With
+
+        'To avoid duplicating previously added entries
+        CheckHistoryLV.Items.Clear()
+        RentHistoryLV.Items.Clear()
+
+
+        For i = 0 To libraryTable.Rows.Count - 1
+            Dim IsATypeOf As String = libraryTable.Rows(i)("rcptType")
+            If IsATypeOf = "Check In" Then
+                With CheckHistoryLV
+                    .Items.Add(libraryTable.Rows(i)("rcptID"))
+                    With .Items(.Items.Count - 1).SubItems
+                        .Add(libraryTable.Rows(i)("custName"))
+                        .Add(libraryTable.Rows(i)("rcptDate"))
+                        .Add(Format(libraryTable.Rows(i)("rcptTotal"), "$#,##0.00"))
+                    End With
+                End With
+
+            Else
+                With RentHistoryLV
+                    .Items.Add(libraryTable.Rows(i)("rcptID"))
+                    With .Items(.Items.Count - 1).SubItems
+                        .Add(libraryTable.Rows(i)("custName"))
+                        .Add(libraryTable.Rows(i)("rcptDate"))
+                        .Add(Format(libraryTable.Rows(i)("rcptTotal"), "$#,##0.00"))
+                    End With
+                End With
+            End If
+        Next
+    End Sub
+
+    Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
+        Dim lvNameCms As ContextMenuStrip = CType(ViewToolStripMenuItem.Owner, ContextMenuStrip)
+        ShowReceiptNow(lvNameCms.SourceControl)
+    End Sub
+
+
+    Dim rcptID As String
+    Dim currentLV As ListView
+    Public Sub ShowReceiptNow(lv As ListView)
+        rcptID = lv.SelectedItems(0).Text
+        currentLV = lv
+
+        changePaperHeightShow(lv)
+        PPDS.Document = PDS
+        PPDS.ShowDialog()
+
+    End Sub
+
+    Dim WithEvents PDS As New PrintDocument
+    Dim PPDS As New PrintPreviewDialog
+    Dim lpaper As Integer
+
+    Public Sub changePaperHeightShow(lstview As ListView)
+        Dim rowcount As Integer
+        lpaper = 0
+
+        rowcount = lstview.Items.Count
+        lpaper = rowcount * 15
+        lpaper = lpaper + 280
+    End Sub
+    Private Sub PDS_BeginPrint(sender As Object, e As Printing.PrintEventArgs) Handles PDS.BeginPrint
+        Dim pagesetup As New PageSettings
+        pagesetup.PaperSize = New PaperSize("Custom", 350, lpaper)
+        'pagesetup.PaperSize = New PaperSize("Custom", 350, 500)
+        PDS.DefaultPageSettings = pagesetup
+    End Sub
+
+    Private Sub PDS_PrintPage(sender As Object, e As PrintPageEventArgs) Handles PDS.PrintPage
+        Dim sqlQuery As String = "SELECT * from receipttb WHERE rcptID = '" & rcptID & "'"
+        Dim sqlAdapter As New MySqlDataAdapter
+        Dim sqlCommand As New MySqlCommand
+        Dim rcptTB As New DataTable
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+        End With
+
+        With sqlAdapter
+            .SelectCommand = sqlCommand
+            .Fill(rcptTB)
+        End With
+
+        Dim rcptTimeStamp = rcptTB.Rows(0)("rcptDate")
+        Dim NameOfCust = rcptTB.Rows(0)("custName")
+        Dim PhoneOfCust = rcptTB.Rows(0)("custPhone")
+        Dim NameOfDuration = rcptTB.Rows(0)("durName")
+        Dim AmountOfDuration = rcptTB.Rows(0)("durAmount")
+        Dim TotalCostRcpt = rcptTB.Rows(0)("rcptTotal")
+        Dim TypeofRcpt = rcptTB.Rows(0)("rcptType")
+
+        Dim headercolumn1 As String
+        If currentLV.Name = "CheckHistoryLV" Then
+            headercolumn1 = "SERVICE NAME"
+        Else
+            headercolumn1 = "MANGA TITLE"
+        End If
+
+        Dim f8 As New Font("Calibri", 8, FontStyle.Regular)
+        Dim f8b As New Font("Calibri", 8, FontStyle.Bold)
+        Dim f10 As New Font("Calibri", 10, FontStyle.Regular)
+        Dim f10b As New Font("Calibri", 10, FontStyle.Bold)
+        Dim f14 As New Font("Calibri", 14, FontStyle.Bold)
+
+        Dim leftmargin As Integer = PDS.DefaultPageSettings.Margins.Left
+        Dim centermargin As Integer = PDS.DefaultPageSettings.PaperSize.Width / 2
+        Dim rightmargin As Integer = PDS.DefaultPageSettings.PaperSize.Width
+
+        'font alignment
+        Dim right As New StringFormat
+        Dim center As New StringFormat
+        right.Alignment = StringAlignment.Far
+        center.Alignment = StringAlignment.Center
+
+        Dim line As String
+        line = "-------------------------------------------------------------------------------------------------------"
+
+        e.Graphics.DrawString("MangaKissa Cafe", f14, Brushes.Black, centermargin, 5, center)
+        e.Graphics.DrawString("Gen. Luna Street, Buntay", f10, Brushes.Black, centermargin, 25, center)
+        e.Graphics.DrawString("Abuyog, Leyte 6510", f10, Brushes.Black, centermargin, 40, center)
+        e.Graphics.DrawString("Tel 0533002140", f8, Brushes.Black, centermargin, 55, center)
+
+        e.Graphics.DrawString("Receipt ID", f8, Brushes.Black, 0, 70)
+        e.Graphics.DrawString(":", f8, Brushes.Black, 50, 70)
+        e.Graphics.DrawString(rcptID, f8, Brushes.Black, 70, 70)
+
+        e.Graphics.DrawString("Cashier", f8, Brushes.Black, 0, 85)
+        e.Graphics.DrawString(":", f8, Brushes.Black, 50, 85)
+        e.Graphics.DrawString("Steven Doe", f8, Brushes.Black, 70, 85)
+
+        e.Graphics.DrawString(rcptTimeStamp, f8, Brushes.Black, 0, 100)
+        e.Graphics.DrawString(line, f8, Brushes.Black, 0, 110)
+
+
+
+
+        e.Graphics.DrawString("Bill To", f8, Brushes.Black, centermargin + 0, 70)
+        e.Graphics.DrawString(":", f8, Brushes.Black, centermargin + 30, 70)
+        e.Graphics.DrawString(NameOfCust, f8, Brushes.Black, rightmargin, 70, right)
+        e.Graphics.DrawString(PhoneOfCust, f8, Brushes.Black, rightmargin, 85, right)
+        e.Graphics.DrawString("Type", f8, Brushes.Black, centermargin + 0, 100)
+        e.Graphics.DrawString(":", f8, Brushes.Black, centermargin + 30, 100)
+        e.Graphics.DrawString(TypeofRcpt, f8, Brushes.Black, rightmargin, 100, right)
+
+
+        e.Graphics.DrawString(headercolumn1, f8b, Brushes.Black, 0, 120)
+        e.Graphics.DrawString("PRICE", f8b, Brushes.Black, 150, 120)
+        e.Graphics.DrawString("QUANTITY", f8b, Brushes.Black, 200, 120)
+        e.Graphics.DrawString("TOTAL", f8b, Brushes.Black, rightmargin, 120, right)
+
+
+
+
+
+        'Query to get all item in recpitemlist assoicated with the receipt id
+        Dim sqlQuery1 As String = "SELECT ril_ID, rcpt_ID, item_ID, ril_Price, ril_Quan, ril_Total FROM rcptitemlist WHERE '" & rcptID & "' = rcpt_ID;"
+        Dim sqlAdapter1 As New MySqlDataAdapter
+        Dim sqlCommand1 As New MySqlCommand
+        Dim rilTB As New DataTable
+
+        With sqlCommand1
+            .CommandText = sqlQuery1
+            .Connection = dbConn
+        End With
+
+        With sqlAdapter1
+            .SelectCommand = sqlCommand1
+            .Fill(rilTB)
+        End With
+
+
+
+        Dim tb, tbnamecol, tbID As String
+        If TypeofRcpt = "Check In" Then
+            tb = "servicelibrary"
+            tbID = "serviceID"
+            tbnamecol = "serviceName"
+        Else
+            tb = "mangalibrary"
+            tbID = "mgID"
+            tbnamecol = "mgTitle"
+        End If
+
+
+        Dim Height As Integer 'DGV Position
+
+        For i = 0 To rilTB.Rows.Count - 1
+
+            Dim itmID = rilTB.Rows(i)("item_ID")
+
+            Dim sqlQuery2 As String = "SELECT " & tbnamecol & " FROM " & tb & " WHERE " & tbID & " = '" & itmID & "';"
+            Dim sqlAdapter2 As New MySqlDataAdapter
+            Dim sqlCommand2 As New MySqlCommand
+            Dim itmTB As New DataTable
+
+            With sqlCommand2
+                .CommandText = sqlQuery2
+                .Connection = dbConn
+            End With
+
+            With sqlAdapter2
+                .SelectCommand = sqlCommand2
+                .Fill(itmTB)
+            End With
+
+
+            Dim itmName = itmTB.Rows(0)(tbnamecol)
+            Dim itmPrice = rilTB.Rows(i)("ril_Price")
+            Dim itmQuan = rilTB.Rows(i)("ril_Quan")
+            Dim itmTotal = rilTB.Rows(i)("ril_Total")
+
+            Height += 15
+            e.Graphics.DrawString(itmName, f8, Brushes.Black, 0, 130 + Height)
+            e.Graphics.DrawString(itmPrice, f8, Brushes.Black, 150, 130 + Height)
+            e.Graphics.DrawString(itmQuan, f8, Brushes.Black, 200, 130 + Height)
+            e.Graphics.DrawString(itmTotal, f8, Brushes.Black, rightmargin, 130 + Height, right)
+        Next
+
+
+        Dim height2 As Integer
+        height2 = 140 + Height
+        e.Graphics.DrawString(line, f8, Brushes.Black, 0, height2)
+        e.Graphics.DrawString("DURATION", f8b, Brushes.Black, 0, 20 + height2)
+        e.Graphics.DrawString(AmountOfDuration, f8, Brushes.Black, 150, 20 + height2)
+        e.Graphics.DrawString(NameOfDuration, f8, Brushes.Black, 200, 20 + height2)
+
+        CalAmountDuration(NameOfDuration, AmountOfDuration)
+        e.Graphics.DrawString(durCost, f8, Brushes.Black, rightmargin, 20 + height2, right)
+        e.Graphics.DrawString(line, f8, Brushes.Black, 0, 40 + height2)
+        e.Graphics.DrawString("Total: " & TotalCostRcpt, f10b, Brushes.Black, rightmargin, 50 + height2, right)
+
+        e.Graphics.DrawString("~Thanks for shopping~", f10, Brushes.Black, centermargin, 75 + height2, center)
+        e.Graphics.DrawString("~MangaKissa~", f10, Brushes.Black, centermargin, 90 + height2, center)
+    End Sub
+
+    Dim durCost As String
+    Public Sub CalAmountDuration(nameDur As String, amountDur As String)
+        Dim sqlQuery As String = "SELECT dPrice from durationprices WHERE dName = '" & nameDur & "'"
+        Dim sqlAdapter As New MySqlDataAdapter
+        Dim sqlCommand As New MySqlCommand
+        Dim dTable As New DataTable
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+        End With
+
+        With sqlAdapter
+            .SelectCommand = sqlCommand
+            .Fill(dTable)
+        End With
+
+        Dim durPrice As String = dTable.Rows(0)("dPrice")
+
+        durCost = CDbl(durPrice) * CInt(amountDur)
     End Sub
 End Class
 

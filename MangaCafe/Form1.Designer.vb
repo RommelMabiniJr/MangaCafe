@@ -23,10 +23,10 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim MaterialListBoxItem3 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem4 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem1 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem2 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
+        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
         Me.MaterialTabControl1 = New MaterialSkin.Controls.MaterialTabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -48,6 +48,7 @@ Partial Class Form1
         Me.ColumnHeader11 = New System.Windows.Forms.ColumnHeader()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaterialLabel15 = New MaterialSkin.Controls.MaterialLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.MaterialExpansionPanel2 = New MaterialSkin.Controls.MaterialExpansionPanel()
@@ -193,14 +194,29 @@ Partial Class Form1
         Me.ColumnHeader3 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader4 = New System.Windows.Forms.ColumnHeader()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.MaterialLabel48 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel47 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel46 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel45 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialComboBox6 = New MaterialSkin.Controls.MaterialComboBox()
+        Me.MaterialComboBox5 = New MaterialSkin.Controls.MaterialComboBox()
+        Me.MaterialComboBox4 = New MaterialSkin.Controls.MaterialComboBox()
+        Me.MaterialComboBox3 = New MaterialSkin.Controls.MaterialComboBox()
+        Me.MaterialButton4 = New MaterialSkin.Controls.MaterialButton()
+        Me.MaterialTextBox4 = New MaterialSkin.Controls.MaterialTextBox()
+        Me.MaterialButton3 = New MaterialSkin.Controls.MaterialButton()
+        Me.MaterialTextBox3 = New MaterialSkin.Controls.MaterialTextBox()
         Me.MaterialLabel44 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel41 = New MaterialSkin.Controls.MaterialLabel()
-        Me.MaterialListView4 = New MaterialSkin.Controls.MaterialListView()
+        Me.RentHistoryLV = New MaterialSkin.Controls.MaterialListView()
         Me.ColumnHeader21 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader22 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader23 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader24 = New System.Windows.Forms.ColumnHeader()
-        Me.MaterialListView3 = New MaterialSkin.Controls.MaterialListView()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckHistoryLV = New MaterialSkin.Controls.MaterialListView()
         Me.ColumnHeader17 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader18 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader19 = New System.Windows.Forms.ColumnHeader()
@@ -223,6 +239,7 @@ Partial Class Form1
         Me.MaterialCheckbox11 = New MaterialSkin.Controls.MaterialCheckbox()
         Me.MaterialCheckbox12 = New MaterialSkin.Controls.MaterialCheckbox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.ReturnByToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaterialTabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.MaterialCard6.SuspendLayout()
@@ -250,6 +267,7 @@ Partial Class Form1
         Me.MaterialCard1.SuspendLayout()
         CType(Me.ImgCoverEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
+        Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -541,11 +559,11 @@ Partial Class Form1
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem, Me.OToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
         Me.ContextMenuStrip1.ShowImageMargin = False
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(124, 36)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(124, 68)
         '
         'RemoveToolStripMenuItem
         '
@@ -553,6 +571,12 @@ Partial Class Form1
         Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
         Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(123, 32)
         Me.RemoveToolStripMenuItem.Text = "Remove"
+        '
+        'OToolStripMenuItem
+        '
+        Me.OToolStripMenuItem.Name = "OToolStripMenuItem"
+        Me.OToolStripMenuItem.Size = New System.Drawing.Size(123, 32)
+        Me.OToolStripMenuItem.Text = "o"
         '
         'MaterialLabel15
         '
@@ -616,10 +640,10 @@ Partial Class Form1
         Me.CheckInListBox.BorderColor = System.Drawing.Color.LightGray
         Me.CheckInListBox.Depth = 0
         Me.CheckInListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem3.SecondaryText = ""
-        MaterialListBoxItem3.Tag = Nothing
-        MaterialListBoxItem3.Text = "ListBoxItem"
-        Me.CheckInListBox.Items.Add(MaterialListBoxItem3)
+        MaterialListBoxItem1.SecondaryText = ""
+        MaterialListBoxItem1.Tag = Nothing
+        MaterialListBoxItem1.Text = "ListBoxItem"
+        Me.CheckInListBox.Items.Add(MaterialListBoxItem1)
         Me.CheckInListBox.Location = New System.Drawing.Point(15, 102)
         Me.CheckInListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.CheckInListBox.Name = "CheckInListBox"
@@ -1164,10 +1188,10 @@ Partial Class Form1
         Me.RentListBox.BorderColor = System.Drawing.Color.LightGray
         Me.RentListBox.Depth = 0
         Me.RentListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem4.SecondaryText = ""
-        MaterialListBoxItem4.Tag = Nothing
-        MaterialListBoxItem4.Text = ""
-        Me.RentListBox.Items.Add(MaterialListBoxItem4)
+        MaterialListBoxItem2.SecondaryText = ""
+        MaterialListBoxItem2.Tag = Nothing
+        MaterialListBoxItem2.Text = ""
+        Me.RentListBox.Items.Add(MaterialListBoxItem2)
         Me.RentListBox.Location = New System.Drawing.Point(15, 118)
         Me.RentListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.RentListBox.Name = "RentListBox"
@@ -2963,8 +2987,8 @@ Partial Class Form1
         Me.ListViewMangaLibrary.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListViewMangaLibrary.Depth = 0
         Me.ListViewMangaLibrary.FullRowSelect = True
-        ListViewItem2.StateImageIndex = 0
-        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem2})
+        ListViewItem1.StateImageIndex = 0
+        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
         Me.ListViewMangaLibrary.Location = New System.Drawing.Point(46, 155)
         Me.ListViewMangaLibrary.MinimumSize = New System.Drawing.Size(200, 100)
         Me.ListViewMangaLibrary.MouseLocation = New System.Drawing.Point(-1, -1)
@@ -2998,10 +3022,22 @@ Partial Class Form1
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.MaterialLabel48)
+        Me.TabPage4.Controls.Add(Me.MaterialLabel47)
+        Me.TabPage4.Controls.Add(Me.MaterialLabel46)
+        Me.TabPage4.Controls.Add(Me.MaterialLabel45)
+        Me.TabPage4.Controls.Add(Me.MaterialComboBox6)
+        Me.TabPage4.Controls.Add(Me.MaterialComboBox5)
+        Me.TabPage4.Controls.Add(Me.MaterialComboBox4)
+        Me.TabPage4.Controls.Add(Me.MaterialComboBox3)
+        Me.TabPage4.Controls.Add(Me.MaterialButton4)
+        Me.TabPage4.Controls.Add(Me.MaterialTextBox4)
+        Me.TabPage4.Controls.Add(Me.MaterialButton3)
+        Me.TabPage4.Controls.Add(Me.MaterialTextBox3)
         Me.TabPage4.Controls.Add(Me.MaterialLabel44)
         Me.TabPage4.Controls.Add(Me.MaterialLabel41)
-        Me.TabPage4.Controls.Add(Me.MaterialListView4)
-        Me.TabPage4.Controls.Add(Me.MaterialListView3)
+        Me.TabPage4.Controls.Add(Me.RentHistoryLV)
+        Me.TabPage4.Controls.Add(Me.CheckHistoryLV)
         Me.TabPage4.ImageKey = "icons8-purchase-order-26.png"
         Me.TabPage4.Location = New System.Drawing.Point(4, 34)
         Me.TabPage4.Name = "TabPage4"
@@ -3010,16 +3046,230 @@ Partial Class Form1
         Me.TabPage4.Text = "Purchase History"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
+        'MaterialLabel48
+        '
+        Me.MaterialLabel48.AutoSize = True
+        Me.MaterialLabel48.Depth = 0
+        Me.MaterialLabel48.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel48.Location = New System.Drawing.Point(772, 184)
+        Me.MaterialLabel48.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel48.Name = "MaterialLabel48"
+        Me.MaterialLabel48.Size = New System.Drawing.Size(72, 19)
+        Me.MaterialLabel48.TabIndex = 14
+        Me.MaterialLabel48.Text = "Search By"
+        '
+        'MaterialLabel47
+        '
+        Me.MaterialLabel47.AutoSize = True
+        Me.MaterialLabel47.Depth = 0
+        Me.MaterialLabel47.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel47.Location = New System.Drawing.Point(660, 184)
+        Me.MaterialLabel47.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel47.Name = "MaterialLabel47"
+        Me.MaterialLabel47.Size = New System.Drawing.Size(61, 19)
+        Me.MaterialLabel47.TabIndex = 14
+        Me.MaterialLabel47.Text = "Order By"
+        '
+        'MaterialLabel46
+        '
+        Me.MaterialLabel46.AutoSize = True
+        Me.MaterialLabel46.Depth = 0
+        Me.MaterialLabel46.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel46.Location = New System.Drawing.Point(165, 184)
+        Me.MaterialLabel46.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel46.Name = "MaterialLabel46"
+        Me.MaterialLabel46.Size = New System.Drawing.Size(72, 19)
+        Me.MaterialLabel46.TabIndex = 14
+        Me.MaterialLabel46.Text = "Search By"
+        '
+        'MaterialLabel45
+        '
+        Me.MaterialLabel45.AutoSize = True
+        Me.MaterialLabel45.Depth = 0
+        Me.MaterialLabel45.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel45.Location = New System.Drawing.Point(53, 184)
+        Me.MaterialLabel45.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel45.Name = "MaterialLabel45"
+        Me.MaterialLabel45.Size = New System.Drawing.Size(61, 19)
+        Me.MaterialLabel45.TabIndex = 14
+        Me.MaterialLabel45.Text = "Order By"
+        '
+        'MaterialComboBox6
+        '
+        Me.MaterialComboBox6.AutoResize = False
+        Me.MaterialComboBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.MaterialComboBox6.Depth = 0
+        Me.MaterialComboBox6.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.MaterialComboBox6.DropDownHeight = 174
+        Me.MaterialComboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.MaterialComboBox6.DropDownWidth = 121
+        Me.MaterialComboBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialComboBox6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.MaterialComboBox6.FormattingEnabled = True
+        Me.MaterialComboBox6.IntegralHeight = False
+        Me.MaterialComboBox6.ItemHeight = 43
+        Me.MaterialComboBox6.Items.AddRange(New Object() {"All", "Latest", "Oldest", "Active"})
+        Me.MaterialComboBox6.Location = New System.Drawing.Point(639, 219)
+        Me.MaterialComboBox6.MaxDropDownItems = 4
+        Me.MaterialComboBox6.MouseState = MaterialSkin.MouseState.OUT
+        Me.MaterialComboBox6.Name = "MaterialComboBox6"
+        Me.MaterialComboBox6.Size = New System.Drawing.Size(102, 49)
+        Me.MaterialComboBox6.StartIndex = 0
+        Me.MaterialComboBox6.TabIndex = 13
+        '
+        'MaterialComboBox5
+        '
+        Me.MaterialComboBox5.AutoResize = False
+        Me.MaterialComboBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.MaterialComboBox5.Depth = 0
+        Me.MaterialComboBox5.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.MaterialComboBox5.DropDownHeight = 174
+        Me.MaterialComboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.MaterialComboBox5.DropDownWidth = 121
+        Me.MaterialComboBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialComboBox5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.MaterialComboBox5.FormattingEnabled = True
+        Me.MaterialComboBox5.IntegralHeight = False
+        Me.MaterialComboBox5.ItemHeight = 43
+        Me.MaterialComboBox5.Items.AddRange(New Object() {"All", "Latest", "Oldest", "Active"})
+        Me.MaterialComboBox5.Location = New System.Drawing.Point(32, 218)
+        Me.MaterialComboBox5.MaxDropDownItems = 4
+        Me.MaterialComboBox5.MouseState = MaterialSkin.MouseState.OUT
+        Me.MaterialComboBox5.Name = "MaterialComboBox5"
+        Me.MaterialComboBox5.Size = New System.Drawing.Size(102, 49)
+        Me.MaterialComboBox5.StartIndex = 0
+        Me.MaterialComboBox5.TabIndex = 13
+        '
+        'MaterialComboBox4
+        '
+        Me.MaterialComboBox4.AutoResize = False
+        Me.MaterialComboBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.MaterialComboBox4.Depth = 0
+        Me.MaterialComboBox4.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.MaterialComboBox4.DropDownHeight = 174
+        Me.MaterialComboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.MaterialComboBox4.DropDownWidth = 121
+        Me.MaterialComboBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialComboBox4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.MaterialComboBox4.FormattingEnabled = True
+        Me.MaterialComboBox4.IntegralHeight = False
+        Me.MaterialComboBox4.ItemHeight = 43
+        Me.MaterialComboBox4.Items.AddRange(New Object() {"ID", "Name", "Date", "Total"})
+        Me.MaterialComboBox4.Location = New System.Drawing.Point(756, 219)
+        Me.MaterialComboBox4.MaxDropDownItems = 4
+        Me.MaterialComboBox4.MouseState = MaterialSkin.MouseState.OUT
+        Me.MaterialComboBox4.Name = "MaterialComboBox4"
+        Me.MaterialComboBox4.Size = New System.Drawing.Size(102, 49)
+        Me.MaterialComboBox4.StartIndex = 0
+        Me.MaterialComboBox4.TabIndex = 13
+        '
+        'MaterialComboBox3
+        '
+        Me.MaterialComboBox3.AutoResize = False
+        Me.MaterialComboBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.MaterialComboBox3.Depth = 0
+        Me.MaterialComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.MaterialComboBox3.DropDownHeight = 174
+        Me.MaterialComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.MaterialComboBox3.DropDownWidth = 121
+        Me.MaterialComboBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialComboBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.MaterialComboBox3.FormattingEnabled = True
+        Me.MaterialComboBox3.IntegralHeight = False
+        Me.MaterialComboBox3.ItemHeight = 43
+        Me.MaterialComboBox3.Items.AddRange(New Object() {"ID", "Name", "Date", "Total"})
+        Me.MaterialComboBox3.Location = New System.Drawing.Point(149, 218)
+        Me.MaterialComboBox3.MaxDropDownItems = 4
+        Me.MaterialComboBox3.MouseState = MaterialSkin.MouseState.OUT
+        Me.MaterialComboBox3.Name = "MaterialComboBox3"
+        Me.MaterialComboBox3.Size = New System.Drawing.Size(102, 49)
+        Me.MaterialComboBox3.StartIndex = 0
+        Me.MaterialComboBox3.TabIndex = 13
+        '
+        'MaterialButton4
+        '
+        Me.MaterialButton4.AutoSize = False
+        Me.MaterialButton4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.MaterialButton4.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.MaterialButton4.Depth = 0
+        Me.MaterialButton4.HighEmphasis = True
+        Me.MaterialButton4.Icon = Nothing
+        Me.MaterialButton4.Location = New System.Drawing.Point(1106, 218)
+        Me.MaterialButton4.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.MaterialButton4.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialButton4.Name = "MaterialButton4"
+        Me.MaterialButton4.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.MaterialButton4.Size = New System.Drawing.Size(98, 50)
+        Me.MaterialButton4.TabIndex = 12
+        Me.MaterialButton4.Text = "Search"
+        Me.MaterialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.MaterialButton4.UseAccentColor = False
+        Me.MaterialButton4.UseVisualStyleBackColor = True
+        '
+        'MaterialTextBox4
+        '
+        Me.MaterialTextBox4.AnimateReadOnly = False
+        Me.MaterialTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.MaterialTextBox4.Depth = 0
+        Me.MaterialTextBox4.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialTextBox4.LeadingIcon = Nothing
+        Me.MaterialTextBox4.Location = New System.Drawing.Point(913, 218)
+        Me.MaterialTextBox4.MaxLength = 50
+        Me.MaterialTextBox4.MouseState = MaterialSkin.MouseState.OUT
+        Me.MaterialTextBox4.Multiline = False
+        Me.MaterialTextBox4.Name = "MaterialTextBox4"
+        Me.MaterialTextBox4.Size = New System.Drawing.Size(175, 50)
+        Me.MaterialTextBox4.TabIndex = 11
+        Me.MaterialTextBox4.Text = ""
+        Me.MaterialTextBox4.TrailingIcon = Nothing
+        '
+        'MaterialButton3
+        '
+        Me.MaterialButton3.AutoSize = False
+        Me.MaterialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.MaterialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.MaterialButton3.Depth = 0
+        Me.MaterialButton3.HighEmphasis = True
+        Me.MaterialButton3.Icon = Nothing
+        Me.MaterialButton3.Location = New System.Drawing.Point(499, 217)
+        Me.MaterialButton3.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.MaterialButton3.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialButton3.Name = "MaterialButton3"
+        Me.MaterialButton3.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.MaterialButton3.Size = New System.Drawing.Size(98, 50)
+        Me.MaterialButton3.TabIndex = 12
+        Me.MaterialButton3.Text = "Search"
+        Me.MaterialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.MaterialButton3.UseAccentColor = False
+        Me.MaterialButton3.UseVisualStyleBackColor = True
+        '
+        'MaterialTextBox3
+        '
+        Me.MaterialTextBox3.AnimateReadOnly = False
+        Me.MaterialTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.MaterialTextBox3.Depth = 0
+        Me.MaterialTextBox3.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialTextBox3.LeadingIcon = Nothing
+        Me.MaterialTextBox3.Location = New System.Drawing.Point(306, 217)
+        Me.MaterialTextBox3.MaxLength = 50
+        Me.MaterialTextBox3.MouseState = MaterialSkin.MouseState.OUT
+        Me.MaterialTextBox3.Multiline = False
+        Me.MaterialTextBox3.Name = "MaterialTextBox3"
+        Me.MaterialTextBox3.Size = New System.Drawing.Size(175, 50)
+        Me.MaterialTextBox3.TabIndex = 11
+        Me.MaterialTextBox3.Text = ""
+        Me.MaterialTextBox3.TrailingIcon = Nothing
+        '
         'MaterialLabel44
         '
         Me.MaterialLabel44.AutoSize = True
         Me.MaterialLabel44.Depth = 0
-        Me.MaterialLabel44.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel44.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
-        Me.MaterialLabel44.Location = New System.Drawing.Point(865, 92)
+        Me.MaterialLabel44.Font = New System.Drawing.Font("Roboto", 34.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel44.FontType = MaterialSkin.MaterialSkinManager.fontType.H4
+        Me.MaterialLabel44.Location = New System.Drawing.Point(858, 103)
         Me.MaterialLabel44.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel44.Name = "MaterialLabel44"
-        Me.MaterialLabel44.Size = New System.Drawing.Size(103, 29)
+        Me.MaterialLabel44.Size = New System.Drawing.Size(144, 41)
         Me.MaterialLabel44.TabIndex = 2
         Me.MaterialLabel44.Text = "Rent Only"
         '
@@ -3027,33 +3277,34 @@ Partial Class Form1
         '
         Me.MaterialLabel41.AutoSize = True
         Me.MaterialLabel41.Depth = 0
-        Me.MaterialLabel41.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel41.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
-        Me.MaterialLabel41.Location = New System.Drawing.Point(263, 92)
+        Me.MaterialLabel41.Font = New System.Drawing.Font("Roboto", 34.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel41.FontType = MaterialSkin.MaterialSkinManager.fontType.H4
+        Me.MaterialLabel41.Location = New System.Drawing.Point(261, 103)
         Me.MaterialLabel41.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel41.Name = "MaterialLabel41"
-        Me.MaterialLabel41.Size = New System.Drawing.Size(94, 29)
+        Me.MaterialLabel41.Size = New System.Drawing.Size(131, 41)
         Me.MaterialLabel41.TabIndex = 2
         Me.MaterialLabel41.Text = "Check In"
         '
-        'MaterialListView4
+        'RentHistoryLV
         '
-        Me.MaterialListView4.AutoSizeTable = False
-        Me.MaterialListView4.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.MaterialListView4.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.MaterialListView4.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader21, Me.ColumnHeader22, Me.ColumnHeader23, Me.ColumnHeader24})
-        Me.MaterialListView4.Depth = 0
-        Me.MaterialListView4.FullRowSelect = True
-        Me.MaterialListView4.Location = New System.Drawing.Point(634, 170)
-        Me.MaterialListView4.MinimumSize = New System.Drawing.Size(200, 100)
-        Me.MaterialListView4.MouseLocation = New System.Drawing.Point(-1, -1)
-        Me.MaterialListView4.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialListView4.Name = "MaterialListView4"
-        Me.MaterialListView4.OwnerDraw = True
-        Me.MaterialListView4.Size = New System.Drawing.Size(570, 434)
-        Me.MaterialListView4.TabIndex = 1
-        Me.MaterialListView4.UseCompatibleStateImageBehavior = False
-        Me.MaterialListView4.View = System.Windows.Forms.View.Details
+        Me.RentHistoryLV.AutoSizeTable = False
+        Me.RentHistoryLV.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.RentHistoryLV.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.RentHistoryLV.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader21, Me.ColumnHeader22, Me.ColumnHeader23, Me.ColumnHeader24})
+        Me.RentHistoryLV.ContextMenuStrip = Me.ContextMenuStrip2
+        Me.RentHistoryLV.Depth = 0
+        Me.RentHistoryLV.FullRowSelect = True
+        Me.RentHistoryLV.Location = New System.Drawing.Point(634, 283)
+        Me.RentHistoryLV.MinimumSize = New System.Drawing.Size(200, 100)
+        Me.RentHistoryLV.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.RentHistoryLV.MouseState = MaterialSkin.MouseState.OUT
+        Me.RentHistoryLV.Name = "RentHistoryLV"
+        Me.RentHistoryLV.OwnerDraw = True
+        Me.RentHistoryLV.Size = New System.Drawing.Size(570, 434)
+        Me.RentHistoryLV.TabIndex = 1
+        Me.RentHistoryLV.UseCompatibleStateImageBehavior = False
+        Me.RentHistoryLV.View = System.Windows.Forms.View.Details
         '
         'ColumnHeader21
         '
@@ -3074,24 +3325,47 @@ Partial Class Form1
         Me.ColumnHeader24.Text = "Total"
         Me.ColumnHeader24.Width = 100
         '
-        'MaterialListView3
+        'ContextMenuStrip2
         '
-        Me.MaterialListView3.AutoSizeTable = False
-        Me.MaterialListView3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.MaterialListView3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.MaterialListView3.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader17, Me.ColumnHeader18, Me.ColumnHeader19, Me.ColumnHeader20})
-        Me.MaterialListView3.Depth = 0
-        Me.MaterialListView3.FullRowSelect = True
-        Me.MaterialListView3.Location = New System.Drawing.Point(27, 170)
-        Me.MaterialListView3.MinimumSize = New System.Drawing.Size(200, 100)
-        Me.MaterialListView3.MouseLocation = New System.Drawing.Point(-1, -1)
-        Me.MaterialListView3.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialListView3.Name = "MaterialListView3"
-        Me.MaterialListView3.OwnerDraw = True
-        Me.MaterialListView3.Size = New System.Drawing.Size(570, 434)
-        Me.MaterialListView3.TabIndex = 0
-        Me.MaterialListView3.UseCompatibleStateImageBehavior = False
-        Me.MaterialListView3.View = System.Windows.Forms.View.Details
+        Me.ContextMenuStrip2.ImageScalingSize = New System.Drawing.Size(24, 24)
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem, Me.DeleteToolStripMenuItem1, Me.ReturnByToolStripMenuItem})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.ShowImageMargin = False
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(159, 100)
+        '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(158, 32)
+        Me.ViewToolStripMenuItem.Text = "View Receipt"
+        '
+        'DeleteToolStripMenuItem1
+        '
+        Me.DeleteToolStripMenuItem1.ForeColor = System.Drawing.Color.DarkOrange
+        Me.DeleteToolStripMenuItem1.Name = "DeleteToolStripMenuItem1"
+        Me.DeleteToolStripMenuItem1.Size = New System.Drawing.Size(158, 32)
+        Me.DeleteToolStripMenuItem1.Text = "Delete"
+        '
+        'CheckHistoryLV
+        '
+        Me.CheckHistoryLV.AutoSizeTable = False
+        Me.CheckHistoryLV.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.CheckHistoryLV.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.CheckHistoryLV.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader17, Me.ColumnHeader18, Me.ColumnHeader19, Me.ColumnHeader20})
+        Me.CheckHistoryLV.ContextMenuStrip = Me.ContextMenuStrip2
+        Me.CheckHistoryLV.Depth = 0
+        Me.CheckHistoryLV.FullRowSelect = True
+        Me.CheckHistoryLV.Location = New System.Drawing.Point(27, 283)
+        Me.CheckHistoryLV.MinimumSize = New System.Drawing.Size(200, 100)
+        Me.CheckHistoryLV.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.CheckHistoryLV.MouseState = MaterialSkin.MouseState.OUT
+        Me.CheckHistoryLV.Name = "CheckHistoryLV"
+        Me.CheckHistoryLV.OwnerDraw = True
+        Me.CheckHistoryLV.Size = New System.Drawing.Size(570, 434)
+        Me.CheckHistoryLV.TabIndex = 0
+        Me.CheckHistoryLV.UseCompatibleStateImageBehavior = False
+        Me.CheckHistoryLV.View = System.Windows.Forms.View.Details
         '
         'ColumnHeader17
         '
@@ -3345,6 +3619,13 @@ Partial Class Form1
         '
         Me.Timer1.Enabled = True
         '
+        'ReturnByToolStripMenuItem
+        '
+        Me.ReturnByToolStripMenuItem.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ReturnByToolStripMenuItem.Name = "ReturnByToolStripMenuItem"
+        Me.ReturnByToolStripMenuItem.Size = New System.Drawing.Size(158, 32)
+        Me.ReturnByToolStripMenuItem.Text = "Return By"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 25.0!)
@@ -3400,6 +3681,7 @@ Partial Class Form1
         CType(Me.ImgCoverEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
+        Me.ContextMenuStrip2.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -3483,7 +3765,6 @@ Partial Class Form1
     Friend WithEvents MaterialLabel13 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents RentDurSelection As MaterialSkin.Controls.MaterialComboBox
     Friend WithEvents CheckInSelection As MaterialSkin.Controls.MaterialComboBox
-    Friend WithEvents MaterialTextBox4 As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents MaterialTextBox5 As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents MaterialTextBox6 As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents CheckAddToCart As MaterialSkin.Controls.MaterialButton
@@ -3596,16 +3877,33 @@ Partial Class Form1
     Friend WithEvents RentNumVol As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents DateLbl As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents MaterialListView4 As MaterialSkin.Controls.MaterialListView
+    Friend WithEvents RentHistoryLV As MaterialSkin.Controls.MaterialListView
     Friend WithEvents ColumnHeader21 As ColumnHeader
     Friend WithEvents ColumnHeader22 As ColumnHeader
     Friend WithEvents ColumnHeader23 As ColumnHeader
     Friend WithEvents ColumnHeader24 As ColumnHeader
-    Friend WithEvents MaterialListView3 As MaterialSkin.Controls.MaterialListView
+    Friend WithEvents CheckHistoryLV As MaterialSkin.Controls.MaterialListView
     Friend WithEvents ColumnHeader17 As ColumnHeader
     Friend WithEvents ColumnHeader18 As ColumnHeader
     Friend WithEvents ColumnHeader19 As ColumnHeader
     Friend WithEvents ColumnHeader20 As ColumnHeader
     Friend WithEvents MaterialLabel41 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel44 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents OToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
+    Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents MaterialComboBox5 As MaterialSkin.Controls.MaterialComboBox
+    Friend WithEvents MaterialComboBox3 As MaterialSkin.Controls.MaterialComboBox
+    Friend WithEvents MaterialButton3 As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents MaterialTextBox3 As MaterialSkin.Controls.MaterialTextBox
+    Friend WithEvents MaterialComboBox6 As MaterialSkin.Controls.MaterialComboBox
+    Friend WithEvents MaterialComboBox4 As MaterialSkin.Controls.MaterialComboBox
+    Friend WithEvents MaterialButton4 As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents MaterialTextBox4 As MaterialSkin.Controls.MaterialTextBox
+    Friend WithEvents MaterialLabel46 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel45 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel48 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel47 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents ReturnByToolStripMenuItem As ToolStripMenuItem
 End Class
