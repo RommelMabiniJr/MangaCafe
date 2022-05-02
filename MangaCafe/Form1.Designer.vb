@@ -23,10 +23,10 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim MaterialListBoxItem5 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem6 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem3 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem4 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
+        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
         Me.MaterialTabControl1 = New MaterialSkin.Controls.MaterialTabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -217,6 +217,7 @@ Partial Class Form1
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReturnByToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckReturnDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CheckHistoryLV = New MaterialSkin.Controls.MaterialListView()
         Me.ColumnHeader17 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader18 = New System.Windows.Forms.ColumnHeader()
@@ -640,10 +641,10 @@ Partial Class Form1
         Me.CheckInListBox.BorderColor = System.Drawing.Color.LightGray
         Me.CheckInListBox.Depth = 0
         Me.CheckInListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem5.SecondaryText = ""
-        MaterialListBoxItem5.Tag = Nothing
-        MaterialListBoxItem5.Text = "ListBoxItem"
-        Me.CheckInListBox.Items.Add(MaterialListBoxItem5)
+        MaterialListBoxItem3.SecondaryText = ""
+        MaterialListBoxItem3.Tag = Nothing
+        MaterialListBoxItem3.Text = "ListBoxItem"
+        Me.CheckInListBox.Items.Add(MaterialListBoxItem3)
         Me.CheckInListBox.Location = New System.Drawing.Point(15, 102)
         Me.CheckInListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.CheckInListBox.Name = "CheckInListBox"
@@ -1188,10 +1189,10 @@ Partial Class Form1
         Me.RentListBox.BorderColor = System.Drawing.Color.LightGray
         Me.RentListBox.Depth = 0
         Me.RentListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem6.SecondaryText = ""
-        MaterialListBoxItem6.Tag = Nothing
-        MaterialListBoxItem6.Text = ""
-        Me.RentListBox.Items.Add(MaterialListBoxItem6)
+        MaterialListBoxItem4.SecondaryText = ""
+        MaterialListBoxItem4.Tag = Nothing
+        MaterialListBoxItem4.Text = ""
+        Me.RentListBox.Items.Add(MaterialListBoxItem4)
         Me.RentListBox.Location = New System.Drawing.Point(15, 118)
         Me.RentListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.RentListBox.Name = "RentListBox"
@@ -2987,8 +2988,8 @@ Partial Class Form1
         Me.ListViewMangaLibrary.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListViewMangaLibrary.Depth = 0
         Me.ListViewMangaLibrary.FullRowSelect = True
-        ListViewItem3.StateImageIndex = 0
-        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem3})
+        ListViewItem2.StateImageIndex = 0
+        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem2})
         Me.ListViewMangaLibrary.Location = New System.Drawing.Point(46, 155)
         Me.ListViewMangaLibrary.MinimumSize = New System.Drawing.Size(200, 100)
         Me.ListViewMangaLibrary.MouseLocation = New System.Drawing.Point(-1, -1)
@@ -3063,12 +3064,12 @@ Partial Class Form1
         Me.MaterialLabel47.AutoSize = True
         Me.MaterialLabel47.Depth = 0
         Me.MaterialLabel47.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel47.Location = New System.Drawing.Point(660, 184)
+        Me.MaterialLabel47.Location = New System.Drawing.Point(664, 184)
         Me.MaterialLabel47.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel47.Name = "MaterialLabel47"
-        Me.MaterialLabel47.Size = New System.Drawing.Size(61, 19)
+        Me.MaterialLabel47.Size = New System.Drawing.Size(52, 19)
         Me.MaterialLabel47.TabIndex = 14
-        Me.MaterialLabel47.Text = "Order By"
+        Me.MaterialLabel47.Text = "Sort By"
         '
         'MaterialLabel46
         '
@@ -3087,12 +3088,12 @@ Partial Class Form1
         Me.MaterialLabel45.AutoSize = True
         Me.MaterialLabel45.Depth = 0
         Me.MaterialLabel45.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel45.Location = New System.Drawing.Point(53, 184)
+        Me.MaterialLabel45.Location = New System.Drawing.Point(57, 184)
         Me.MaterialLabel45.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel45.Name = "MaterialLabel45"
-        Me.MaterialLabel45.Size = New System.Drawing.Size(61, 19)
+        Me.MaterialLabel45.Size = New System.Drawing.Size(52, 19)
         Me.MaterialLabel45.TabIndex = 14
-        Me.MaterialLabel45.Text = "Order By"
+        Me.MaterialLabel45.Text = "Sort By"
         '
         'RentOrderBy
         '
@@ -3108,7 +3109,7 @@ Partial Class Form1
         Me.RentOrderBy.FormattingEnabled = True
         Me.RentOrderBy.IntegralHeight = False
         Me.RentOrderBy.ItemHeight = 43
-        Me.RentOrderBy.Items.AddRange(New Object() {"All", "Latest", "Oldest", "Active"})
+        Me.RentOrderBy.Items.AddRange(New Object() {"All", "Latest", "Oldest", "Active", "Inactive"})
         Me.RentOrderBy.Location = New System.Drawing.Point(639, 219)
         Me.RentOrderBy.MaxDropDownItems = 4
         Me.RentOrderBy.MouseState = MaterialSkin.MouseState.OUT
@@ -3131,7 +3132,7 @@ Partial Class Form1
         Me.CheckOrderBy.FormattingEnabled = True
         Me.CheckOrderBy.IntegralHeight = False
         Me.CheckOrderBy.ItemHeight = 43
-        Me.CheckOrderBy.Items.AddRange(New Object() {"All", "Latest", "Oldest", "Active"})
+        Me.CheckOrderBy.Items.AddRange(New Object() {"All", "Latest", "Oldest", "Active", "Inactive"})
         Me.CheckOrderBy.Location = New System.Drawing.Point(32, 218)
         Me.CheckOrderBy.MaxDropDownItems = 4
         Me.CheckOrderBy.MouseState = MaterialSkin.MouseState.OUT
@@ -3328,31 +3329,39 @@ Partial Class Form1
         'ContextMenuStrip2
         '
         Me.ContextMenuStrip2.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem, Me.DeleteToolStripMenuItem1, Me.ReturnByToolStripMenuItem})
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem, Me.DeleteToolStripMenuItem1, Me.ReturnByToolStripMenuItem, Me.CheckReturnDetailsToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
         Me.ContextMenuStrip2.ShowImageMargin = False
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(159, 100)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(221, 165)
         '
         'ViewToolStripMenuItem
         '
         Me.ViewToolStripMenuItem.ForeColor = System.Drawing.Color.DarkOrange
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(158, 32)
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(220, 32)
         Me.ViewToolStripMenuItem.Text = "View Receipt"
         '
         'DeleteToolStripMenuItem1
         '
         Me.DeleteToolStripMenuItem1.ForeColor = System.Drawing.Color.DarkOrange
         Me.DeleteToolStripMenuItem1.Name = "DeleteToolStripMenuItem1"
-        Me.DeleteToolStripMenuItem1.Size = New System.Drawing.Size(158, 32)
+        Me.DeleteToolStripMenuItem1.Size = New System.Drawing.Size(220, 32)
         Me.DeleteToolStripMenuItem1.Text = "Delete"
         '
         'ReturnByToolStripMenuItem
         '
         Me.ReturnByToolStripMenuItem.ForeColor = System.Drawing.Color.DarkOrange
         Me.ReturnByToolStripMenuItem.Name = "ReturnByToolStripMenuItem"
-        Me.ReturnByToolStripMenuItem.Size = New System.Drawing.Size(158, 32)
+        Me.ReturnByToolStripMenuItem.Size = New System.Drawing.Size(220, 32)
         Me.ReturnByToolStripMenuItem.Text = "Return By"
+        '
+        'CheckReturnDetailsToolStripMenuItem
+        '
+        Me.CheckReturnDetailsToolStripMenuItem.Enabled = False
+        Me.CheckReturnDetailsToolStripMenuItem.ForeColor = System.Drawing.Color.DarkOrange
+        Me.CheckReturnDetailsToolStripMenuItem.Name = "CheckReturnDetailsToolStripMenuItem"
+        Me.CheckReturnDetailsToolStripMenuItem.Size = New System.Drawing.Size(220, 32)
+        Me.CheckReturnDetailsToolStripMenuItem.Text = "Check Return Details"
         '
         'CheckHistoryLV
         '
@@ -3906,4 +3915,5 @@ Partial Class Form1
     Friend WithEvents MaterialLabel48 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel47 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents ReturnByToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CheckReturnDetailsToolStripMenuItem As ToolStripMenuItem
 End Class

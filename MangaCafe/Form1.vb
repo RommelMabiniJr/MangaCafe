@@ -790,7 +790,7 @@ Public Class Form1
                 itmID = srvTb.Rows(0)("serviceID")
 
                 'Lastly, Insert now to rcptitemlist
-                Dim sqlQuery3 As String = "INSERT INTO rcptitemlist(rcpt_ID, item_ID, ril_Price, ril_Quan, ril_Total) VALUES('" & receiptID & "','" & itmID & "','" & itmPrice & "','" & itmQuan & "','" & itmTot & "')"
+                Dim sqlQuery3 As String = "INSERT INTO rcptitemlist(rcpt_ID, item_ID, item_Status, ril_Price, ril_Quan, ril_Total) VALUES('" & receiptID & "','" & itmID & "','" & "NA" & "','" & itmPrice & "','" & itmQuan & "','" & itmTot & "')"
                 Dim sqlCommand3 As New MySqlCommand
 
                 With sqlCommand3
@@ -807,6 +807,7 @@ Public Class Form1
             End If
 
             populatePurchaseHistroy("Check In")
+            clearCheckIn()
         End If
     End Sub
 
@@ -1043,7 +1044,7 @@ Public Class Form1
     End Sub
 
     Private Sub RentAddToCart_Click(sender As Object, e As EventArgs) Handles RentAddToCart.Click
-        Dim sqlQuery As String = "UPDATE mangalibrary SET mgOnRent = mgOnRent + '" & RentMgQuan.Text & "' WHERE mgTitle = '" & RentMgTitle.Text & "'"
+        Dim sqlQuery As String = "UPDATE mangalibrary SET mgOnRent = mgOnRent + '" & RentMgQuan.Text & "' WHERE mgTitle = '" & Replace(RentMgTitle.Text, "'", "''") & "'"
         Dim sqlCommand As New MySqlCommand
 
         With sqlCommand
@@ -1183,7 +1184,7 @@ Public Class Form1
                     Dim onRent As String = RentListView.Items(i).SubItems(2).Text
                     Dim mangTitle As String = RentListView.Items(i).Text
 
-                    Dim sqlQuery As String = "UPDATE mangalibrary SET mgOnRent = mgOnRent - '" & onRent & "' WHERE mgTitle = '" & mangTitle & "'"
+                    Dim sqlQuery As String = "UPDATE mangalibrary SET mgOnRent = mgOnRent - '" & onRent & "' WHERE mgTitle = '" & Replace(mangTitle, "'", "''") & "'"
                     Dim sqlCommand As New MySqlCommand
 
                     With sqlCommand
@@ -1246,7 +1247,7 @@ Public Class Form1
 
 
                 'Second, search the ID for the following manga to use for inserting in rcptitemlist table
-                Dim sqlQuery2 As String = "SELECT mgID from mangalibrary WHERE mgTitle = '" & itmName & "'"
+                Dim sqlQuery2 As String = "SELECT mgID from mangalibrary WHERE mgTitle = '" & Replace(itmName, "'", "''") & "'"
                 Dim sqlAdapter2 As New MySqlDataAdapter
                 Dim sqlCommand2 As New MySqlCommand
                 Dim mgTb As New DataTable
@@ -1264,7 +1265,7 @@ Public Class Form1
                 itmID = mgTb.Rows(0)("mgID")
 
                 'Lastly, Insert now to rcptitemlist
-                Dim sqlQuery3 As String = "INSERT INTO rcptitemlist(rcpt_ID, item_ID, ril_Price, ril_Quan, ril_Total) VALUES('" & receiptID & "','" & itmID & "','" & itmPrice & "','" & itmQuan & "','" & itmTot & "')"
+                Dim sqlQuery3 As String = "INSERT INTO rcptitemlist(rcpt_ID, item_ID, item_Status, ril_Price, ril_Quan, ril_Total) VALUES('" & receiptID & "','" & itmID & "','" & "Active" & "','" & itmPrice & "','" & itmQuan & "','" & itmTot & "')"
                 Dim sqlCommand3 As New MySqlCommand
 
                 With sqlCommand3
@@ -1281,9 +1282,20 @@ Public Class Form1
             End If
 
             populatePurchaseHistroy("Rent Only")
+            clearRent()
         End If
     End Sub
 
+    Public Sub clearRent()
+        RentDuration.Text = ""
+        RentNumVol.Text = ""
+        RentMgTitle.Text = ""
+        RentMgPrice.Text = "0"
+        TxtOrderTot.Text = "0.00"
+        RentListView.Items.Clear()
+        RentListView.Refresh()
+        RentFinalTot.Text = "0.00"
+    End Sub
 
     Public Sub printRentOnlyReceiptNow()
         changePaperHeightRent()
@@ -1475,6 +1487,144 @@ Public Class Form1
     Private Sub ReturnByToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReturnByToolStripMenuItem.Click
         Dim lvNameCms As ContextMenuStrip = CType(ViewToolStripMenuItem.Owner, ContextMenuStrip)
         calcDateSincePurchased(lvNameCms.SourceControl)
+    End Sub
+
+    Private Sub CheckReturnDetailsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckReturnDetailsToolStripMenuItem.Click
+        Try
+            Dim lvNameCms As ContextMenuStrip = CType(ViewToolStripMenuItem.Owner, ContextMenuStrip)
+            viewReturnDetails(lvNameCms.SourceControl)
+            RentDetailsForm.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message, vbCritical)
+        End Try
+    End Sub
+
+    Private Sub ContextMenuStrip2_Opening(sender As Object, e As CancelEventArgs) Handles ContextMenuStrip2.Opening
+        Dim lvNameCms As ContextMenuStrip = CType(ViewToolStripMenuItem.Owner, ContextMenuStrip)
+        Dim lstV As ListView = lvNameCms.SourceControl
+
+        If lstV.Name = "RentHistoryLV" Then
+            CheckReturnDetailsToolStripMenuItem.Enabled = True
+        Else
+            CheckReturnDetailsToolStripMenuItem.Enabled = False
+        End If
+
+    End Sub
+    Public Sub viewReturnDetails(lv As ListView)
+        rcptID = lv.SelectedItems(0).Text
+        RentDetailsForm.ReceiptID.Text = rcptID
+        RentDetailsForm.NameOfCustomer.Text = lv.SelectedItems(0).SubItems(1).Text
+
+        Dim sqlQuery As String = "SELECT * from rcptitemlist WHERE rcpt_ID = '" & rcptID & "'"
+        Dim sqlAdapter As New MySqlDataAdapter
+        Dim sqlCommand As New MySqlCommand
+        Dim rcpItemTB As New DataTable
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+        End With
+
+        With sqlAdapter
+            .SelectCommand = sqlCommand
+            .Fill(rcpItemTB)
+        End With
+
+        RentDetailsForm.createItemListofIDs(rcpItemTB.Rows.Count - 1)
+
+        For i = 0 To rcpItemTB.Rows.Count - 1
+            RentDetailsForm.rcptItemListIDs(i) = rcpItemTB.Rows(i)("ril_ID")
+            Dim mangID = rcpItemTB.Rows(i)("item_ID")
+
+
+            Dim sqlQuery1 As String = "SELECT * from mangalibrary WHERE mgID = '" & mangID & "'"
+            Dim sqlAdapter1 As New MySqlDataAdapter
+            Dim sqlCommand1 As New MySqlCommand
+            Dim mgTb As New DataTable
+
+            With sqlCommand1
+                .CommandText = sqlQuery1
+                .Connection = dbConn
+            End With
+
+            With sqlAdapter1
+                .SelectCommand = sqlCommand1
+                .Fill(mgTb)
+            End With
+
+            With RentDetailsForm.MaterialListView1
+                .Items.Add(mangID)
+                With .Items(.Items.Count - 1).SubItems
+                    .Add(mgTb.Rows(0)("mgTitle"))
+                    .Add(rcpItemTB.Rows(i)("ril_Quan"))
+                    .Add(rcpItemTB.Rows(i)("item_Status"))
+                End With
+            End With
+        Next
+    End Sub
+
+    Public Sub queryFromRentDetailsForm()
+
+        For i = 0 To RentDetailsForm.MaterialListView1.Items.Count - 1
+            Dim mgID As String = RentDetailsForm.MaterialListView1.Items(i).SubItems(0).Text
+            Dim mgRentQuan As String = RentDetailsForm.MaterialListView1.Items(i).SubItems(2).Text
+            Dim mgRentStatusToChange As String = RentDetailsForm.MaterialListView1.Items(i).SubItems(3).Text
+            Dim mangTitle As String = RentDetailsForm.MaterialListView1.Items(i).Text
+            Dim rilID As String = RentDetailsForm.rcptItemListIDs(i)
+
+
+
+            Dim sqlQuery As String = "SELECT item_Status from rcptitemlist WHERE ril_ID = '" & rilID & "'"
+            Dim sqlAdapter As New MySqlDataAdapter
+            Dim sqlCommand As New MySqlCommand
+            Dim statusInDb As New DataTable
+
+            With sqlCommand
+                .CommandText = sqlQuery
+                .Connection = dbConn
+            End With
+
+            With sqlAdapter
+                .SelectCommand = sqlCommand
+                .Fill(statusInDb)
+            End With
+
+
+            Dim mgRentStatusFromDb = statusInDb.Rows(0)("item_Status")
+            MsgBox("Old Value: " & mgRentStatusFromDb)
+            MsgBox("New Value: " & mgRentStatusToChange)
+            'No need to cahnge the same values
+            If mgRentStatusToChange <> mgRentStatusFromDb Then
+
+                'Avoid items that are already returned to engage to calculations
+
+                If mgRentStatusToChange = "Returned" And mgRentStatusFromDb <> "Returned" Then
+                    MsgBox("Here 1")
+                    Dim calcQuery As String = "UPDATE mangalibrary SET mgOnRent = mgOnRent - " & mgRentQuan & " WHERE mgID = '" & mgID & "'"
+                    createNonQuery(calcQuery)
+
+                ElseIf mgRentStatusToChange <> "Returned" And mgRentStatusFromDb <> "Returned" Then
+                    MsgBox("Here 2")
+                    'Because knowing that the value is active or unreturned, no need for any calculations to OnRent
+                Else
+                    MsgBox("Here 3")
+                    Dim calcQuery As String = "UPDATE mangalibrary SET mgOnRent = mgOnRent + " & mgRentQuan & " WHERE mgID = '" & mgID & "'"
+                    createNonQuery(calcQuery)
+                End If
+
+                'Make this query last because we have use for the item_Status prior value
+                Dim frstQuery As String = "UPDATE rcptitemlist SET item_Status = '" & mgRentStatusToChange & "' WHERE ril_ID = '" & rilID & "'"
+                createNonQuery(frstQuery)
+            End If
+
+
+            MsgBox("Rent Details Updated!")
+        Next
+    End Sub
+
+    Public Sub createNonQuery(ByVal SQCOMMAND As String)
+        Dim SQLCMD As New MySqlCommand(SQCOMMAND, dbConn)
+        SQLCMD.ExecuteNonQuery()
     End Sub
 
     Public Sub calcDateSincePurchased(lv As ListView)
@@ -1745,7 +1895,17 @@ Public Class Form1
 
     Private Sub CheckOrderBy_SelectedIndexChanged(sender As Object, e As EventArgs)
         If CheckOrderBy.Text = "Active" Then
-            populateCheckHistoryActive("Check In")
+            populateCheckHistoryActive("Check In", "Active")
+
+        ElseIf CheckOrderBy.Text = "Inactive" Then
+            populateCheckHistoryActive("Check In", "Inactive")
+
+        ElseIf CheckOrderBy.Text = "Oldest" Then
+            populateByDateHistory("Check In", "ASC")
+
+        ElseIf CheckOrderBy.Text = "Latest" Then
+            populateByDateHistory("Check In", "DESC")
+
         ElseIf CheckOrderBy.Text = "All" Then
             populatePurchaseHistroy("Check In")
         End If
@@ -1753,13 +1913,23 @@ Public Class Form1
 
     Private Sub RentOrderBy_SelectedIndexChanged(sender As Object, e As EventArgs)
         If RentOrderBy.Text = "Active" Then
-            populateCheckHistoryActive("Rent Only")
+            populateCheckHistoryActive("Rent Only", "Active")
+
+        ElseIf RentOrderBy.Text = "Inactive" Then
+            populateCheckHistoryActive("Rent Only", "Inactive")
+
+        ElseIf RentOrderBy.Text = "Oldest" Then
+            populateByDateHistory("Rent Only", "ASC")
+
+        ElseIf RentOrderBy.Text = "Latest" Then
+            populateByDateHistory("Rent Only", "DESC")
+
         ElseIf RentOrderBy.Text = "All" Then
             populatePurchaseHistroy("Rent Only")
         End If
     End Sub
 
-    Private Sub populateCheckHistoryActive(type As String)
+    Private Sub populateCheckHistoryActive(type As String, activeOrInactive As String)
         Dim sqlQuery As String = "SELECT * FROM receipttb Where rcptType = '" & type & "'"
         Dim sqlAdapter As New MySqlDataAdapter
         Dim sqlCommand As New MySqlCommand
@@ -1812,8 +1982,17 @@ Public Class Form1
             Dim expiration As Date = DateAdd(iFormat, dAmount, dateEntered)
             Dim diff1 As TimeSpan = expiration - Now
 
+            Dim whichActivity As Boolean
+            If activeOrInactive = "Active" Then
+                whichActivity = diff1.Days > 0 Or diff1.Hours > 0 Or diff1.Minutes > 0 Or diff1.Seconds > 0
+            Else
+                whichActivity = diff1.Days < 0 Or diff1.Hours < 0 Or diff1.Minutes < 0 Or diff1.Seconds < 0
+            End If
+
+
+
             If type = "Check In" Then
-                If diff1.Days > 0 Or diff1.Hours > 0 Or diff1.Minutes > 0 Or diff1.Seconds > 0 Then
+                If whichActivity Then
                     With CheckHistoryLV
                         .Items.Add(libraryTable.Rows(i)("rcptID"))
                         With .Items(.Items.Count - 1).SubItems
@@ -1824,7 +2003,7 @@ Public Class Form1
                     End With
                 End If
             Else
-                If diff1.Days > 0 Or diff1.Hours > 0 Or diff1.Minutes > 0 Or diff1.Seconds > 0 Then
+                If whichActivity Then
                     With RentHistoryLV
                         .Items.Add(libraryTable.Rows(i)("rcptID"))
                         With .Items(.Items.Count - 1).SubItems
@@ -1834,6 +2013,57 @@ Public Class Form1
                         End With
                     End With
                 End If
+            End If
+        Next
+    End Sub
+
+    Private Sub populateByDateHistory(type As String, desOrAs As String)
+        Dim sqlQuery As String = "SELECT rcptID, custName, rcptType, rcptDate, rcptTotal FROM receipttb WHERE rcptType = '" & type & "' ORDER BY rcptDate " & desOrAs & ""
+        Dim sqlAdapter As New MySqlDataAdapter
+        Dim sqlCommand As New MySqlCommand
+        Dim libraryTable As New DataTable
+        Dim i As Integer
+
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+        End With
+
+        With sqlAdapter
+            .SelectCommand = sqlCommand
+            .Fill(libraryTable)
+        End With
+
+        'To avoid duplicating previously added entries
+        If type = "Check In" Then
+            CheckHistoryLV.Items.Clear()
+        Else
+            RentHistoryLV.Items.Clear()
+        End If
+
+
+        For i = 0 To libraryTable.Rows.Count - 1
+            Dim IsATypeOf As String = libraryTable.Rows(i)("rcptType")
+            If type = "Check In" Then
+                With CheckHistoryLV
+                    .Items.Add(libraryTable.Rows(i)("rcptID"))
+                    With .Items(.Items.Count - 1).SubItems
+                        .Add(libraryTable.Rows(i)("custName"))
+                        .Add(libraryTable.Rows(i)("rcptDate"))
+                        .Add(Format(libraryTable.Rows(i)("rcptTotal"), "$#,##0.00"))
+                    End With
+                End With
+
+            Else
+                With RentHistoryLV
+                    .Items.Add(libraryTable.Rows(i)("rcptID"))
+                    With .Items(.Items.Count - 1).SubItems
+                        .Add(libraryTable.Rows(i)("custName"))
+                        .Add(libraryTable.Rows(i)("rcptDate"))
+                        .Add(Format(libraryTable.Rows(i)("rcptTotal"), "$#,##0.00"))
+                    End With
+                End With
             End If
         Next
     End Sub
