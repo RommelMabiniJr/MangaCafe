@@ -32,9 +32,14 @@ Public Class Form1
             dbConn.Open()
         End If
 
+        'To avoid the following events executing even before form load initilizes the connection to database
+        AddHandler CheckOrderBy.SelectedIndexChanged, AddressOf CheckOrderBy_SelectedIndexChanged
+        AddHandler RentOrderBy.SelectedIndexChanged, AddressOf RentOrderBy_SelectedIndexChanged
+
         PopulateMgLibrary()
         PopulateServiceLibrary()
-        populatePurchaseHistroy()
+        populatePurchaseHistroy("Check In")
+        populatePurchaseHistroy("Rent Only")
     End Sub
 
     Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -801,7 +806,7 @@ Public Class Form1
                 printCheckInReceiptNow()
             End If
 
-            populatePurchaseHistroy()
+            populatePurchaseHistroy("Check In")
         End If
     End Sub
 
@@ -1275,7 +1280,7 @@ Public Class Form1
                 printRentOnlyReceiptNow()
             End If
 
-            populatePurchaseHistroy()
+            populatePurchaseHistroy("Rent Only")
         End If
     End Sub
 
@@ -1411,8 +1416,8 @@ Public Class Form1
 
 
     'PURCHASE HISTORY TAB PORTION
-    Private Sub populatePurchaseHistroy()
-        Dim sqlQuery As String = "SELECT rcptID, custName, rcptType, rcptDate, rcptTotal FROM receipttb"
+    Private Sub populatePurchaseHistroy(type As String)
+        Dim sqlQuery As String = "SELECT rcptID, custName, rcptType, rcptDate, rcptTotal FROM receipttb Where rcptType = '" & type & "'"
         Dim sqlAdapter As New MySqlDataAdapter
         Dim sqlCommand As New MySqlCommand
         Dim libraryTable As New DataTable
@@ -1430,13 +1435,16 @@ Public Class Form1
         End With
 
         'To avoid duplicating previously added entries
-        CheckHistoryLV.Items.Clear()
-        RentHistoryLV.Items.Clear()
+        If type = "Check In" Then
+            CheckHistoryLV.Items.Clear()
+        Else
+            RentHistoryLV.Items.Clear()
+        End If
 
 
         For i = 0 To libraryTable.Rows.Count - 1
             Dim IsATypeOf As String = libraryTable.Rows(i)("rcptType")
-            If IsATypeOf = "Check In" Then
+            If type = "Check In" Then
                 With CheckHistoryLV
                     .Items.Add(libraryTable.Rows(i)("rcptID"))
                     With .Items(.Items.Count - 1).SubItems
@@ -1464,6 +1472,55 @@ Public Class Form1
         ShowReceiptNow(lvNameCms.SourceControl)
     End Sub
 
+    Private Sub ReturnByToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReturnByToolStripMenuItem.Click
+        Dim lvNameCms As ContextMenuStrip = CType(ViewToolStripMenuItem.Owner, ContextMenuStrip)
+        calcDateSincePurchased(lvNameCms.SourceControl)
+    End Sub
+
+    Public Sub calcDateSincePurchased(lv As ListView)
+        rcptID = lv.SelectedItems(0).Text
+        Dim sqlQuery As String = "SELECT durName, durAmount, rcptDate from receipttb WHERE rcptID = '" & rcptID & "'"
+        Dim sqlAdapter As New MySqlDataAdapter
+        Dim sqlCommand As New MySqlCommand
+        Dim rcptTB As New DataTable
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+        End With
+
+        With sqlAdapter
+            .SelectCommand = sqlCommand
+            .Fill(rcptTB)
+        End With
+
+        Dim dateEntered As Date = rcptTB.Rows(0)("rcptDate")
+        'Dim date2 As Date = Date.Parse(dateEntered)
+        'Dim date1 As Date = Now
+        Dim dName = rcptTB.Rows(0)("durName")
+        Dim dAmount = rcptTB.Rows(0)("durAmount")
+
+        Dim iFormat As String
+        Select Case dName
+            Case "Months"
+                iFormat = "m"
+            Case "Weeks"
+                iFormat = "ww"
+            Case "Days", "Overnight"
+                iFormat = "d"
+            Case "Hours"
+                iFormat = "h"
+            Case "Minutes"
+                iFormat = "n"
+            Case "Seconds"
+                iFormat = "s"
+        End Select
+
+        Dim expiration As Date = DateAdd(iFormat, dAmount, dateEntered)
+        Dim diff1 As TimeSpan = expiration - Now
+        MsgBox("Duration: " & dAmount & " " & dName & vbCrLf & "Return By: " & expiration & vbCrLf & "Time Left:" & vbCrLf & vbTab & diff1.Days & " days, " & diff1.Hours & " hours, " & diff1.Minutes & " minutes, " & diff1.Seconds & " seconds")
+
+    End Sub
 
     Dim rcptID As String
     Dim currentLV As ListView
@@ -1684,6 +1741,101 @@ Public Class Form1
         Dim durPrice As String = dTable.Rows(0)("dPrice")
 
         durCost = CDbl(durPrice) * CInt(amountDur)
+    End Sub
+
+    Private Sub CheckOrderBy_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If CheckOrderBy.Text = "Active" Then
+            populateCheckHistoryActive("Check In")
+        ElseIf CheckOrderBy.Text = "All" Then
+            populatePurchaseHistroy("Check In")
+        End If
+    End Sub
+
+    Private Sub RentOrderBy_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If RentOrderBy.Text = "Active" Then
+            populateCheckHistoryActive("Rent Only")
+        ElseIf RentOrderBy.Text = "All" Then
+            populatePurchaseHistroy("Rent Only")
+        End If
+    End Sub
+
+    Private Sub populateCheckHistoryActive(type As String)
+        Dim sqlQuery As String = "SELECT * FROM receipttb Where rcptType = '" & type & "'"
+        Dim sqlAdapter As New MySqlDataAdapter
+        Dim sqlCommand As New MySqlCommand
+        Dim libraryTable As New DataTable
+        Dim i As Integer
+
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+        End With
+
+        With sqlAdapter
+            .SelectCommand = sqlCommand
+            .Fill(libraryTable)
+        End With
+
+        'To avoid duplicating previously added entries
+        If type = "Check In" Then
+            CheckHistoryLV.Items.Clear()
+        Else
+            RentHistoryLV.Items.Clear()
+        End If
+
+        For i = 0 To libraryTable.Rows.Count - 1
+            Dim IsATypeOf As String = libraryTable.Rows(i)("rcptType")
+
+            Dim dateEntered As Date = libraryTable.Rows(i)("rcptDate")
+            'Dim date2 As Date = Date.Parse(dateEntered)
+            'Dim date1 As Date = Now
+            Dim dName = libraryTable.Rows(i)("durName")
+            Dim dAmount = libraryTable.Rows(i)("durAmount")
+
+            Dim iFormat As String
+            Select Case dName
+                Case "Months"
+                    iFormat = "m"
+                Case "Weeks"
+                    iFormat = "ww"
+                Case "Days", "Overnight"
+                    iFormat = "d"
+                Case "Hours"
+                    iFormat = "h"
+                Case "Minutes"
+                    iFormat = "n"
+                Case "Seconds"
+                    iFormat = "s"
+            End Select
+
+            Dim expiration As Date = DateAdd(iFormat, dAmount, dateEntered)
+            Dim diff1 As TimeSpan = expiration - Now
+
+            If type = "Check In" Then
+                If diff1.Days > 0 Or diff1.Hours > 0 Or diff1.Minutes > 0 Or diff1.Seconds > 0 Then
+                    With CheckHistoryLV
+                        .Items.Add(libraryTable.Rows(i)("rcptID"))
+                        With .Items(.Items.Count - 1).SubItems
+                            .Add(libraryTable.Rows(i)("custName"))
+                            .Add(libraryTable.Rows(i)("rcptDate"))
+                            .Add(Format(libraryTable.Rows(i)("rcptTotal"), "$#,##0.00"))
+                        End With
+                    End With
+                End If
+            Else
+                If diff1.Days > 0 Or diff1.Hours > 0 Or diff1.Minutes > 0 Or diff1.Seconds > 0 Then
+                    With RentHistoryLV
+                        .Items.Add(libraryTable.Rows(i)("rcptID"))
+                        With .Items(.Items.Count - 1).SubItems
+                            .Add(libraryTable.Rows(i)("custName"))
+                            .Add(libraryTable.Rows(i)("rcptDate"))
+                            .Add(Format(libraryTable.Rows(i)("rcptTotal"), "$#,##0.00"))
+                        End With
+                    End With
+                End If
+            End If
+        Next
     End Sub
 End Class
 

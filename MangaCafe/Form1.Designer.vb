@@ -23,10 +23,10 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim MaterialListBoxItem1 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem2 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem5 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem6 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
+        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
         Me.MaterialTabControl1 = New MaterialSkin.Controls.MaterialTabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -198,8 +198,8 @@ Partial Class Form1
         Me.MaterialLabel47 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel46 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel45 = New MaterialSkin.Controls.MaterialLabel()
-        Me.MaterialComboBox6 = New MaterialSkin.Controls.MaterialComboBox()
-        Me.MaterialComboBox5 = New MaterialSkin.Controls.MaterialComboBox()
+        Me.RentOrderBy = New MaterialSkin.Controls.MaterialComboBox()
+        Me.CheckOrderBy = New MaterialSkin.Controls.MaterialComboBox()
         Me.MaterialComboBox4 = New MaterialSkin.Controls.MaterialComboBox()
         Me.MaterialComboBox3 = New MaterialSkin.Controls.MaterialComboBox()
         Me.MaterialButton4 = New MaterialSkin.Controls.MaterialButton()
@@ -216,6 +216,7 @@ Partial Class Form1
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReturnByToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CheckHistoryLV = New MaterialSkin.Controls.MaterialListView()
         Me.ColumnHeader17 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader18 = New System.Windows.Forms.ColumnHeader()
@@ -239,7 +240,6 @@ Partial Class Form1
         Me.MaterialCheckbox11 = New MaterialSkin.Controls.MaterialCheckbox()
         Me.MaterialCheckbox12 = New MaterialSkin.Controls.MaterialCheckbox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.ReturnByToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaterialTabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.MaterialCard6.SuspendLayout()
@@ -640,10 +640,10 @@ Partial Class Form1
         Me.CheckInListBox.BorderColor = System.Drawing.Color.LightGray
         Me.CheckInListBox.Depth = 0
         Me.CheckInListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem1.SecondaryText = ""
-        MaterialListBoxItem1.Tag = Nothing
-        MaterialListBoxItem1.Text = "ListBoxItem"
-        Me.CheckInListBox.Items.Add(MaterialListBoxItem1)
+        MaterialListBoxItem5.SecondaryText = ""
+        MaterialListBoxItem5.Tag = Nothing
+        MaterialListBoxItem5.Text = "ListBoxItem"
+        Me.CheckInListBox.Items.Add(MaterialListBoxItem5)
         Me.CheckInListBox.Location = New System.Drawing.Point(15, 102)
         Me.CheckInListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.CheckInListBox.Name = "CheckInListBox"
@@ -1188,10 +1188,10 @@ Partial Class Form1
         Me.RentListBox.BorderColor = System.Drawing.Color.LightGray
         Me.RentListBox.Depth = 0
         Me.RentListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem2.SecondaryText = ""
-        MaterialListBoxItem2.Tag = Nothing
-        MaterialListBoxItem2.Text = ""
-        Me.RentListBox.Items.Add(MaterialListBoxItem2)
+        MaterialListBoxItem6.SecondaryText = ""
+        MaterialListBoxItem6.Tag = Nothing
+        MaterialListBoxItem6.Text = ""
+        Me.RentListBox.Items.Add(MaterialListBoxItem6)
         Me.RentListBox.Location = New System.Drawing.Point(15, 118)
         Me.RentListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.RentListBox.Name = "RentListBox"
@@ -2987,8 +2987,8 @@ Partial Class Form1
         Me.ListViewMangaLibrary.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListViewMangaLibrary.Depth = 0
         Me.ListViewMangaLibrary.FullRowSelect = True
-        ListViewItem1.StateImageIndex = 0
-        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
+        ListViewItem3.StateImageIndex = 0
+        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem3})
         Me.ListViewMangaLibrary.Location = New System.Drawing.Point(46, 155)
         Me.ListViewMangaLibrary.MinimumSize = New System.Drawing.Size(200, 100)
         Me.ListViewMangaLibrary.MouseLocation = New System.Drawing.Point(-1, -1)
@@ -3026,8 +3026,8 @@ Partial Class Form1
         Me.TabPage4.Controls.Add(Me.MaterialLabel47)
         Me.TabPage4.Controls.Add(Me.MaterialLabel46)
         Me.TabPage4.Controls.Add(Me.MaterialLabel45)
-        Me.TabPage4.Controls.Add(Me.MaterialComboBox6)
-        Me.TabPage4.Controls.Add(Me.MaterialComboBox5)
+        Me.TabPage4.Controls.Add(Me.RentOrderBy)
+        Me.TabPage4.Controls.Add(Me.CheckOrderBy)
         Me.TabPage4.Controls.Add(Me.MaterialComboBox4)
         Me.TabPage4.Controls.Add(Me.MaterialComboBox3)
         Me.TabPage4.Controls.Add(Me.MaterialButton4)
@@ -3094,51 +3094,51 @@ Partial Class Form1
         Me.MaterialLabel45.TabIndex = 14
         Me.MaterialLabel45.Text = "Order By"
         '
-        'MaterialComboBox6
+        'RentOrderBy
         '
-        Me.MaterialComboBox6.AutoResize = False
-        Me.MaterialComboBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.MaterialComboBox6.Depth = 0
-        Me.MaterialComboBox6.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
-        Me.MaterialComboBox6.DropDownHeight = 174
-        Me.MaterialComboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.MaterialComboBox6.DropDownWidth = 121
-        Me.MaterialComboBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialComboBox6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.MaterialComboBox6.FormattingEnabled = True
-        Me.MaterialComboBox6.IntegralHeight = False
-        Me.MaterialComboBox6.ItemHeight = 43
-        Me.MaterialComboBox6.Items.AddRange(New Object() {"All", "Latest", "Oldest", "Active"})
-        Me.MaterialComboBox6.Location = New System.Drawing.Point(639, 219)
-        Me.MaterialComboBox6.MaxDropDownItems = 4
-        Me.MaterialComboBox6.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialComboBox6.Name = "MaterialComboBox6"
-        Me.MaterialComboBox6.Size = New System.Drawing.Size(102, 49)
-        Me.MaterialComboBox6.StartIndex = 0
-        Me.MaterialComboBox6.TabIndex = 13
+        Me.RentOrderBy.AutoResize = False
+        Me.RentOrderBy.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.RentOrderBy.Depth = 0
+        Me.RentOrderBy.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.RentOrderBy.DropDownHeight = 174
+        Me.RentOrderBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.RentOrderBy.DropDownWidth = 121
+        Me.RentOrderBy.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.RentOrderBy.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.RentOrderBy.FormattingEnabled = True
+        Me.RentOrderBy.IntegralHeight = False
+        Me.RentOrderBy.ItemHeight = 43
+        Me.RentOrderBy.Items.AddRange(New Object() {"All", "Latest", "Oldest", "Active"})
+        Me.RentOrderBy.Location = New System.Drawing.Point(639, 219)
+        Me.RentOrderBy.MaxDropDownItems = 4
+        Me.RentOrderBy.MouseState = MaterialSkin.MouseState.OUT
+        Me.RentOrderBy.Name = "RentOrderBy"
+        Me.RentOrderBy.Size = New System.Drawing.Size(102, 49)
+        Me.RentOrderBy.StartIndex = 0
+        Me.RentOrderBy.TabIndex = 13
         '
-        'MaterialComboBox5
+        'CheckOrderBy
         '
-        Me.MaterialComboBox5.AutoResize = False
-        Me.MaterialComboBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.MaterialComboBox5.Depth = 0
-        Me.MaterialComboBox5.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
-        Me.MaterialComboBox5.DropDownHeight = 174
-        Me.MaterialComboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.MaterialComboBox5.DropDownWidth = 121
-        Me.MaterialComboBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialComboBox5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.MaterialComboBox5.FormattingEnabled = True
-        Me.MaterialComboBox5.IntegralHeight = False
-        Me.MaterialComboBox5.ItemHeight = 43
-        Me.MaterialComboBox5.Items.AddRange(New Object() {"All", "Latest", "Oldest", "Active"})
-        Me.MaterialComboBox5.Location = New System.Drawing.Point(32, 218)
-        Me.MaterialComboBox5.MaxDropDownItems = 4
-        Me.MaterialComboBox5.MouseState = MaterialSkin.MouseState.OUT
-        Me.MaterialComboBox5.Name = "MaterialComboBox5"
-        Me.MaterialComboBox5.Size = New System.Drawing.Size(102, 49)
-        Me.MaterialComboBox5.StartIndex = 0
-        Me.MaterialComboBox5.TabIndex = 13
+        Me.CheckOrderBy.AutoResize = False
+        Me.CheckOrderBy.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.CheckOrderBy.Depth = 0
+        Me.CheckOrderBy.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.CheckOrderBy.DropDownHeight = 174
+        Me.CheckOrderBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CheckOrderBy.DropDownWidth = 121
+        Me.CheckOrderBy.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.CheckOrderBy.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.CheckOrderBy.FormattingEnabled = True
+        Me.CheckOrderBy.IntegralHeight = False
+        Me.CheckOrderBy.ItemHeight = 43
+        Me.CheckOrderBy.Items.AddRange(New Object() {"All", "Latest", "Oldest", "Active"})
+        Me.CheckOrderBy.Location = New System.Drawing.Point(32, 218)
+        Me.CheckOrderBy.MaxDropDownItems = 4
+        Me.CheckOrderBy.MouseState = MaterialSkin.MouseState.OUT
+        Me.CheckOrderBy.Name = "CheckOrderBy"
+        Me.CheckOrderBy.Size = New System.Drawing.Size(102, 49)
+        Me.CheckOrderBy.StartIndex = 0
+        Me.CheckOrderBy.TabIndex = 13
         '
         'MaterialComboBox4
         '
@@ -3346,6 +3346,13 @@ Partial Class Form1
         Me.DeleteToolStripMenuItem1.Name = "DeleteToolStripMenuItem1"
         Me.DeleteToolStripMenuItem1.Size = New System.Drawing.Size(158, 32)
         Me.DeleteToolStripMenuItem1.Text = "Delete"
+        '
+        'ReturnByToolStripMenuItem
+        '
+        Me.ReturnByToolStripMenuItem.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ReturnByToolStripMenuItem.Name = "ReturnByToolStripMenuItem"
+        Me.ReturnByToolStripMenuItem.Size = New System.Drawing.Size(158, 32)
+        Me.ReturnByToolStripMenuItem.Text = "Return By"
         '
         'CheckHistoryLV
         '
@@ -3619,13 +3626,6 @@ Partial Class Form1
         '
         Me.Timer1.Enabled = True
         '
-        'ReturnByToolStripMenuItem
-        '
-        Me.ReturnByToolStripMenuItem.ForeColor = System.Drawing.Color.DarkOrange
-        Me.ReturnByToolStripMenuItem.Name = "ReturnByToolStripMenuItem"
-        Me.ReturnByToolStripMenuItem.Size = New System.Drawing.Size(158, 32)
-        Me.ReturnByToolStripMenuItem.Text = "Return By"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 25.0!)
@@ -3893,11 +3893,11 @@ Partial Class Form1
     Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents MaterialComboBox5 As MaterialSkin.Controls.MaterialComboBox
+    Friend WithEvents CheckOrderBy As MaterialSkin.Controls.MaterialComboBox
     Friend WithEvents MaterialComboBox3 As MaterialSkin.Controls.MaterialComboBox
     Friend WithEvents MaterialButton3 As MaterialSkin.Controls.MaterialButton
     Friend WithEvents MaterialTextBox3 As MaterialSkin.Controls.MaterialTextBox
-    Friend WithEvents MaterialComboBox6 As MaterialSkin.Controls.MaterialComboBox
+    Friend WithEvents RentOrderBy As MaterialSkin.Controls.MaterialComboBox
     Friend WithEvents MaterialComboBox4 As MaterialSkin.Controls.MaterialComboBox
     Friend WithEvents MaterialButton4 As MaterialSkin.Controls.MaterialButton
     Friend WithEvents MaterialTextBox4 As MaterialSkin.Controls.MaterialTextBox
