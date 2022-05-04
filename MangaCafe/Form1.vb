@@ -40,6 +40,7 @@ Public Class Form1
         PopulateServiceLibrary()
         populatePurchaseHistroy("Check In")
         populatePurchaseHistroy("Rent Only")
+        populateEmployeeLV()
     End Sub
 
     Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -569,6 +570,12 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub DurCheckSelection_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DurCheckSelection.SelectedIndexChanged
+        If OrderCheckTxt.Text <> "" Then
+            CalcTotalCostCheckIn()
+        End If
+    End Sub
+
     Private Sub CheckSelectionOrder_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CheckSelectionOrder.SelectedIndexChanged
         Try
             Dim sqlQuery As String = "SELECT serviceName from servicelibrary WHERE serviceType = '" & CheckSelectionOrder.Text & "'"
@@ -700,7 +707,7 @@ Public Class Form1
             CheckInTotCost = cost
 
         Catch ex As Exception
-            MsgBox("Please input a duration!")
+            MsgBox("Please input a duration!", vbOK, "MangaKissa")
             CheckInTotCost = 0.00
         End Try
     End Sub
@@ -729,7 +736,7 @@ Public Class Form1
     Dim receiptIDCurrent As String
     Private Sub BtnConfrmCheck_Click(sender As Object, e As EventArgs) Handles BtnConfrmCheck.Click
         If OrderCheckTxt.Text = "" Then
-            MsgBox("Please fill out the duration box!")
+            MsgBox("Please fill out the duration box!", vbOK, "MangaKissa")
         Else
             'Insert in receipt table 
             Dim sqlQuery As String = "INSERT INTO receipttb(custName, custEmail, custAddress, custPhone, rcptType, durName, durAmount, rcptTotal) VALUES('" & Replace(CustName.Text, "'", "''") & "','" & CustEmail.Text & "','" & CustAddress.Text & "','" & CustPhone.Text & "','" & "Check In" & "','" & DurCheckSelection.Text & "','" & OrderCheckTxt.Text & "','" & FinalTotalCost.Text & "')"
@@ -908,7 +915,7 @@ Public Class Form1
         e.Graphics.DrawString(":", f8, Brushes.Black, centermargin + 30, 70)
         e.Graphics.DrawString(CustName.Text, f8, Brushes.Black, rightmargin, 70, right)
         e.Graphics.DrawString(CustPhone.Text, f8, Brushes.Black, rightmargin, 85, right)
-        e.Graphics.DrawString("Type of Order", f8, Brushes.Black, centermargin + 0, 100)
+        e.Graphics.DrawString("Type", f8, Brushes.Black, centermargin + 0, 100)
         e.Graphics.DrawString(":", f8, Brushes.Black, centermargin + 30, 100)
         e.Graphics.DrawString("Check In", f8, Brushes.Black, rightmargin, 100, right)
 
@@ -978,6 +985,12 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub RentDurSelection_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RentDurSelection.SelectedIndexChanged
+        If RentDuration.Text <> "" Then
+            CalcTotalCostRent()
+        End If
+    End Sub
+
     Private Sub RentMgQuan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RentMgQuan.KeyPress
         If Asc(e.KeyChar) <> 8 Then
             If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
@@ -1038,7 +1051,7 @@ Public Class Form1
                 Dim price As Double = CDbl(Val(RentMgPrice.Text)) * quan
                 RentMgTotal.Text = Format(price, "0.00")
             Else
-                MsgBox("Not enough copies on hand!" & vbCrLf & " # of Copies available: " & copiesSubRent & "")
+                MsgBox("Not enough copies on hand!" & vbCrLf & " # of Copies available: " & copiesSubRent & "", vbOK, "MangaKissa")
             End If
         End If
     End Sub
@@ -1104,7 +1117,7 @@ Public Class Form1
             RentTotCost = cost
 
         Catch ex As Exception
-            MsgBox("Please input a duration!")
+            MsgBox("Please input a duration!", vbOK, "MangaKissa")
             RentTotCost = 0.00
         End Try
     End Sub
@@ -1204,7 +1217,7 @@ Public Class Form1
 
     Private Sub ConfirmOrdRent_Click(sender As Object, e As EventArgs) Handles ConfirmOrdRent.Click
         If RentDuration.Text = "" Then
-            MsgBox("Please fill out the duration box!")
+            MsgBox("Please fill out the duration box!", vbOK, "MangaKissa")
         Else
             'Insert in receipt table 
             Dim sqlQuery As String = "INSERT INTO receipttb(custName, custEmail, custAddress, custPhone, rcptType, durName, durAmount, rcptTotal) VALUES('" & Replace(CustName.Text, "'", "''") & "','" & CustEmail.Text & "','" & CustAddress.Text & "','" & CustPhone.Text & "','" & "Rent Only" & "','" & RentDurSelection.Text & "','" & RentDuration.Text & "','" & RentFinalTot.Text & "')"
@@ -1288,10 +1301,11 @@ Public Class Form1
 
     Public Sub clearRent()
         RentDuration.Text = ""
-        RentNumVol.Text = ""
+        RentNumVol.Text = "0"
         RentMgTitle.Text = ""
-        RentMgPrice.Text = "0"
-        TxtOrderTot.Text = "0.00"
+        RentMgPrice.Text = ""
+        RentMgQuan.Text = "0"
+        RentMgTotal.Text = "0"
         RentListView.Items.Clear()
         RentListView.Refresh()
         RentFinalTot.Text = "0.00"
@@ -1591,23 +1605,22 @@ Public Class Form1
 
 
             Dim mgRentStatusFromDb = statusInDb.Rows(0)("item_Status")
-            MsgBox("Old Value: " & mgRentStatusFromDb)
-            MsgBox("New Value: " & mgRentStatusToChange)
+
             'No need to cahnge the same values
             If mgRentStatusToChange <> mgRentStatusFromDb Then
 
                 'Avoid items that are already returned to engage to calculations
 
                 If mgRentStatusToChange = "Returned" And mgRentStatusFromDb <> "Returned" Then
-                    MsgBox("Here 1")
+
                     Dim calcQuery As String = "UPDATE mangalibrary SET mgOnRent = mgOnRent - " & mgRentQuan & " WHERE mgID = '" & mgID & "'"
                     createNonQuery(calcQuery)
 
                 ElseIf mgRentStatusToChange <> "Returned" And mgRentStatusFromDb <> "Returned" Then
-                    MsgBox("Here 2")
+
                     'Because knowing that the value is active or unreturned, no need for any calculations to OnRent
                 Else
-                    MsgBox("Here 3")
+
                     Dim calcQuery As String = "UPDATE mangalibrary SET mgOnRent = mgOnRent + " & mgRentQuan & " WHERE mgID = '" & mgID & "'"
                     createNonQuery(calcQuery)
                 End If
@@ -1618,7 +1631,7 @@ Public Class Form1
             End If
 
 
-            MsgBox("Rent Details Updated!")
+            MsgBox("Rent Details Updated!", vbOK, "MangaKissa")
         Next
     End Sub
 
@@ -1668,7 +1681,7 @@ Public Class Form1
 
         Dim expiration As Date = DateAdd(iFormat, dAmount, dateEntered)
         Dim diff1 As TimeSpan = expiration - Now
-        MsgBox("Duration: " & dAmount & " " & dName & vbCrLf & "Return By: " & expiration & vbCrLf & "Time Left:" & vbCrLf & vbTab & diff1.Days & " days, " & diff1.Hours & " hours, " & diff1.Minutes & " minutes, " & diff1.Seconds & " seconds")
+        MsgBox("Duration: " & dAmount & " " & dName & vbCrLf & "Return By: " & expiration & vbCrLf & "Time Left:" & vbCrLf & vbTab & diff1.Days & " days, " & diff1.Hours & " hours, " & diff1.Minutes & " minutes, " & diff1.Seconds & " seconds", vbOK, "MangaKissa")
 
     End Sub
 
@@ -2067,5 +2080,122 @@ Public Class Form1
             End If
         Next
     End Sub
+
+    Private Sub AddEditEmployee_Click(sender As Object, e As EventArgs) Handles AddEditEmployee.Click
+        If AddEditEmployee.Text = "ADD USER" Then
+            Dim sqlQuery As String = "INSERT INTO employeetable(empName, empEmail, empPassword, empPosition, empUsername) VALUES('" & EmployeeName.Text & "','" & EmployeeEmail.Text & "','" & Replace(EmployeePass.Text, "'", "''") & "','" & EmpPosSelection.Text & "', '" & EmployeeUsername.Text & "')"
+            createNonQuery(sqlQuery)
+
+            MsgBox("Employee added succesfully!", vbOK, "Mangakisaa")
+            populateEmployeeLV()
+
+        Else
+            EmployeeListView.SelectedItems.Clear()
+            ClearEmployeeTxtBoxes()
+            AddEditEmployee.Text = "ADD USER"
+        End If
+    End Sub
+
+    Public Sub populateEmployeeLV()
+        Dim sqlQuery As String = "SELECT * FROM employeetable"
+        Dim sqlAdapter As New MySqlDataAdapter
+        Dim sqlCommand As New MySqlCommand
+        Dim empTb As New DataTable
+        Dim i As Integer
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+        End With
+
+        With sqlAdapter
+            .SelectCommand = sqlCommand
+            .Fill(empTb)
+        End With
+
+        'To avoid duplicating previously added entries
+        EmployeeListView.Items.Clear()
+
+
+        For i = 0 To empTb.Rows.Count - 1
+            With EmployeeListView
+                .Items.Add(empTb.Rows(i)("empID"))
+                With .Items(.Items.Count - 1).SubItems
+                    .Add(empTb.Rows(i)("empName"))
+                    .Add(empTb.Rows(i)("empPosition"))
+                    .Add(empTb.Rows(i)("empUsername"))
+                    .Add(empTb.Rows(i)("empEmail"))
+                    .Add(empTb.Rows(i)("empPassword"))
+                End With
+            End With
+        Next
+    End Sub
+
+    Public Sub ClearEmployeeTxtBoxes()
+        EmployeeName.Text = ""
+        EmployeeEmail.Text = ""
+        EmployeePass.Text = ""
+        EmployeeUsername.Text = ""
+    End Sub
+
+    Dim empIDCurrent As String
+    Private Sub EmployeeListView_SelectedIndexChanged(sender As Object, e As EventArgs) Handles EmployeeListView.SelectedIndexChanged
+        Try
+            empIDCurrent = EmployeeListView.SelectedItems(0).Text
+            EmployeeName.Text = EmployeeListView.SelectedItems(0).SubItems(1).Text
+            EmployeeEmail.Text = EmployeeListView.SelectedItems(0).SubItems(4).Text
+            EmployeePass.Text = EmployeeListView.SelectedItems(0).SubItems(5).Text
+            EmpPosSelection.Text = EmployeeListView.SelectedItems(0).SubItems(2).Text
+            EmployeeUsername.Text = EmployeeListView.SelectedItems(0).SubItems(3).Text
+
+
+            AddEditEmployee.Text = "UNSELECT ITEM"
+            DelEmployee.Enabled = True
+            ExpansionPanelEmployee.ValidationButtonEnable = True
+
+            'to avoid confusion, clear the textboxes
+
+        Catch ex As Exception
+            AddEditEmployee.Text = "ADD USER"
+            DelEmployee.Enabled = False
+            ExpansionPanelEmployee.ValidationButtonEnable = False
+            ClearEmployeeTxtBoxes()
+        End Try
+    End Sub
+
+    Private Sub ExpansionPanelEmployee_SaveClick(sender As Object, e As EventArgs) Handles ExpansionPanelEmployee.SaveClick
+        Dim sqlQuery As String = "UPDATE employeetable Set empName = '" & EmployeeName.Text & "', empEmail = '" & EmployeeEmail.Text & "', empPassword = '" & EmployeePass.Text & "', empPosition = '" & EmpPosSelection.Text & "', empUsername = '" & EmployeeUsername.Text & "' WHERE empID = '" & empIDCurrent & "'"
+        createNonQuery(sqlQuery)
+
+        MsgBox("Employee details updated!", vbOK, "Mangakisaa")
+        populateEmployeeLV()
+
+
+        AddEditEmployee.Text = "ADD USER"
+        ClearEmployeeTxtBoxes()
+    End Sub
+
+    Private Sub DelEmployee_Click(sender As Object, e As EventArgs) Handles DelEmployee.Click
+        If empIDCurrent = Nothing Then
+            MsgBox("Please choose an user item to delete.")
+        Else
+            Dim confirmDel As DialogResult = MessageBox.Show("Are you sure you want to delete this user?", "Confirm Deletion", MessageBoxButtons.YesNo)
+            If confirmDel = DialogResult.Yes Then
+                Dim sqlQuery As String = "DELETE FROM employeetable WHERE empID = '" & empIDCurrent & "'"
+                Dim sqlCommand As New MySqlCommand
+
+                With sqlCommand
+                    .CommandText = sqlQuery
+                    .Connection = dbConn
+                    .ExecuteNonQuery()
+                End With
+
+                MsgBox("User deleted succesfully!", MsgBoxStyle.Information)
+                populateEmployeeLV()
+            End If
+
+        End If
+    End Sub
+
 End Class
 

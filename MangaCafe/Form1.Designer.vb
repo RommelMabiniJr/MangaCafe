@@ -23,12 +23,13 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim MaterialListBoxItem3 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
-        Dim MaterialListBoxItem4 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem1 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
+        Dim MaterialListBoxItem2 As MaterialSkin.MaterialListBoxItem = New MaterialSkin.MaterialListBoxItem()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
+        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"", ""}, -1)
         Me.MaterialTabControl1 = New MaterialSkin.Controls.MaterialTabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.MaterialLabel49 = New MaterialSkin.Controls.MaterialLabel()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.DateLbl = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialCard6 = New MaterialSkin.Controls.MaterialCard()
@@ -48,7 +49,6 @@ Partial Class Form1
         Me.ColumnHeader11 = New System.Windows.Forms.ColumnHeader()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaterialLabel15 = New MaterialSkin.Controls.MaterialLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.MaterialExpansionPanel2 = New MaterialSkin.Controls.MaterialExpansionPanel()
@@ -102,6 +102,7 @@ Partial Class Form1
         Me.MaterialLabel38 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialTabSelector4 = New MaterialSkin.Controls.MaterialTabSelector()
         Me.MaterialLabel28 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel50 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel29 = New MaterialSkin.Controls.MaterialLabel()
         Me.CustName = New MaterialSkin.Controls.MaterialTextBox2()
         Me.CustEmail = New MaterialSkin.Controls.MaterialTextBox2()
@@ -207,6 +208,7 @@ Partial Class Form1
         Me.MaterialButton3 = New MaterialSkin.Controls.MaterialButton()
         Me.MaterialTextBox3 = New MaterialSkin.Controls.MaterialTextBox()
         Me.MaterialLabel44 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel60 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel41 = New MaterialSkin.Controls.MaterialLabel()
         Me.RentHistoryLV = New MaterialSkin.Controls.MaterialListView()
         Me.ColumnHeader21 = New System.Windows.Forms.ColumnHeader()
@@ -224,6 +226,31 @@ Partial Class Form1
         Me.ColumnHeader19 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader20 = New System.Windows.Forms.ColumnHeader()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.DelEmployee = New MaterialSkin.Controls.MaterialFloatingActionButton()
+        Me.MaterialLabel61 = New MaterialSkin.Controls.MaterialLabel()
+        Me.ExpansionPanelEmployee = New MaterialSkin.Controls.MaterialExpansionPanel()
+        Me.AddEditEmployee = New MaterialSkin.Controls.MaterialButton()
+        Me.MaterialLabel59 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel58 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel57 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel56 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel54 = New MaterialSkin.Controls.MaterialLabel()
+        Me.EmpPosSelection = New MaterialSkin.Controls.MaterialComboBox()
+        Me.EmployeePass = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.EmployeeUsername = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.EmployeeEmail = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.EmployeeName = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.MaterialLabel55 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel52 = New MaterialSkin.Controls.MaterialLabel()
+        Me.EmployeeListView = New MaterialSkin.Controls.MaterialListView()
+        Me.ColumnHeader25 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader26 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader27 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader28 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader29 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader30 = New System.Windows.Forms.ColumnHeader()
+        Me.MaterialLabel53 = New MaterialSkin.Controls.MaterialLabel()
+        Me.MaterialLabel51 = New MaterialSkin.Controls.MaterialLabel()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
@@ -242,6 +269,7 @@ Partial Class Form1
         Me.MaterialCheckbox12 = New MaterialSkin.Controls.MaterialCheckbox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.MaterialTabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.MaterialCard6.SuspendLayout()
         Me.MaterialTabControl2.SuspendLayout()
@@ -269,6 +297,8 @@ Partial Class Form1
         CType(Me.ImgCoverEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
         Me.ContextMenuStrip2.SuspendLayout()
+        Me.TabPage5.SuspendLayout()
+        Me.ExpansionPanelEmployee.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -294,6 +324,7 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.MaterialLabel49)
         Me.TabPage1.ImageKey = "icons8-dashboard-layout-24.png"
         Me.TabPage1.Location = New System.Drawing.Point(4, 34)
         Me.TabPage1.Name = "TabPage1"
@@ -303,11 +334,25 @@ Partial Class Form1
         Me.TabPage1.Text = "Home"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'MaterialLabel49
+        '
+        Me.MaterialLabel49.AutoSize = True
+        Me.MaterialLabel49.Depth = 0
+        Me.MaterialLabel49.Font = New System.Drawing.Font("Roboto", 34.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel49.FontType = MaterialSkin.MaterialSkinManager.fontType.H4
+        Me.MaterialLabel49.Location = New System.Drawing.Point(65, 44)
+        Me.MaterialLabel49.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel49.Name = "MaterialLabel49"
+        Me.MaterialLabel49.Size = New System.Drawing.Size(248, 41)
+        Me.MaterialLabel49.TabIndex = 0
+        Me.MaterialLabel49.Text = "Welcome Admin"
+        '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.DateLbl)
         Me.TabPage2.Controls.Add(Me.MaterialCard6)
         Me.TabPage2.Controls.Add(Me.MaterialLabel28)
+        Me.TabPage2.Controls.Add(Me.MaterialLabel50)
         Me.TabPage2.Controls.Add(Me.MaterialLabel29)
         Me.TabPage2.Controls.Add(Me.CustName)
         Me.TabPage2.Controls.Add(Me.CustEmail)
@@ -560,11 +605,11 @@ Partial Class Form1
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem, Me.OToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
         Me.ContextMenuStrip1.ShowImageMargin = False
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(124, 68)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(124, 36)
         '
         'RemoveToolStripMenuItem
         '
@@ -572,12 +617,6 @@ Partial Class Form1
         Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
         Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(123, 32)
         Me.RemoveToolStripMenuItem.Text = "Remove"
-        '
-        'OToolStripMenuItem
-        '
-        Me.OToolStripMenuItem.Name = "OToolStripMenuItem"
-        Me.OToolStripMenuItem.Size = New System.Drawing.Size(123, 32)
-        Me.OToolStripMenuItem.Text = "o"
         '
         'MaterialLabel15
         '
@@ -641,10 +680,10 @@ Partial Class Form1
         Me.CheckInListBox.BorderColor = System.Drawing.Color.LightGray
         Me.CheckInListBox.Depth = 0
         Me.CheckInListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem3.SecondaryText = ""
-        MaterialListBoxItem3.Tag = Nothing
-        MaterialListBoxItem3.Text = "ListBoxItem"
-        Me.CheckInListBox.Items.Add(MaterialListBoxItem3)
+        MaterialListBoxItem1.SecondaryText = ""
+        MaterialListBoxItem1.Tag = Nothing
+        MaterialListBoxItem1.Text = "ListBoxItem"
+        Me.CheckInListBox.Items.Add(MaterialListBoxItem1)
         Me.CheckInListBox.Location = New System.Drawing.Point(15, 102)
         Me.CheckInListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.CheckInListBox.Name = "CheckInListBox"
@@ -1189,10 +1228,10 @@ Partial Class Form1
         Me.RentListBox.BorderColor = System.Drawing.Color.LightGray
         Me.RentListBox.Depth = 0
         Me.RentListBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        MaterialListBoxItem4.SecondaryText = ""
-        MaterialListBoxItem4.Tag = Nothing
-        MaterialListBoxItem4.Text = ""
-        Me.RentListBox.Items.Add(MaterialListBoxItem4)
+        MaterialListBoxItem2.SecondaryText = ""
+        MaterialListBoxItem2.Tag = Nothing
+        MaterialListBoxItem2.Text = ""
+        Me.RentListBox.Items.Add(MaterialListBoxItem2)
         Me.RentListBox.Location = New System.Drawing.Point(15, 118)
         Me.RentListBox.MouseState = MaterialSkin.MouseState.HOVER
         Me.RentListBox.Name = "RentListBox"
@@ -1493,25 +1532,38 @@ Partial Class Form1
         Me.MaterialLabel28.Depth = 0
         Me.MaterialLabel28.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.MaterialLabel28.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1
-        Me.MaterialLabel28.Location = New System.Drawing.Point(44, 558)
+        Me.MaterialLabel28.Location = New System.Drawing.Point(44, 554)
         Me.MaterialLabel28.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel28.Name = "MaterialLabel28"
         Me.MaterialLabel28.Size = New System.Drawing.Size(106, 19)
         Me.MaterialLabel28.TabIndex = 9
         Me.MaterialLabel28.Text = "Phone Number"
         '
+        'MaterialLabel50
+        '
+        Me.MaterialLabel50.AutoSize = True
+        Me.MaterialLabel50.Depth = 0
+        Me.MaterialLabel50.Font = New System.Drawing.Font("Roboto", 34.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel50.FontType = MaterialSkin.MaterialSkinManager.fontType.H4
+        Me.MaterialLabel50.Location = New System.Drawing.Point(83, 119)
+        Me.MaterialLabel50.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel50.Name = "MaterialLabel50"
+        Me.MaterialLabel50.Size = New System.Drawing.Size(225, 41)
+        Me.MaterialLabel50.TabIndex = 4
+        Me.MaterialLabel50.Text = "INFORMATION"
+        '
         'MaterialLabel29
         '
         Me.MaterialLabel29.AutoSize = True
         Me.MaterialLabel29.Depth = 0
-        Me.MaterialLabel29.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel29.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
-        Me.MaterialLabel29.Location = New System.Drawing.Point(84, 105)
+        Me.MaterialLabel29.Font = New System.Drawing.Font("Roboto", 34.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel29.FontType = MaterialSkin.MaterialSkinManager.fontType.H4
+        Me.MaterialLabel29.Location = New System.Drawing.Point(107, 72)
         Me.MaterialLabel29.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel29.Name = "MaterialLabel29"
-        Me.MaterialLabel29.Size = New System.Drawing.Size(237, 29)
+        Me.MaterialLabel29.Size = New System.Drawing.Size(178, 41)
         Me.MaterialLabel29.TabIndex = 4
-        Me.MaterialLabel29.Text = "Customer Information"
+        Me.MaterialLabel29.Text = "CUSTOMER"
         '
         'CustName
         '
@@ -1522,7 +1574,7 @@ Partial Class Form1
         Me.CustName.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.CustName.HideSelection = True
         Me.CustName.LeadingIcon = Nothing
-        Me.CustName.Location = New System.Drawing.Point(44, 219)
+        Me.CustName.Location = New System.Drawing.Point(44, 235)
         Me.CustName.MaxLength = 32767
         Me.CustName.MouseState = MaterialSkin.MouseState.OUT
         Me.CustName.Name = "CustName"
@@ -1551,7 +1603,7 @@ Partial Class Form1
         Me.CustEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.CustEmail.HideSelection = True
         Me.CustEmail.LeadingIcon = Nothing
-        Me.CustEmail.Location = New System.Drawing.Point(44, 340)
+        Me.CustEmail.Location = New System.Drawing.Point(44, 347)
         Me.CustEmail.MaxLength = 32767
         Me.CustEmail.MouseState = MaterialSkin.MouseState.OUT
         Me.CustEmail.Name = "CustEmail"
@@ -1577,7 +1629,7 @@ Partial Class Form1
         Me.MaterialLabel31.Depth = 0
         Me.MaterialLabel31.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.MaterialLabel31.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1
-        Me.MaterialLabel31.Location = New System.Drawing.Point(44, 311)
+        Me.MaterialLabel31.Location = New System.Drawing.Point(44, 318)
         Me.MaterialLabel31.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel31.Name = "MaterialLabel31"
         Me.MaterialLabel31.Size = New System.Drawing.Size(41, 19)
@@ -1593,7 +1645,7 @@ Partial Class Form1
         Me.CustPhone.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.CustPhone.HideSelection = True
         Me.CustPhone.LeadingIcon = Nothing
-        Me.CustPhone.Location = New System.Drawing.Point(44, 593)
+        Me.CustPhone.Location = New System.Drawing.Point(44, 589)
         Me.CustPhone.MaxLength = 32767
         Me.CustPhone.MouseState = MaterialSkin.MouseState.OUT
         Me.CustPhone.Name = "CustPhone"
@@ -1619,7 +1671,7 @@ Partial Class Form1
         Me.MaterialLabel32.Depth = 0
         Me.MaterialLabel32.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.MaterialLabel32.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1
-        Me.MaterialLabel32.Location = New System.Drawing.Point(44, 189)
+        Me.MaterialLabel32.Location = New System.Drawing.Point(44, 205)
         Me.MaterialLabel32.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel32.Name = "MaterialLabel32"
         Me.MaterialLabel32.Size = New System.Drawing.Size(43, 19)
@@ -2988,8 +3040,8 @@ Partial Class Form1
         Me.ListViewMangaLibrary.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListViewMangaLibrary.Depth = 0
         Me.ListViewMangaLibrary.FullRowSelect = True
-        ListViewItem2.StateImageIndex = 0
-        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem2})
+        ListViewItem1.StateImageIndex = 0
+        Me.ListViewMangaLibrary.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
         Me.ListViewMangaLibrary.Location = New System.Drawing.Point(46, 155)
         Me.ListViewMangaLibrary.MinimumSize = New System.Drawing.Size(200, 100)
         Me.ListViewMangaLibrary.MouseLocation = New System.Drawing.Point(-1, -1)
@@ -3036,6 +3088,7 @@ Partial Class Form1
         Me.TabPage4.Controls.Add(Me.MaterialButton3)
         Me.TabPage4.Controls.Add(Me.MaterialTextBox3)
         Me.TabPage4.Controls.Add(Me.MaterialLabel44)
+        Me.TabPage4.Controls.Add(Me.MaterialLabel60)
         Me.TabPage4.Controls.Add(Me.MaterialLabel41)
         Me.TabPage4.Controls.Add(Me.RentHistoryLV)
         Me.TabPage4.Controls.Add(Me.CheckHistoryLV)
@@ -3267,12 +3320,25 @@ Partial Class Form1
         Me.MaterialLabel44.Depth = 0
         Me.MaterialLabel44.Font = New System.Drawing.Font("Roboto", 34.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
         Me.MaterialLabel44.FontType = MaterialSkin.MaterialSkinManager.fontType.H4
-        Me.MaterialLabel44.Location = New System.Drawing.Point(858, 103)
+        Me.MaterialLabel44.Location = New System.Drawing.Point(1026, 162)
         Me.MaterialLabel44.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel44.Name = "MaterialLabel44"
-        Me.MaterialLabel44.Size = New System.Drawing.Size(144, 41)
+        Me.MaterialLabel44.Size = New System.Drawing.Size(178, 41)
         Me.MaterialLabel44.TabIndex = 2
-        Me.MaterialLabel44.Text = "Rent Only"
+        Me.MaterialLabel44.Text = "RENT ONLY"
+        '
+        'MaterialLabel60
+        '
+        Me.MaterialLabel60.AutoSize = True
+        Me.MaterialLabel60.Depth = 0
+        Me.MaterialLabel60.Font = New System.Drawing.Font("Roboto", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel60.FontType = MaterialSkin.MaterialSkinManager.fontType.H3
+        Me.MaterialLabel60.Location = New System.Drawing.Point(370, 32)
+        Me.MaterialLabel60.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel60.Name = "MaterialLabel60"
+        Me.MaterialLabel60.Size = New System.Drawing.Size(532, 58)
+        Me.MaterialLabel60.TabIndex = 2
+        Me.MaterialLabel60.Text = "TRANSACTION HISTORY"
         '
         'MaterialLabel41
         '
@@ -3280,12 +3346,12 @@ Partial Class Form1
         Me.MaterialLabel41.Depth = 0
         Me.MaterialLabel41.Font = New System.Drawing.Font("Roboto", 34.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
         Me.MaterialLabel41.FontType = MaterialSkin.MaterialSkinManager.fontType.H4
-        Me.MaterialLabel41.Location = New System.Drawing.Point(261, 103)
+        Me.MaterialLabel41.Location = New System.Drawing.Point(447, 162)
         Me.MaterialLabel41.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel41.Name = "MaterialLabel41"
-        Me.MaterialLabel41.Size = New System.Drawing.Size(131, 41)
+        Me.MaterialLabel41.Size = New System.Drawing.Size(150, 41)
         Me.MaterialLabel41.TabIndex = 2
-        Me.MaterialLabel41.Text = "Check In"
+        Me.MaterialLabel41.Text = "CHECK IN"
         '
         'RentHistoryLV
         '
@@ -3332,7 +3398,7 @@ Partial Class Form1
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem, Me.DeleteToolStripMenuItem1, Me.ReturnByToolStripMenuItem, Me.CheckReturnDetailsToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
         Me.ContextMenuStrip2.ShowImageMargin = False
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(221, 165)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(221, 132)
         '
         'ViewToolStripMenuItem
         '
@@ -3404,6 +3470,14 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.DelEmployee)
+        Me.TabPage5.Controls.Add(Me.MaterialLabel61)
+        Me.TabPage5.Controls.Add(Me.ExpansionPanelEmployee)
+        Me.TabPage5.Controls.Add(Me.MaterialLabel55)
+        Me.TabPage5.Controls.Add(Me.MaterialLabel52)
+        Me.TabPage5.Controls.Add(Me.EmployeeListView)
+        Me.TabPage5.Controls.Add(Me.MaterialLabel53)
+        Me.TabPage5.Controls.Add(Me.MaterialLabel51)
         Me.TabPage5.ImageKey = "icons8-administrator-male-26.png"
         Me.TabPage5.Location = New System.Drawing.Point(4, 34)
         Me.TabPage5.Name = "TabPage5"
@@ -3411,6 +3485,376 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "Users"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'DelEmployee
+        '
+        Me.DelEmployee.Depth = 0
+        Me.DelEmployee.Enabled = False
+        Me.DelEmployee.Icon = CType(resources.GetObject("DelEmployee.Icon"), System.Drawing.Image)
+        Me.DelEmployee.Location = New System.Drawing.Point(1168, 161)
+        Me.DelEmployee.MouseState = MaterialSkin.MouseState.HOVER
+        Me.DelEmployee.Name = "DelEmployee"
+        Me.DelEmployee.Size = New System.Drawing.Size(60, 58)
+        Me.DelEmployee.TabIndex = 9
+        Me.DelEmployee.Text = "MaterialFloatingActionButton1"
+        Me.DelEmployee.UseVisualStyleBackColor = False
+        '
+        'MaterialLabel61
+        '
+        Me.MaterialLabel61.AutoSize = True
+        Me.MaterialLabel61.Depth = 0
+        Me.MaterialLabel61.Font = New System.Drawing.Font("Roboto", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel61.FontType = MaterialSkin.MaterialSkinManager.fontType.H3
+        Me.MaterialLabel61.Location = New System.Drawing.Point(60, 155)
+        Me.MaterialLabel61.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel61.Name = "MaterialLabel61"
+        Me.MaterialLabel61.Size = New System.Drawing.Size(145, 58)
+        Me.MaterialLabel61.TabIndex = 2
+        Me.MaterialLabel61.Text = "USERS"
+        '
+        'ExpansionPanelEmployee
+        '
+        Me.ExpansionPanelEmployee.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.ExpansionPanelEmployee.Controls.Add(Me.AddEditEmployee)
+        Me.ExpansionPanelEmployee.Controls.Add(Me.MaterialLabel59)
+        Me.ExpansionPanelEmployee.Controls.Add(Me.MaterialLabel58)
+        Me.ExpansionPanelEmployee.Controls.Add(Me.MaterialLabel57)
+        Me.ExpansionPanelEmployee.Controls.Add(Me.MaterialLabel56)
+        Me.ExpansionPanelEmployee.Controls.Add(Me.MaterialLabel54)
+        Me.ExpansionPanelEmployee.Controls.Add(Me.EmpPosSelection)
+        Me.ExpansionPanelEmployee.Controls.Add(Me.EmployeePass)
+        Me.ExpansionPanelEmployee.Controls.Add(Me.EmployeeUsername)
+        Me.ExpansionPanelEmployee.Controls.Add(Me.EmployeeEmail)
+        Me.ExpansionPanelEmployee.Controls.Add(Me.EmployeeName)
+        Me.ExpansionPanelEmployee.Depth = 0
+        Me.ExpansionPanelEmployee.Description = "Note: Select an employee from the table to edit"
+        Me.ExpansionPanelEmployee.ExpandHeight = 436
+        Me.ExpansionPanelEmployee.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.ExpansionPanelEmployee.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.ExpansionPanelEmployee.Location = New System.Drawing.Point(274, 165)
+        Me.ExpansionPanelEmployee.Margin = New System.Windows.Forms.Padding(16)
+        Me.ExpansionPanelEmployee.MouseState = MaterialSkin.MouseState.HOVER
+        Me.ExpansionPanelEmployee.Name = "ExpansionPanelEmployee"
+        Me.ExpansionPanelEmployee.Padding = New System.Windows.Forms.Padding(24, 64, 24, 16)
+        Me.ExpansionPanelEmployee.Size = New System.Drawing.Size(888, 436)
+        Me.ExpansionPanelEmployee.TabIndex = 1
+        Me.ExpansionPanelEmployee.Title = "ADD OR EDIT EMPLOYEE"
+        Me.ExpansionPanelEmployee.UseAccentColor = True
+        '
+        'AddEditEmployee
+        '
+        Me.AddEditEmployee.AutoSize = False
+        Me.AddEditEmployee.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.AddEditEmployee.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.AddEditEmployee.Depth = 0
+        Me.AddEditEmployee.HighEmphasis = True
+        Me.AddEditEmployee.Icon = Nothing
+        Me.AddEditEmployee.Location = New System.Drawing.Point(648, 260)
+        Me.AddEditEmployee.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.AddEditEmployee.MouseState = MaterialSkin.MouseState.HOVER
+        Me.AddEditEmployee.Name = "AddEditEmployee"
+        Me.AddEditEmployee.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.AddEditEmployee.Size = New System.Drawing.Size(182, 36)
+        Me.AddEditEmployee.TabIndex = 5
+        Me.AddEditEmployee.Text = "ADD USER"
+        Me.AddEditEmployee.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.AddEditEmployee.UseAccentColor = False
+        Me.AddEditEmployee.UseVisualStyleBackColor = True
+        '
+        'MaterialLabel59
+        '
+        Me.MaterialLabel59.AutoSize = True
+        Me.MaterialLabel59.Depth = 0
+        Me.MaterialLabel59.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel59.Location = New System.Drawing.Point(533, 110)
+        Me.MaterialLabel59.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel59.Name = "MaterialLabel59"
+        Me.MaterialLabel59.Size = New System.Drawing.Size(72, 19)
+        Me.MaterialLabel59.TabIndex = 4
+        Me.MaterialLabel59.Text = "POSITION"
+        '
+        'MaterialLabel58
+        '
+        Me.MaterialLabel58.AutoSize = True
+        Me.MaterialLabel58.Depth = 0
+        Me.MaterialLabel58.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel58.Location = New System.Drawing.Point(533, 186)
+        Me.MaterialLabel58.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel58.Name = "MaterialLabel58"
+        Me.MaterialLabel58.Size = New System.Drawing.Size(84, 19)
+        Me.MaterialLabel58.TabIndex = 4
+        Me.MaterialLabel58.Text = "USERNAME"
+        '
+        'MaterialLabel57
+        '
+        Me.MaterialLabel57.AutoSize = True
+        Me.MaterialLabel57.Depth = 0
+        Me.MaterialLabel57.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel57.Location = New System.Drawing.Point(17, 266)
+        Me.MaterialLabel57.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel57.Name = "MaterialLabel57"
+        Me.MaterialLabel57.Size = New System.Drawing.Size(87, 19)
+        Me.MaterialLabel57.TabIndex = 4
+        Me.MaterialLabel57.Text = "PASSWORD"
+        '
+        'MaterialLabel56
+        '
+        Me.MaterialLabel56.AutoSize = True
+        Me.MaterialLabel56.Depth = 0
+        Me.MaterialLabel56.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel56.Location = New System.Drawing.Point(40, 186)
+        Me.MaterialLabel56.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel56.Name = "MaterialLabel56"
+        Me.MaterialLabel56.Size = New System.Drawing.Size(47, 19)
+        Me.MaterialLabel56.TabIndex = 4
+        Me.MaterialLabel56.Text = "EMAIL"
+        '
+        'MaterialLabel54
+        '
+        Me.MaterialLabel54.AutoSize = True
+        Me.MaterialLabel54.Depth = 0
+        Me.MaterialLabel54.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel54.Location = New System.Drawing.Point(40, 110)
+        Me.MaterialLabel54.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel54.Name = "MaterialLabel54"
+        Me.MaterialLabel54.Size = New System.Drawing.Size(45, 19)
+        Me.MaterialLabel54.TabIndex = 4
+        Me.MaterialLabel54.Text = "NAME"
+        '
+        'EmpPosSelection
+        '
+        Me.EmpPosSelection.AutoResize = False
+        Me.EmpPosSelection.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.EmpPosSelection.Depth = 0
+        Me.EmpPosSelection.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.EmpPosSelection.DropDownHeight = 174
+        Me.EmpPosSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.EmpPosSelection.DropDownWidth = 121
+        Me.EmpPosSelection.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.EmpPosSelection.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.EmpPosSelection.FormattingEnabled = True
+        Me.EmpPosSelection.IntegralHeight = False
+        Me.EmpPosSelection.ItemHeight = 43
+        Me.EmpPosSelection.Items.AddRange(New Object() {"Admin", "Manager", "Staff"})
+        Me.EmpPosSelection.Location = New System.Drawing.Point(648, 95)
+        Me.EmpPosSelection.MaxDropDownItems = 4
+        Me.EmpPosSelection.MouseState = MaterialSkin.MouseState.OUT
+        Me.EmpPosSelection.Name = "EmpPosSelection"
+        Me.EmpPosSelection.Size = New System.Drawing.Size(182, 49)
+        Me.EmpPosSelection.StartIndex = 0
+        Me.EmpPosSelection.TabIndex = 3
+        '
+        'EmployeePass
+        '
+        Me.EmployeePass.AnimateReadOnly = False
+        Me.EmployeePass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.EmployeePass.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.EmployeePass.Depth = 0
+        Me.EmployeePass.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.EmployeePass.HideSelection = True
+        Me.EmployeePass.LeadingIcon = Nothing
+        Me.EmployeePass.Location = New System.Drawing.Point(116, 252)
+        Me.EmployeePass.MaxLength = 32767
+        Me.EmployeePass.MouseState = MaterialSkin.MouseState.OUT
+        Me.EmployeePass.Name = "EmployeePass"
+        Me.EmployeePass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.EmployeePass.PrefixSuffixText = Nothing
+        Me.EmployeePass.ReadOnly = False
+        Me.EmployeePass.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.EmployeePass.SelectedText = ""
+        Me.EmployeePass.SelectionLength = 0
+        Me.EmployeePass.SelectionStart = 0
+        Me.EmployeePass.ShortcutsEnabled = True
+        Me.EmployeePass.Size = New System.Drawing.Size(358, 48)
+        Me.EmployeePass.TabIndex = 2
+        Me.EmployeePass.TabStop = False
+        Me.EmployeePass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.EmployeePass.TrailingIcon = Nothing
+        Me.EmployeePass.UseSystemPasswordChar = False
+        '
+        'EmployeeUsername
+        '
+        Me.EmployeeUsername.AnimateReadOnly = False
+        Me.EmployeeUsername.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.EmployeeUsername.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.EmployeeUsername.Depth = 0
+        Me.EmployeeUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.EmployeeUsername.HideSelection = True
+        Me.EmployeeUsername.LeadingIcon = Nothing
+        Me.EmployeeUsername.Location = New System.Drawing.Point(648, 173)
+        Me.EmployeeUsername.MaxLength = 32767
+        Me.EmployeeUsername.MouseState = MaterialSkin.MouseState.OUT
+        Me.EmployeeUsername.Name = "EmployeeUsername"
+        Me.EmployeeUsername.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.EmployeeUsername.PrefixSuffixText = Nothing
+        Me.EmployeeUsername.ReadOnly = False
+        Me.EmployeeUsername.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.EmployeeUsername.SelectedText = ""
+        Me.EmployeeUsername.SelectionLength = 0
+        Me.EmployeeUsername.SelectionStart = 0
+        Me.EmployeeUsername.ShortcutsEnabled = True
+        Me.EmployeeUsername.Size = New System.Drawing.Size(182, 48)
+        Me.EmployeeUsername.TabIndex = 2
+        Me.EmployeeUsername.TabStop = False
+        Me.EmployeeUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.EmployeeUsername.TrailingIcon = Nothing
+        Me.EmployeeUsername.UseSystemPasswordChar = False
+        '
+        'EmployeeEmail
+        '
+        Me.EmployeeEmail.AnimateReadOnly = False
+        Me.EmployeeEmail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.EmployeeEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.EmployeeEmail.Depth = 0
+        Me.EmployeeEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.EmployeeEmail.HideSelection = True
+        Me.EmployeeEmail.LeadingIcon = Nothing
+        Me.EmployeeEmail.Location = New System.Drawing.Point(116, 173)
+        Me.EmployeeEmail.MaxLength = 32767
+        Me.EmployeeEmail.MouseState = MaterialSkin.MouseState.OUT
+        Me.EmployeeEmail.Name = "EmployeeEmail"
+        Me.EmployeeEmail.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.EmployeeEmail.PrefixSuffixText = Nothing
+        Me.EmployeeEmail.ReadOnly = False
+        Me.EmployeeEmail.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.EmployeeEmail.SelectedText = ""
+        Me.EmployeeEmail.SelectionLength = 0
+        Me.EmployeeEmail.SelectionStart = 0
+        Me.EmployeeEmail.ShortcutsEnabled = True
+        Me.EmployeeEmail.Size = New System.Drawing.Size(358, 48)
+        Me.EmployeeEmail.TabIndex = 2
+        Me.EmployeeEmail.TabStop = False
+        Me.EmployeeEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.EmployeeEmail.TrailingIcon = Nothing
+        Me.EmployeeEmail.UseSystemPasswordChar = False
+        '
+        'EmployeeName
+        '
+        Me.EmployeeName.AnimateReadOnly = False
+        Me.EmployeeName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.EmployeeName.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.EmployeeName.Depth = 0
+        Me.EmployeeName.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.EmployeeName.HideSelection = True
+        Me.EmployeeName.LeadingIcon = Nothing
+        Me.EmployeeName.Location = New System.Drawing.Point(116, 95)
+        Me.EmployeeName.MaxLength = 32767
+        Me.EmployeeName.MouseState = MaterialSkin.MouseState.OUT
+        Me.EmployeeName.Name = "EmployeeName"
+        Me.EmployeeName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.EmployeeName.PrefixSuffixText = Nothing
+        Me.EmployeeName.ReadOnly = False
+        Me.EmployeeName.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.EmployeeName.SelectedText = ""
+        Me.EmployeeName.SelectionLength = 0
+        Me.EmployeeName.SelectionStart = 0
+        Me.EmployeeName.ShortcutsEnabled = True
+        Me.EmployeeName.Size = New System.Drawing.Size(358, 48)
+        Me.EmployeeName.TabIndex = 2
+        Me.EmployeeName.TabStop = False
+        Me.EmployeeName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.EmployeeName.TrailingIcon = Nothing
+        Me.EmployeeName.UseSystemPasswordChar = False
+        '
+        'MaterialLabel55
+        '
+        Me.MaterialLabel55.AutoSize = True
+        Me.MaterialLabel55.Depth = 0
+        Me.MaterialLabel55.Font = New System.Drawing.Font("Roboto Medium", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel55.FontType = MaterialSkin.MaterialSkinManager.fontType.H6
+        Me.MaterialLabel55.Location = New System.Drawing.Point(969, 76)
+        Me.MaterialLabel55.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel55.Name = "MaterialLabel55"
+        Me.MaterialLabel55.Size = New System.Drawing.Size(193, 24)
+        Me.MaterialLabel55.TabIndex = 0
+        Me.MaterialLabel55.Text = "Rommel B. Mabini Jr."
+        '
+        'MaterialLabel52
+        '
+        Me.MaterialLabel52.AutoSize = True
+        Me.MaterialLabel52.Depth = 0
+        Me.MaterialLabel52.Font = New System.Drawing.Font("Roboto Medium", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel52.FontType = MaterialSkin.MaterialSkinManager.fontType.H6
+        Me.MaterialLabel52.Location = New System.Drawing.Point(969, 35)
+        Me.MaterialLabel52.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel52.Name = "MaterialLabel52"
+        Me.MaterialLabel52.Size = New System.Drawing.Size(58, 24)
+        Me.MaterialLabel52.TabIndex = 0
+        Me.MaterialLabel52.Text = "Admin"
+        '
+        'EmployeeListView
+        '
+        Me.EmployeeListView.AutoSizeTable = False
+        Me.EmployeeListView.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.EmployeeListView.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.EmployeeListView.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader25, Me.ColumnHeader26, Me.ColumnHeader27, Me.ColumnHeader28, Me.ColumnHeader29, Me.ColumnHeader30})
+        Me.EmployeeListView.Depth = 0
+        Me.EmployeeListView.FullRowSelect = True
+        Me.EmployeeListView.Location = New System.Drawing.Point(60, 245)
+        Me.EmployeeListView.MinimumSize = New System.Drawing.Size(200, 100)
+        Me.EmployeeListView.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.EmployeeListView.MouseState = MaterialSkin.MouseState.OUT
+        Me.EmployeeListView.Name = "EmployeeListView"
+        Me.EmployeeListView.OwnerDraw = True
+        Me.EmployeeListView.Size = New System.Drawing.Size(1102, 456)
+        Me.EmployeeListView.TabIndex = 0
+        Me.EmployeeListView.UseCompatibleStateImageBehavior = False
+        Me.EmployeeListView.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader25
+        '
+        Me.ColumnHeader25.Text = "ID"
+        '
+        'ColumnHeader26
+        '
+        Me.ColumnHeader26.Text = "STAFF NAME"
+        Me.ColumnHeader26.Width = 300
+        '
+        'ColumnHeader27
+        '
+        Me.ColumnHeader27.Text = "POSITION"
+        Me.ColumnHeader27.Width = 150
+        '
+        'ColumnHeader28
+        '
+        Me.ColumnHeader28.Text = "USERNAME"
+        Me.ColumnHeader28.Width = 150
+        '
+        'ColumnHeader29
+        '
+        Me.ColumnHeader29.Text = "EMAIL"
+        Me.ColumnHeader29.Width = 250
+        '
+        'ColumnHeader30
+        '
+        Me.ColumnHeader30.Text = "PASSWORD"
+        Me.ColumnHeader30.Width = 250
+        '
+        'MaterialLabel53
+        '
+        Me.MaterialLabel53.AutoSize = True
+        Me.MaterialLabel53.Depth = 0
+        Me.MaterialLabel53.Font = New System.Drawing.Font("Roboto Medium", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel53.FontType = MaterialSkin.MaterialSkinManager.fontType.H6
+        Me.MaterialLabel53.Location = New System.Drawing.Point(775, 73)
+        Me.MaterialLabel53.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel53.Name = "MaterialLabel53"
+        Me.MaterialLabel53.Size = New System.Drawing.Size(168, 24)
+        Me.MaterialLabel53.TabIndex = 0
+        Me.MaterialLabel53.Text = "EMPLOYEE NAME:"
+        '
+        'MaterialLabel51
+        '
+        Me.MaterialLabel51.AutoSize = True
+        Me.MaterialLabel51.Depth = 0
+        Me.MaterialLabel51.Font = New System.Drawing.Font("Roboto Medium", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel51.FontType = MaterialSkin.MaterialSkinManager.fontType.H6
+        Me.MaterialLabel51.Location = New System.Drawing.Point(693, 35)
+        Me.MaterialLabel51.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel51.Name = "MaterialLabel51"
+        Me.MaterialLabel51.Size = New System.Drawing.Size(258, 24)
+        Me.MaterialLabel51.TabIndex = 0
+        Me.MaterialLabel51.Text = "CURRENTLY LOGGED IN AS: "
         '
         'TabPage6
         '
@@ -3648,6 +4092,8 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "        MangaKissa"
         Me.MaterialTabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.MaterialCard6.ResumeLayout(False)
@@ -3691,6 +4137,10 @@ Partial Class Form1
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
         Me.ContextMenuStrip2.ResumeLayout(False)
+        Me.TabPage5.ResumeLayout(False)
+        Me.TabPage5.PerformLayout()
+        Me.ExpansionPanelEmployee.ResumeLayout(False)
+        Me.ExpansionPanelEmployee.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -3774,7 +4224,6 @@ Partial Class Form1
     Friend WithEvents MaterialLabel13 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents RentDurSelection As MaterialSkin.Controls.MaterialComboBox
     Friend WithEvents CheckInSelection As MaterialSkin.Controls.MaterialComboBox
-    Friend WithEvents MaterialTextBox5 As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents MaterialTextBox6 As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents CheckAddToCart As MaterialSkin.Controls.MaterialButton
     Friend WithEvents MaterialCard5 As MaterialSkin.Controls.MaterialCard
@@ -3898,7 +4347,6 @@ Partial Class Form1
     Friend WithEvents ColumnHeader20 As ColumnHeader
     Friend WithEvents MaterialLabel41 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel44 As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents OToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteToolStripMenuItem1 As ToolStripMenuItem
@@ -3916,4 +4364,32 @@ Partial Class Form1
     Friend WithEvents MaterialLabel47 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents ReturnByToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CheckReturnDetailsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MaterialLabel49 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel50 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents EmployeeListView As MaterialSkin.Controls.MaterialListView
+    Friend WithEvents ColumnHeader25 As ColumnHeader
+    Friend WithEvents ColumnHeader26 As ColumnHeader
+    Friend WithEvents ColumnHeader27 As ColumnHeader
+    Friend WithEvents MaterialLabel55 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel52 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel53 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel51 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents ColumnHeader28 As ColumnHeader
+    Friend WithEvents ColumnHeader29 As ColumnHeader
+    Friend WithEvents ColumnHeader30 As ColumnHeader
+    Friend WithEvents ExpansionPanelEmployee As MaterialSkin.Controls.MaterialExpansionPanel
+    Friend WithEvents MaterialLabel59 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel58 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel57 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel56 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel54 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents EmpPosSelection As MaterialSkin.Controls.MaterialComboBox
+    Friend WithEvents EmployeePass As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents EmployeeUsername As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents EmployeeEmail As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents EmployeeName As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents MaterialLabel60 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel61 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents AddEditEmployee As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents DelEmployee As MaterialSkin.Controls.MaterialFloatingActionButton
 End Class

@@ -51,9 +51,9 @@ Partial Class RentDetailsForm
         Me.ReceiptID.Location = New System.Drawing.Point(179, 121)
         Me.ReceiptID.MouseState = MaterialSkin.MouseState.HOVER
         Me.ReceiptID.Name = "ReceiptID"
-        Me.ReceiptID.Size = New System.Drawing.Size(117, 29)
+        Me.ReceiptID.Size = New System.Drawing.Size(111, 29)
         Me.ReceiptID.TabIndex = 0
-        Me.ReceiptID.Text = "Receipt ID:"
+        Me.ReceiptID.Text = "__________"
         '
         'NameOfCustomer
         '
@@ -64,9 +64,9 @@ Partial Class RentDetailsForm
         Me.NameOfCustomer.Location = New System.Drawing.Point(179, 83)
         Me.NameOfCustomer.MouseState = MaterialSkin.MouseState.HOVER
         Me.NameOfCustomer.Name = "NameOfCustomer"
-        Me.NameOfCustomer.Size = New System.Drawing.Size(77, 29)
+        Me.NameOfCustomer.Size = New System.Drawing.Size(122, 29)
         Me.NameOfCustomer.TabIndex = 0
-        Me.NameOfCustomer.Text = "Name: "
+        Me.NameOfCustomer.Text = "___________"
         '
         'MaterialListView1
         '
@@ -297,7 +297,7 @@ Partial Class RentDetailsForm
         Me.Controls.Add(Me.MaterialLabel2)
         Me.Controls.Add(Me.ReceiptID)
         Me.Name = "RentDetailsForm"
-        Me.Text = "RentDetailsForm"
+        Me.Text = "Rent Details"
         Me.MaterialCard1.ResumeLayout(False)
         Me.MaterialCard1.PerformLayout()
         Me.ResumeLayout(False)
