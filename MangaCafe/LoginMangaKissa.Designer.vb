@@ -24,7 +24,6 @@ Partial Class LoginMangaKissa
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LoginMangaKissa))
         Me.UserEmailTxt = New MaterialSkin.Controls.MaterialTextBox()
-        Me.PassTxt = New MaterialSkin.Controls.MaterialTextBox()
         Me.MaterialLabel1 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel2 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialCard1 = New MaterialSkin.Controls.MaterialCard()
@@ -32,8 +31,9 @@ Partial Class LoginMangaKissa
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.MaterialLabel3 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel4 = New MaterialSkin.Controls.MaterialLabel()
-        Me.MaterialCheckbox1 = New MaterialSkin.Controls.MaterialCheckbox()
-        Me.LoginBtn = New MaterialSkin.Controls.MaterialButton()
+        Me.ShowPass = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.LoginMKissaBtn = New MaterialSkin.Controls.MaterialButton()
+        Me.PassTxt = New MaterialSkin.Controls.MaterialTextBox2()
         Me.MaterialCard1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,24 +55,6 @@ Partial Class LoginMangaKissa
         Me.UserEmailTxt.TabIndex = 0
         Me.UserEmailTxt.Text = ""
         Me.UserEmailTxt.TrailingIcon = Nothing
-        '
-        'PassTxt
-        '
-        Me.PassTxt.AnimateReadOnly = False
-        Me.PassTxt.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.PassTxt.Depth = 0
-        Me.PassTxt.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.PassTxt.LeadingIcon = Nothing
-        Me.PassTxt.Location = New System.Drawing.Point(559, 357)
-        Me.PassTxt.MaxLength = 50
-        Me.PassTxt.MouseState = MaterialSkin.MouseState.OUT
-        Me.PassTxt.Multiline = False
-        Me.PassTxt.Name = "PassTxt"
-        Me.PassTxt.Password = True
-        Me.PassTxt.Size = New System.Drawing.Size(240, 50)
-        Me.PassTxt.TabIndex = 0
-        Me.PassTxt.Text = ""
-        Me.PassTxt.TrailingIcon = Nothing
         '
         'MaterialLabel1
         '
@@ -162,58 +144,86 @@ Partial Class LoginMangaKissa
         Me.MaterialLabel4.TabIndex = 5
         Me.MaterialLabel4.Text = "Cafe"
         '
-        'MaterialCheckbox1
+        'ShowPass
         '
-        Me.MaterialCheckbox1.AutoSize = True
-        Me.MaterialCheckbox1.Depth = 0
-        Me.MaterialCheckbox1.Location = New System.Drawing.Point(560, 415)
-        Me.MaterialCheckbox1.Margin = New System.Windows.Forms.Padding(0)
-        Me.MaterialCheckbox1.MouseLocation = New System.Drawing.Point(-1, -1)
-        Me.MaterialCheckbox1.MouseState = MaterialSkin.MouseState.HOVER
-        Me.MaterialCheckbox1.Name = "MaterialCheckbox1"
-        Me.MaterialCheckbox1.ReadOnly = False
-        Me.MaterialCheckbox1.Ripple = True
-        Me.MaterialCheckbox1.Size = New System.Drawing.Size(149, 37)
-        Me.MaterialCheckbox1.TabIndex = 6
-        Me.MaterialCheckbox1.Text = "Show Password"
-        Me.MaterialCheckbox1.UseVisualStyleBackColor = True
+        Me.ShowPass.AutoSize = True
+        Me.ShowPass.Depth = 0
+        Me.ShowPass.Location = New System.Drawing.Point(560, 415)
+        Me.ShowPass.Margin = New System.Windows.Forms.Padding(0)
+        Me.ShowPass.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.ShowPass.MouseState = MaterialSkin.MouseState.HOVER
+        Me.ShowPass.Name = "ShowPass"
+        Me.ShowPass.ReadOnly = False
+        Me.ShowPass.Ripple = True
+        Me.ShowPass.Size = New System.Drawing.Size(149, 37)
+        Me.ShowPass.TabIndex = 6
+        Me.ShowPass.Text = "Show Password"
+        Me.ShowPass.UseVisualStyleBackColor = True
         '
-        'LoginBtn
+        'LoginMKissaBtn
         '
-        Me.LoginBtn.AutoSize = False
-        Me.LoginBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.LoginBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
-        Me.LoginBtn.Depth = 0
-        Me.LoginBtn.HighEmphasis = True
-        Me.LoginBtn.Icon = Nothing
-        Me.LoginBtn.Location = New System.Drawing.Point(559, 468)
-        Me.LoginBtn.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-        Me.LoginBtn.MouseState = MaterialSkin.MouseState.HOVER
-        Me.LoginBtn.Name = "LoginBtn"
-        Me.LoginBtn.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.LoginBtn.Size = New System.Drawing.Size(237, 54)
-        Me.LoginBtn.TabIndex = 7
-        Me.LoginBtn.Text = "LOGIN"
-        Me.LoginBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
-        Me.LoginBtn.UseAccentColor = False
-        Me.LoginBtn.UseVisualStyleBackColor = True
+        Me.LoginMKissaBtn.AutoSize = False
+        Me.LoginMKissaBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.LoginMKissaBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.LoginMKissaBtn.Depth = 0
+        Me.LoginMKissaBtn.HighEmphasis = True
+        Me.LoginMKissaBtn.Icon = Nothing
+        Me.LoginMKissaBtn.Location = New System.Drawing.Point(559, 468)
+        Me.LoginMKissaBtn.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.LoginMKissaBtn.MouseState = MaterialSkin.MouseState.HOVER
+        Me.LoginMKissaBtn.Name = "LoginMKissaBtn"
+        Me.LoginMKissaBtn.NoAccentTextColor = System.Drawing.Color.Empty
+        Me.LoginMKissaBtn.Size = New System.Drawing.Size(237, 54)
+        Me.LoginMKissaBtn.TabIndex = 7
+        Me.LoginMKissaBtn.Text = "LOGIN"
+        Me.LoginMKissaBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.LoginMKissaBtn.UseAccentColor = False
+        Me.LoginMKissaBtn.UseVisualStyleBackColor = True
+        '
+        'PassTxt
+        '
+        Me.PassTxt.AnimateReadOnly = False
+        Me.PassTxt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.PassTxt.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.PassTxt.Depth = 0
+        Me.PassTxt.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.PassTxt.HideSelection = True
+        Me.PassTxt.LeadingIcon = Nothing
+        Me.PassTxt.Location = New System.Drawing.Point(559, 354)
+        Me.PassTxt.MaxLength = 32767
+        Me.PassTxt.MouseState = MaterialSkin.MouseState.OUT
+        Me.PassTxt.Name = "PassTxt"
+        Me.PassTxt.PasswordChar = Global.Microsoft.VisualBasic.ChrW(8226)
+        Me.PassTxt.PrefixSuffixText = Nothing
+        Me.PassTxt.ReadOnly = False
+        Me.PassTxt.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.PassTxt.SelectedText = ""
+        Me.PassTxt.SelectionLength = 0
+        Me.PassTxt.SelectionStart = 0
+        Me.PassTxt.ShortcutsEnabled = True
+        Me.PassTxt.Size = New System.Drawing.Size(240, 48)
+        Me.PassTxt.TabIndex = 8
+        Me.PassTxt.TabStop = False
+        Me.PassTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.PassTxt.TrailingIcon = Nothing
+        Me.PassTxt.UseSystemPasswordChar = False
         '
         'LoginMangaKissa
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(917, 540)
-        Me.Controls.Add(Me.LoginBtn)
-        Me.Controls.Add(Me.MaterialCheckbox1)
+        Me.Controls.Add(Me.PassTxt)
+        Me.Controls.Add(Me.LoginMKissaBtn)
+        Me.Controls.Add(Me.ShowPass)
         Me.Controls.Add(Me.MaterialLabel4)
         Me.Controls.Add(Me.MaterialLabel3)
         Me.Controls.Add(Me.MaterialCard1)
         Me.Controls.Add(Me.MaterialLabel2)
         Me.Controls.Add(Me.MaterialLabel1)
-        Me.Controls.Add(Me.PassTxt)
         Me.Controls.Add(Me.UserEmailTxt)
         Me.Name = "LoginMangaKissa"
-        Me.Text = "Login to MangaKissa"
+        Me.Text = "MangaKissa Login"
         Me.MaterialCard1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -223,7 +233,6 @@ Partial Class LoginMangaKissa
     End Sub
 
     Friend WithEvents UserEmailTxt As MaterialSkin.Controls.MaterialTextBox
-    Friend WithEvents PassTxt As MaterialSkin.Controls.MaterialTextBox
     Friend WithEvents MaterialLabel1 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel2 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialCard1 As MaterialSkin.Controls.MaterialCard
@@ -231,6 +240,7 @@ Partial Class LoginMangaKissa
     Friend WithEvents MaterialLabel4 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents MaterialCheckbox1 As MaterialSkin.Controls.MaterialCheckbox
-    Friend WithEvents LoginBtn As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents ShowPass As MaterialSkin.Controls.MaterialCheckbox
+    Friend WithEvents LoginMKissaBtn As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents PassTxt As MaterialSkin.Controls.MaterialTextBox2
 End Class

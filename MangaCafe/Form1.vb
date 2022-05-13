@@ -13,6 +13,13 @@ Public Class Form1
     Public coverFileName As String
     Dim _bDocumentChanged As Boolean
 
+    Private MgLibraryLVBackUp As New List(Of ListViewItem)
+    Private ServLibraryLVBackUp As New List(Of ListViewItem)
+    Private CheckHistoLVBackUp As New List(Of ListViewItem)
+    Private RentHistoLVBackUp As New List(Of ListViewItem)
+    Private RentOrdSearchBackUp As New List(Of MaterialListBoxItem)
+    Private CheckOrdSearchBackUp As New List(Of MaterialListBoxItem)
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim SkinManager As MaterialSkinManager = MaterialSkinManager.Instance
         SkinManager.AddFormToManage(Me)
@@ -41,6 +48,15 @@ Public Class Form1
         populatePurchaseHistroy("Check In")
         populatePurchaseHistroy("Rent Only")
         populateEmployeeLV()
+
+        initializeBackUpListViewItems(ListViewMangaLibrary, MgLibraryLVBackUp)
+        initializeBackUpListViewItems(ListViewServiceLibrary, ServLibraryLVBackUp)
+        initializeBackUpListViewItems(CheckHistoryLV, CheckHistoLVBackUp)
+        initializeBackUpListViewItems(RentHistoryLV, RentHistoLVBackUp)
+        populateDashboard()
+        getMgTblStats()
+
+        CheckSelectionOrder.SelectedIndex = 2
     End Sub
 
     Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -54,6 +70,34 @@ Public Class Form1
 
 
 
+
+
+
+
+
+    Public Sub initializeBackUpListViewItems(LV As ListView, collectionItems As List(Of ListViewItem))
+
+        collectionItems.Clear()
+        For Each item As ListViewItem In LV.Items
+            collectionItems.Add(item)
+        Next
+    End Sub
+
+    Public Sub makeBackUpListBoxRent(collectionItems As List(Of MaterialListBoxItem))
+
+        collectionItems.Clear()
+        For Each item As MaterialListBoxItem In RentListBox.Items
+            collectionItems.Add(item)
+        Next
+    End Sub
+
+    Public Sub makeBackUpListBoxCheck(collectionItems As List(Of MaterialListBoxItem))
+
+        collectionItems.Clear()
+        For Each item As MaterialListBoxItem In CheckInListBox.Items
+            collectionItems.Add(item)
+        Next
+    End Sub
 
 
 
@@ -93,7 +137,6 @@ Public Class Form1
 
             RentListBox.Items.Add(matrlItem)
 
-
             With ListViewMangaLibrary
                 .Items.Add(libraryTable.Rows(i)("mgID"))
                 With .Items(.Items.Count - 1).SubItems
@@ -104,6 +147,8 @@ Public Class Form1
             End With
         Next
 
+        initializeBackUpListViewItems(ListViewMangaLibrary, MgLibraryLVBackUp)
+        makeBackUpListBoxRent(RentOrdSearchBackUp)
     End Sub
 
     Public panelToLibraryShow As Boolean = False
@@ -336,6 +381,7 @@ Public Class Form1
             End With
         Next
 
+        initializeBackUpListViewItems(ListViewServiceLibrary, ServLibraryLVBackUp)
     End Sub
 
     Private Sub ClearAddServiceTxtBoxes()
@@ -604,6 +650,8 @@ Public Class Form1
 
                 CheckInListBox.Items.Add(matrlItem)
             Next
+
+            makeBackUpListBoxCheck(CheckOrdSearchBackUp)
         Catch ex As Exception
             'MsgBox(ex.Message, vbCritical)
         End Try
@@ -636,6 +684,23 @@ Public Class Form1
             MsgBox(ex.Message, vbCritical)
         End Try
     End Sub
+
+    Private Sub CheckOrdSearch_TextChanged(sender As Object, e As EventArgs) Handles CheckOrdSearch.TextChanged
+        CheckInListBox.BeginUpdate()
+
+        CheckInListBox.Items.Clear()
+
+        For Each item As MaterialListBoxItem In CheckOrdSearchBackUp
+            Dim phraseSearched = item.Text
+            If phraseSearched.ToLower.Contains(CheckOrdSearch.Text.ToLower) Or String.IsNullOrEmpty(CheckOrdSearch.Text) Then
+                CheckInListBox.Items.Add(item)
+            End If
+        Next
+
+
+        CheckInListBox.EndUpdate()
+    End Sub
+
 
     Private Sub TxtOrderQuan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtOrderQuan.KeyPress
         If Asc(e.KeyChar) <> 8 Then
@@ -1030,6 +1095,24 @@ Public Class Form1
         Dim filepath As String = Path.Combine(accessDirectory, fname)
         RentMgCover.Image = Image.FromFile(filepath)
     End Sub
+
+
+    Private Sub RentOrdSearch_TextChanged(sender As Object, e As EventArgs) Handles RentOrdSearch.TextChanged
+        RentListBox.BeginUpdate()
+
+        RentListBox.Items.Clear()
+
+        For Each item As MaterialListBoxItem In RentOrdSearchBackUp
+            Dim phraseSearched = item.Text
+            If phraseSearched.ToLower.Contains(RentOrdSearch.Text.ToLower) Or String.IsNullOrEmpty(RentOrdSearch.Text) Then
+                RentListBox.Items.Add(item)
+            End If
+        Next
+
+
+        RentListBox.EndUpdate()
+    End Sub
+
     Private Sub RentListBox_SelectedIndexChanged(sender As Object, selectedItem As MaterialListBoxItem) Handles RentListBox.SelectedIndexChanged
         Try
             updateCopiesSubRent()
@@ -1480,6 +1563,7 @@ Public Class Form1
                     End With
                 End With
 
+                initializeBackUpListViewItems(CheckHistoryLV, CheckHistoLVBackUp)
             Else
                 With RentHistoryLV
                     .Items.Add(libraryTable.Rows(i)("rcptID"))
@@ -1489,6 +1573,8 @@ Public Class Form1
                         .Add(Format(libraryTable.Rows(i)("rcptTotal"), "$#,##0.00"))
                     End With
                 End With
+
+                initializeBackUpListViewItems(RentHistoryLV, RentHistoLVBackUp)
             End If
         Next
     End Sub
@@ -1509,7 +1595,16 @@ Public Class Form1
             viewReturnDetails(lvNameCms.SourceControl)
             RentDetailsForm.Show()
         Catch ex As Exception
-            MsgBox(ex.Message, vbCritical)
+            MsgBox("Please select an item first!", vbCritical, "Mangakissa")
+        End Try
+    End Sub
+
+
+    Private Sub RentHistoryLV_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RentHistoryLV.SelectedIndexChanged
+        Try
+            ContextMenuStrip2.Enabled = True
+        Catch ex As Exception
+            ContextMenuStrip2.Enabled = False
         End Try
     End Sub
 
@@ -1641,59 +1736,67 @@ Public Class Form1
     End Sub
 
     Public Sub calcDateSincePurchased(lv As ListView)
-        rcptID = lv.SelectedItems(0).Text
-        Dim sqlQuery As String = "SELECT durName, durAmount, rcptDate from receipttb WHERE rcptID = '" & rcptID & "'"
-        Dim sqlAdapter As New MySqlDataAdapter
-        Dim sqlCommand As New MySqlCommand
-        Dim rcptTB As New DataTable
+        Try
+            rcptID = lv.SelectedItems(0).Text
+            Dim sqlQuery As String = "SELECT durName, durAmount, rcptDate from receipttb WHERE rcptID = '" & rcptID & "'"
+            Dim sqlAdapter As New MySqlDataAdapter
+            Dim sqlCommand As New MySqlCommand
+            Dim rcptTB As New DataTable
 
-        With sqlCommand
-            .CommandText = sqlQuery
-            .Connection = dbConn
-        End With
+            With sqlCommand
+                .CommandText = sqlQuery
+                .Connection = dbConn
+            End With
 
-        With sqlAdapter
-            .SelectCommand = sqlCommand
-            .Fill(rcptTB)
-        End With
+            With sqlAdapter
+                .SelectCommand = sqlCommand
+                .Fill(rcptTB)
+            End With
 
-        Dim dateEntered As Date = rcptTB.Rows(0)("rcptDate")
-        'Dim date2 As Date = Date.Parse(dateEntered)
-        'Dim date1 As Date = Now
-        Dim dName = rcptTB.Rows(0)("durName")
-        Dim dAmount = rcptTB.Rows(0)("durAmount")
+            Dim dateEntered As Date = rcptTB.Rows(0)("rcptDate")
+            'Dim date2 As Date = Date.Parse(dateEntered)
+            'Dim date1 As Date = Now
+            Dim dName = rcptTB.Rows(0)("durName")
+            Dim dAmount = rcptTB.Rows(0)("durAmount")
 
-        Dim iFormat As String
-        Select Case dName
-            Case "Months"
-                iFormat = "m"
-            Case "Weeks"
-                iFormat = "ww"
-            Case "Days", "Overnight"
-                iFormat = "d"
-            Case "Hours"
-                iFormat = "h"
-            Case "Minutes"
-                iFormat = "n"
-            Case "Seconds"
-                iFormat = "s"
-        End Select
+            Dim iFormat As String
+            Select Case dName
+                Case "Months"
+                    iFormat = "m"
+                Case "Weeks"
+                    iFormat = "ww"
+                Case "Days", "Overnight"
+                    iFormat = "d"
+                Case "Hours"
+                    iFormat = "h"
+                Case "Minutes"
+                    iFormat = "n"
+                Case "Seconds"
+                    iFormat = "s"
+            End Select
 
-        Dim expiration As Date = DateAdd(iFormat, dAmount, dateEntered)
-        Dim diff1 As TimeSpan = expiration - Now
-        MsgBox("Duration: " & dAmount & " " & dName & vbCrLf & "Return By: " & expiration & vbCrLf & "Time Left:" & vbCrLf & vbTab & diff1.Days & " days, " & diff1.Hours & " hours, " & diff1.Minutes & " minutes, " & diff1.Seconds & " seconds", vbOK, "MangaKissa")
+            Dim expiration As Date = DateAdd(iFormat, dAmount, dateEntered)
+            Dim diff1 As TimeSpan = expiration - Now
+            MsgBox("Duration: " & dAmount & " " & dName & vbCrLf & "Return By: " & expiration & vbCrLf & "Time Left:" & vbCrLf & vbTab & diff1.Days & " days, " & diff1.Hours & " hours, " & diff1.Minutes & " minutes, " & diff1.Seconds & " seconds", vbOK, "MangaKissa")
 
+        Catch ex As Exception
+            MsgBox("Please select an item first!", vbCritical, "Mangakissa")
+        End Try
     End Sub
 
     Dim rcptID As String
     Dim currentLV As ListView
     Public Sub ShowReceiptNow(lv As ListView)
-        rcptID = lv.SelectedItems(0).Text
-        currentLV = lv
+        Try
+            rcptID = lv.SelectedItems(0).Text
+            currentLV = lv
 
-        changePaperHeightShow(lv)
-        PPDS.Document = PDS
-        PPDS.ShowDialog()
+            changePaperHeightShow(lv)
+            PPDS.Document = PDS
+            PPDS.ShowDialog()
+        Catch ex As Exception
+            MsgBox("Please select an item first!", vbCritical, "Mangakissa")
+        End Try
 
     End Sub
 
@@ -2197,5 +2300,245 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub SearchLibraryTab_TextChanged(sender As Object, e As EventArgs) Handles SearchLibraryTab.TextChanged
+        ListViewMangaLibrary.BeginUpdate()
+
+        If SearchLibraryTab.Text.Trim().Length = 0 Then
+            'If nothing is in the textbox make all items appear
+            PopulateMgLibrary()
+        Else
+
+            ListViewMangaLibrary.Items.Clear()
+
+            Dim ind As Integer = MgLibrarySearchSelect.SelectedIndex
+
+            For Each item As ListViewItem In MgLibraryLVBackUp
+                Dim phraseSearched = item.SubItems(ind).Text
+                If phraseSearched.ToLower.Contains(SearchLibraryTab.Text.ToLower) Or String.IsNullOrEmpty(SearchLibraryTab.Text) Then
+                    ListViewMangaLibrary.Items.Add(item)
+                End If
+            Next
+
+        End If
+        ListViewMangaLibrary.EndUpdate()
+    End Sub
+
+    Private Sub SearchServiceTab_TextChanged(sender As Object, e As EventArgs) Handles SearchServiceTab.TextChanged
+        ListViewServiceLibrary.BeginUpdate()
+
+        If SearchServiceTab.Text.Trim().Length = 0 Then
+            'If nothing is in the textbox make all items appear
+            PopulateServiceLibrary()
+        Else
+
+            ListViewServiceLibrary.Items.Clear()
+
+            Dim ind As Integer = ServLibrarySearchSelect.SelectedIndex
+
+            For Each item As ListViewItem In ServLibraryLVBackUp
+                Dim phraseSearched = item.SubItems(ind).Text
+                If phraseSearched.ToLower.Contains(SearchServiceTab.Text.ToLower) Or String.IsNullOrEmpty(SearchServiceTab.Text) Then
+                    ListViewServiceLibrary.Items.Add(item)
+                End If
+            Next
+
+        End If
+
+        ListViewServiceLibrary.EndUpdate()
+    End Sub
+
+    Private Sub CheckHistoSearchBox_TextChanged(sender As Object, e As EventArgs) Handles CheckHistoSearchBox.TextChanged
+        CheckHistoryLV.BeginUpdate()
+
+        If CheckHistoSearchBox.Text.Trim().Length = 0 Then
+            'If nothing is in the textbox make all items appear
+            populatePurchaseHistroy("Check In")
+        Else
+
+            CheckHistoryLV.Items.Clear()
+
+            Dim ind As Integer = CheckHistoSearchSelect.SelectedIndex
+
+            For Each item As ListViewItem In CheckHistoLVBackUp
+                Dim phraseSearched = item.SubItems(ind).Text
+                If phraseSearched.ToLower.Contains(CheckHistoSearchBox.Text.ToLower) Or String.IsNullOrEmpty(CheckHistoSearchBox.Text) Then
+                    CheckHistoryLV.Items.Add(item)
+                End If
+            Next
+
+        End If
+
+        CheckHistoryLV.EndUpdate()
+    End Sub
+
+    Private Sub RentHistoSearchBox_TextChanged(sender As Object, e As EventArgs) Handles RentHistoSearchBox.TextChanged
+        RentHistoryLV.BeginUpdate()
+
+        If RentHistoSearchBox.Text.Trim().Length = 0 Then
+            'If nothing is in the textbox make all items appear
+            populatePurchaseHistroy("Rent Only")
+        Else
+
+            RentHistoryLV.Items.Clear()
+
+            Dim ind As Integer = RentHistoSearchSelect.SelectedIndex
+
+            For Each item As ListViewItem In RentHistoLVBackUp
+                Dim phraseSearched = item.SubItems(ind).Text
+                If phraseSearched.ToLower.Contains(RentHistoSearchBox.Text.ToLower) Or String.IsNullOrEmpty(RentHistoSearchBox.Text) Then
+                    RentHistoryLV.Items.Add(item)
+                End If
+            Next
+
+        End If
+
+        RentHistoryLV.EndUpdate()
+    End Sub
+
+
+    Public Sub populateDashboard()
+
+        Dim sqlQuery As String = "SELECT * FROM receipttb"
+        Dim sqlAdapter As New MySqlDataAdapter
+        Dim sqlCommand As New MySqlCommand
+        Dim recordTable As New DataTable
+        Dim i As Integer
+
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+        End With
+
+        With sqlAdapter
+            .SelectCommand = sqlCommand
+            .Fill(recordTable)
+        End With
+
+
+
+        Dim rev As Double = 0.00
+        Dim transactNum, CheckNum, RentNum As Integer
+        For i = 0 To recordTable.Rows.Count - 1
+            transactNum += 1
+
+            rev += CDbl(recordTable.Rows(i)("rcptTotal"))
+            Dim IsATypeOf As String = recordTable.Rows(i)("rcptType")
+            If IsATypeOf = "Check In" Then
+                CheckNum += 1
+            Else
+                RentNum += 1
+            End If
+        Next
+
+        TransactDash.Text = transactNum
+        CheckInDash.Text = CheckNum
+        RentalDash.Text = RentNum
+        RevenueDash.Text = Format(rev, "$#,##0.00")
+    End Sub
+
+    Public Sub getMgTblStats()
+        Dim sqlQuery As String = "SELECT * FROM mangalibrary ORDER BY MgOnRent DESC"
+        Dim sqlAdapter As New MySqlDataAdapter
+        Dim sqlCommand As New MySqlCommand
+        Dim mgTable As New DataTable
+        Dim i As Integer
+
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+        End With
+
+        With sqlAdapter
+            .SelectCommand = sqlCommand
+            .Fill(mgTable)
+        End With
+
+
+
+        Dim mgDashCopies, firstThree As Integer
+        For i = 0 To mgTable.Rows.Count - 1
+            mgDashCopies += CInt(mgTable.Rows(i)("mgCopies"))
+
+
+            If firstThree <> 3 Then
+                firstThree += 1
+
+                'Locally access the associated picture from the device
+                Dim accessDirectory As String = "D:\MangaCafeSavedImages\"
+                Dim fname As String = mgTable.Rows(i)("mgCover")
+                Dim filepath As String = Path.Combine(accessDirectory, fname)
+
+                Select Case firstThree
+                    Case 1
+                        Popular1.Image = Image.FromFile(filepath)
+                    Case 2
+                        Popular2.Image = Image.FromFile(filepath)
+                    Case 3
+                        Popular3.Image = Image.FromFile(filepath)
+                End Select
+
+
+                'To make picturebox have a referrence in use after clicking save even if no changes are made
+                'coverFileName = filepath
+            End If
+        Next
+
+        RefreshDash.Text = mgDashCopies
+    End Sub
+
+    Private Sub MaterialButton5_Click(sender As Object, e As EventArgs) Handles MaterialButton5.Click
+        populateDashboard()
+        getMgTblStats()
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem1.Click
+
+        Dim lvNameCms As ContextMenuStrip = CType(DeleteToolStripMenuItem1.Owner, ContextMenuStrip)
+        deletetransact(lvNameCms.SourceControl)
+
+
+    End Sub
+
+
+    Public Sub deletetransact(listVW As ListView)
+        Dim response As Integer
+        For Each i As ListViewItem In listVW.SelectedItems
+            response = MsgBox("Are you sure you want to remove item: " & vbCrLf & "     " + listVW.Items(listVW.FocusedItem.Index).Text, vbYesNo, "Confirm Delete")
+            If response = vbYes Then
+                Dim confirmDel As DialogResult = MessageBox.Show("Are you sure you want to delete this transaction?", "Confirmation", MessageBoxButtons.YesNo)
+                If confirmDel = DialogResult.Yes Then
+                    Dim IDrcpt = listVW.Items(listVW.FocusedItem.Index).Text
+                    Dim sqlQuery As String = "DELETE FROM rcptitemlist WHERE rcpt_ID = '" & IDrcpt & "'"
+                    createNonQuery(sqlQuery)
+
+                    Dim anotherQuery As String = "DELETE FROM receipttb WHERE rcptID = '" & IDrcpt & "'"
+                    createNonQuery(anotherQuery)
+
+                    MsgBox("Transaction deleted succesfully!", MsgBoxStyle.Information, "MangaKissa")
+                    PopulateMgLibrary()
+                End If
+
+
+
+                listVW.Items.Remove(i)
+            End If
+
+        Next
+    End Sub
+
+    Private Sub MaterialTabControlCafe_Selected(sender As Object, e As TabControlEventArgs) Handles MaterialTabControlCafe.Selected
+        If MaterialTabControlCafe.SelectedTab.Text = "Log Out" Then
+            Dim confirmM As DialogResult = MessageBox.Show("Are you sure you want to delete log out?", "Confirmation", MessageBoxButtons.YesNo)
+            If confirmM = DialogResult.Yes Then
+                LoginMangaKissa.Show()
+                Me.Hide()
+            Else
+                MaterialTabControlCafe.SelectedIndex = 0
+            End If
+
+        End If
+    End Sub
 End Class
 
