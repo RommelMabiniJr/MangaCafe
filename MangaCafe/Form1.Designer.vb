@@ -61,7 +61,7 @@ Partial Class Form1
         Me.MaterialCard6 = New MaterialSkin.Controls.MaterialCard()
         Me.MaterialTabControl2 = New MaterialSkin.Controls.MaterialTabControl()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
-        Me.CalcTotBtnCheckIn = New MaterialSkin.Controls.MaterialButton()
+        Me.MaterialLabel17 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialCard7 = New MaterialSkin.Controls.MaterialCard()
         Me.MaterialLabel42 = New MaterialSkin.Controls.MaterialLabel()
         Me.FinalTotalCost = New MaterialSkin.Controls.MaterialLabel()
@@ -91,7 +91,6 @@ Partial Class Form1
         Me.CheckSelectionOrder = New MaterialSkin.Controls.MaterialComboBox()
         Me.MaterialLabel25 = New MaterialSkin.Controls.MaterialLabel()
         Me.MaterialLabel16 = New MaterialSkin.Controls.MaterialLabel()
-        Me.MaterialLabel17 = New MaterialSkin.Controls.MaterialLabel()
         Me.TabPage9 = New System.Windows.Forms.TabPage()
         Me.MaterialCard4 = New MaterialSkin.Controls.MaterialCard()
         Me.MaterialLabel39 = New MaterialSkin.Controls.MaterialLabel()
@@ -807,7 +806,7 @@ Partial Class Form1
         '
         'TabPage8
         '
-        Me.TabPage8.Controls.Add(Me.CalcTotBtnCheckIn)
+        Me.TabPage8.Controls.Add(Me.MaterialLabel17)
         Me.TabPage8.Controls.Add(Me.MaterialCard7)
         Me.TabPage8.Controls.Add(Me.DurCheckSelection)
         Me.TabPage8.Controls.Add(Me.BtnConfrmCheck)
@@ -815,7 +814,6 @@ Partial Class Form1
         Me.TabPage8.Controls.Add(Me.ListViewCheckInLibrary)
         Me.TabPage8.Controls.Add(Me.MaterialLabel15)
         Me.TabPage8.Controls.Add(Me.GroupBox1)
-        Me.TabPage8.Controls.Add(Me.MaterialLabel17)
         Me.TabPage8.Location = New System.Drawing.Point(4, 34)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
@@ -824,25 +822,19 @@ Partial Class Form1
         Me.TabPage8.Text = "CHECK IN"
         Me.TabPage8.UseVisualStyleBackColor = True
         '
-        'CalcTotBtnCheckIn
+        'MaterialLabel17
         '
-        Me.CalcTotBtnCheckIn.AutoSize = False
-        Me.CalcTotBtnCheckIn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.CalcTotBtnCheckIn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
-        Me.CalcTotBtnCheckIn.Depth = 0
-        Me.CalcTotBtnCheckIn.HighEmphasis = True
-        Me.CalcTotBtnCheckIn.Icon = Nothing
-        Me.CalcTotBtnCheckIn.Location = New System.Drawing.Point(16, 553)
-        Me.CalcTotBtnCheckIn.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-        Me.CalcTotBtnCheckIn.MouseState = MaterialSkin.MouseState.HOVER
-        Me.CalcTotBtnCheckIn.Name = "CalcTotBtnCheckIn"
-        Me.CalcTotBtnCheckIn.NoAccentTextColor = System.Drawing.Color.Empty
-        Me.CalcTotBtnCheckIn.Size = New System.Drawing.Size(55, 34)
-        Me.CalcTotBtnCheckIn.TabIndex = 11
-        Me.CalcTotBtnCheckIn.Text = "Calc"
-        Me.CalcTotBtnCheckIn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
-        Me.CalcTotBtnCheckIn.UseAccentColor = False
-        Me.CalcTotBtnCheckIn.UseVisualStyleBackColor = True
+        Me.MaterialLabel17.AutoSize = True
+        Me.MaterialLabel17.Depth = 0
+        Me.MaterialLabel17.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel17.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
+        Me.MaterialLabel17.Location = New System.Drawing.Point(61, 558)
+        Me.MaterialLabel17.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel17.Name = "MaterialLabel17"
+        Me.MaterialLabel17.Size = New System.Drawing.Size(75, 29)
+        Me.MaterialLabel17.TabIndex = 13
+        Me.MaterialLabel17.Text = "TOTAL"
+        Me.MaterialLabel17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'MaterialCard7
         '
@@ -1334,20 +1326,6 @@ Partial Class Form1
         Me.MaterialLabel16.TabIndex = 0
         Me.MaterialLabel16.Text = "Category"
         '
-        'MaterialLabel17
-        '
-        Me.MaterialLabel17.AutoSize = True
-        Me.MaterialLabel17.Depth = 0
-        Me.MaterialLabel17.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
-        Me.MaterialLabel17.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
-        Me.MaterialLabel17.Location = New System.Drawing.Point(85, 557)
-        Me.MaterialLabel17.MouseState = MaterialSkin.MouseState.HOVER
-        Me.MaterialLabel17.Name = "MaterialLabel17"
-        Me.MaterialLabel17.Size = New System.Drawing.Size(56, 29)
-        Me.MaterialLabel17.TabIndex = 0
-        Me.MaterialLabel17.Text = "Total"
-        Me.MaterialLabel17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'TabPage9
         '
         Me.TabPage9.Controls.Add(Me.MaterialCard4)
@@ -1724,7 +1702,7 @@ Partial Class Form1
         Me.RentMgTitle.Name = "RentMgTitle"
         Me.RentMgTitle.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.RentMgTitle.PrefixSuffixText = Nothing
-        Me.RentMgTitle.ReadOnly = False
+        Me.RentMgTitle.ReadOnly = True
         Me.RentMgTitle.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.RentMgTitle.SelectedText = ""
         Me.RentMgTitle.SelectionLength = 0
@@ -1752,7 +1730,7 @@ Partial Class Form1
         Me.RentMgPrice.Name = "RentMgPrice"
         Me.RentMgPrice.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.RentMgPrice.PrefixSuffixText = Nothing
-        Me.RentMgPrice.ReadOnly = False
+        Me.RentMgPrice.ReadOnly = True
         Me.RentMgPrice.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.RentMgPrice.SelectedText = ""
         Me.RentMgPrice.SelectionLength = 0
@@ -1983,7 +1961,6 @@ Partial Class Form1
         Me.CustName.Size = New System.Drawing.Size(310, 48)
         Me.CustName.TabIndex = 5
         Me.CustName.TabStop = False
-        Me.CustName.Text = "Rommel B. Mabini Jr."
         Me.CustName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.CustName.TrailingIcon = Nothing
         Me.CustName.UseSystemPasswordChar = False
@@ -2012,7 +1989,6 @@ Partial Class Form1
         Me.CustEmail.Size = New System.Drawing.Size(310, 48)
         Me.CustEmail.TabIndex = 6
         Me.CustEmail.TabStop = False
-        Me.CustEmail.Text = "rommelbrillantesmabinijr@gmail.com"
         Me.CustEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.CustEmail.TrailingIcon = Nothing
         Me.CustEmail.UseSystemPasswordChar = False
@@ -2054,7 +2030,6 @@ Partial Class Form1
         Me.CustPhone.Size = New System.Drawing.Size(310, 48)
         Me.CustPhone.TabIndex = 7
         Me.CustPhone.TabStop = False
-        Me.CustPhone.Text = "09164329617"
         Me.CustPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.CustPhone.TrailingIcon = Nothing
         Me.CustPhone.UseSystemPasswordChar = False
@@ -2109,7 +2084,6 @@ Partial Class Form1
         Me.CustAddress.Size = New System.Drawing.Size(310, 48)
         Me.CustAddress.TabIndex = 8
         Me.CustAddress.TabStop = False
-        Me.CustAddress.Text = "Brgy. Buntay, Abuyog, Leyte"
         Me.CustAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.CustAddress.TrailingIcon = Nothing
         Me.CustAddress.UseSystemPasswordChar = False
@@ -2558,7 +2532,7 @@ Partial Class Form1
         Me.MaterialLabel24.Name = "MaterialLabel24"
         Me.MaterialLabel24.Size = New System.Drawing.Size(419, 29)
         Me.MaterialLabel24.TabIndex = 13
-        Me.MaterialLabel24.Text = "Add a Service Here"
+        Me.MaterialLabel24.Text = "ADD A SERVICE HERE"
         Me.MaterialLabel24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TxtAddServiceName
@@ -2728,9 +2702,9 @@ Partial Class Form1
         Me.MaterialLabel12.Location = New System.Drawing.Point(0, 21)
         Me.MaterialLabel12.MouseState = MaterialSkin.MouseState.HOVER
         Me.MaterialLabel12.Name = "MaterialLabel12"
-        Me.MaterialLabel12.Size = New System.Drawing.Size(514, 29)
+        Me.MaterialLabel12.Size = New System.Drawing.Size(412, 29)
         Me.MaterialLabel12.TabIndex = 13
-        Me.MaterialLabel12.Text = "Edit a Service Here"
+        Me.MaterialLabel12.Text = "EDIT A SERVICE HERE"
         Me.MaterialLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TxtServiceName
@@ -3151,7 +3125,7 @@ Partial Class Form1
         Me.TxtPriceEdit.Name = "TxtPriceEdit"
         Me.TxtPriceEdit.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.TxtPriceEdit.PrefixSuffixText = Nothing
-        Me.TxtPriceEdit.ReadOnly = False
+        Me.TxtPriceEdit.ReadOnly = True
         Me.TxtPriceEdit.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.TxtPriceEdit.SelectedText = ""
         Me.TxtPriceEdit.SelectionLength = 0
@@ -3180,7 +3154,7 @@ Partial Class Form1
         Me.TxtCopiesEdit.Name = "TxtCopiesEdit"
         Me.TxtCopiesEdit.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.TxtCopiesEdit.PrefixSuffixText = Nothing
-        Me.TxtCopiesEdit.ReadOnly = False
+        Me.TxtCopiesEdit.ReadOnly = True
         Me.TxtCopiesEdit.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.TxtCopiesEdit.SelectedText = ""
         Me.TxtCopiesEdit.SelectionLength = 0
@@ -3209,7 +3183,7 @@ Partial Class Form1
         Me.TxtISBNEdit.Name = "TxtISBNEdit"
         Me.TxtISBNEdit.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.TxtISBNEdit.PrefixSuffixText = Nothing
-        Me.TxtISBNEdit.ReadOnly = False
+        Me.TxtISBNEdit.ReadOnly = True
         Me.TxtISBNEdit.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.TxtISBNEdit.SelectedText = ""
         Me.TxtISBNEdit.SelectionLength = 0
@@ -3238,7 +3212,7 @@ Partial Class Form1
         Me.TxtTitleEdit.Name = "TxtTitleEdit"
         Me.TxtTitleEdit.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.TxtTitleEdit.PrefixSuffixText = Nothing
-        Me.TxtTitleEdit.ReadOnly = False
+        Me.TxtTitleEdit.ReadOnly = True
         Me.TxtTitleEdit.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.TxtTitleEdit.SelectedText = ""
         Me.TxtTitleEdit.SelectionLength = 0
@@ -4686,7 +4660,6 @@ Partial Class Form1
     Friend WithEvents CheckOrdSearch As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents BtnConfrmCheck As MaterialSkin.Controls.MaterialButton
     Friend WithEvents TxtOrderServName As MaterialSkin.Controls.MaterialTextBox2
-    Friend WithEvents MaterialLabel17 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents TxtOrderTot As MaterialSkin.Controls.MaterialTextBox2
     Friend WithEvents MaterialLabel33 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents RentDuration As MaterialSkin.Controls.MaterialTextBox2
@@ -4733,7 +4706,6 @@ Partial Class Form1
     Friend WithEvents MaterialCard7 As MaterialSkin.Controls.MaterialCard
     Friend WithEvents MaterialLabel42 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents FinalTotalCost As MaterialSkin.Controls.MaterialLabel
-    Friend WithEvents CalcTotBtnCheckIn As MaterialSkin.Controls.MaterialButton
     Friend WithEvents MaterialLabel39 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents RentFinalTot As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel21 As MaterialSkin.Controls.MaterialLabel
@@ -4827,4 +4799,5 @@ Partial Class Form1
     Friend WithEvents MaterialLabel70 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents MaterialLabel71 As MaterialSkin.Controls.MaterialLabel
     Friend WithEvents CheckInDash As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents MaterialLabel17 As MaterialSkin.Controls.MaterialLabel
 End Class

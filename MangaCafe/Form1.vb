@@ -212,7 +212,7 @@ Public Class Form1
             End With
 
 
-            MsgBox("Manga added succesfully!")
+            MsgBox("Manga added succesfully!", MsgBoxStyle.Information, "MangaKissa")
             PopulateMgLibrary()
 
             PanelAddToLibrary.Hide()
@@ -233,33 +233,13 @@ Public Class Form1
             mangaID = ListViewMangaLibrary.SelectedItems(0).Text
             BtnEditManga.Enabled = True
             BtnDeleteManga.Enabled = True
-        Catch ex As Exception
-            BtnSaveManga.Enabled = False
-            BtnEditManga.Enabled = False
-            BtnDeleteManga.Enabled = False
-            ImgCoverEdit.Enabled = False
-        End Try
-    End Sub
 
-    Private Sub BtnSaveManga_Click(sender As Object, e As EventArgs) Handles BtnSaveManga.Click
-        Dim sqlQuery As String = "UPDATE mangalibrary SET mgTitle = '" & Replace(TxtTitleEdit.Text, "'", "''") & "', mgCopies = '" & TxtCopiesEdit.Text & "', mgPrice = '" & TxtPriceEdit.Text & "', mgISBN = '" & TxtISBNEdit.Text & "', mgCover = '" & Path.GetFileName(coverFileName) & "' WHERE mgID = '" & mangaID & "'"
-        Dim sqlCommand As New MySqlCommand
 
-        With sqlCommand
-            .CommandText = sqlQuery
-            .Connection = dbConn
-            .ExecuteNonQuery()
-        End With
+            TxtTitleEdit.ReadOnly = True
+            TxtCopiesEdit.ReadOnly = True
+            TxtISBNEdit.ReadOnly = True
+            TxtPriceEdit.ReadOnly = True
 
-        MsgBox("Manga updated succesfully!", MsgBoxStyle.Information)
-        PopulateMgLibrary()
-        SaveImg(ImgCoverEdit, OpenFileDialog2)
-
-        coverFileName = String.Empty
-    End Sub
-
-    Private Sub BtnEditManga_Click(sender As Object, e As EventArgs) Handles BtnEditManga.Click
-        Try
             If mangaID = Nothing Then
                 MsgBox("Please select a manga first.", MsgBoxStyle.Exclamation)
             Else
@@ -292,10 +272,42 @@ Public Class Form1
 
                 'To make picturebox have a referrence in use after clicking save even if no changes are made
                 coverFileName = filepath
-
-                BtnSaveManga.Enabled = True
-                ImgCoverEdit.Enabled = True
             End If
+
+        Catch ex As Exception
+            BtnSaveManga.Enabled = False
+            BtnEditManga.Enabled = False
+            BtnDeleteManga.Enabled = False
+            ImgCoverEdit.Enabled = False
+        End Try
+    End Sub
+
+    Private Sub BtnSaveManga_Click(sender As Object, e As EventArgs) Handles BtnSaveManga.Click
+        Dim sqlQuery As String = "UPDATE mangalibrary SET mgTitle = '" & Replace(TxtTitleEdit.Text, "'", "''") & "', mgCopies = '" & TxtCopiesEdit.Text & "', mgPrice = '" & TxtPriceEdit.Text & "', mgISBN = '" & TxtISBNEdit.Text & "', mgCover = '" & Path.GetFileName(coverFileName) & "' WHERE mgID = '" & mangaID & "'"
+        Dim sqlCommand As New MySqlCommand
+
+        With sqlCommand
+            .CommandText = sqlQuery
+            .Connection = dbConn
+            .ExecuteNonQuery()
+        End With
+
+        MsgBox("Manga updated succesfully!", MsgBoxStyle.Information, "MangaKissa")
+        PopulateMgLibrary()
+        SaveImg(ImgCoverEdit, OpenFileDialog2)
+
+        coverFileName = String.Empty
+    End Sub
+
+    Private Sub BtnEditManga_Click(sender As Object, e As EventArgs) Handles BtnEditManga.Click
+        Try
+            TxtTitleEdit.ReadOnly = False
+            TxtCopiesEdit.ReadOnly = False
+            TxtISBNEdit.ReadOnly = False
+            TxtPriceEdit.ReadOnly = False
+
+            BtnSaveManga.Enabled = True
+            ImgCoverEdit.Enabled = True
         Catch ex As Exception
             MsgBox(ex.Message, vbCritical)
         End Try
@@ -303,7 +315,7 @@ Public Class Form1
 
     Private Sub BtnDeleteManga_Click(sender As Object, e As EventArgs) Handles BtnDeleteManga.Click
         If mangaID = Nothing Then
-            MsgBox("Please choose a manga item to delete.")
+            MsgBox("Please choose a manga item to delete.", vbCritical, "MangaKissa")
         Else
             Dim confirmDel As DialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirmation", MessageBoxButtons.YesNo)
             If confirmDel = DialogResult.Yes Then
@@ -316,7 +328,7 @@ Public Class Form1
                     .ExecuteNonQuery()
                 End With
 
-                MsgBox("Manga deleted succesfully!", MsgBoxStyle.Information)
+                MsgBox("Manga deleted succesfully!", MsgBoxStyle.Information, "MangaKissa")
                 PopulateMgLibrary()
             End If
 
@@ -406,7 +418,7 @@ Public Class Form1
             End With
 
 
-            MsgBox("Service added succesfully!")
+            MsgBox("Service added succesfully!", MsgBoxStyle.Information, "MangaKissa")
             PopulateServiceLibrary()
             ClearAddServiceTxtBoxes()
 
@@ -434,7 +446,7 @@ Public Class Form1
     Private Sub BtnEditService_Click(sender As Object, e As EventArgs) Handles BtnEditService.Click
         Try
             If serviceID = Nothing Then
-                MsgBox("Please select a service item first.", MsgBoxStyle.Exclamation)
+                MsgBox("Please select a service item first.", MsgBoxStyle.Exclamation, "MangaKissa")
             Else
                 Dim sqlQuery As String = "SELECT serviceName, serviceType, serviceCharge from servicelibrary WHERE serviceID = '" & ListViewServiceLibrary.SelectedItems(0).Text & "'"
                 Dim sqlAdapter As New MySqlDataAdapter
@@ -472,13 +484,13 @@ Public Class Form1
             .ExecuteNonQuery()
         End With
 
-        MsgBox("Service item updated succesfully!", MsgBoxStyle.Information)
+        MsgBox("Service item updated succesfully!", MsgBoxStyle.Information, "MangaKissa")
         PopulateServiceLibrary()
     End Sub
 
     Private Sub BtnDelService_Click(sender As Object, e As EventArgs) Handles BtnDelService.Click
         If serviceID = Nothing Then
-            MsgBox("Please choose a service item to delete.")
+            MsgBox("Please choose a service item to delete.", MsgBoxStyle.Critical, "MangaKissa")
         Else
             Dim confirmDel As DialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirmation", MessageBoxButtons.YesNo)
             If confirmDel = DialogResult.Yes Then
@@ -491,7 +503,7 @@ Public Class Form1
                     .ExecuteNonQuery()
                 End With
 
-                MsgBox("Service deleted succesfully!", MsgBoxStyle.Information)
+                MsgBox("Service deleted succesfully!", MsgBoxStyle.Information, "MangaKissa")
                 PopulateServiceLibrary()
             End If
 
@@ -565,7 +577,7 @@ Public Class Form1
             .ExecuteNonQuery()
         End With
 
-        MsgBox("Duration item updated succesfully!", MsgBoxStyle.Information)
+        MsgBox("Duration item updated succesfully!", MsgBoxStyle.Information, "MangaKissa")
     End Sub
 
     Private Sub BtnSaveRent_Click(sender As Object, e As EventArgs) Handles BtnSaveRent.Click
@@ -578,7 +590,7 @@ Public Class Form1
             .ExecuteNonQuery()
         End With
 
-        MsgBox("Duration item updated succesfully!", MsgBoxStyle.Information)
+        MsgBox("Duration item updated succesfully!", MsgBoxStyle.Information, "MangaKissa")
     End Sub
 
 
@@ -790,10 +802,6 @@ Public Class Form1
             Next
         End If
 
-    End Sub
-
-    Private Sub CalcTotBtnCheckIn_Click(sender As Object, e As EventArgs) Handles CalcTotBtnCheckIn.Click
-        CalcTotalCostCheckIn()
     End Sub
 
 
@@ -1133,8 +1141,10 @@ Public Class Form1
 
                 Dim price As Double = CDbl(Val(RentMgPrice.Text)) * quan
                 RentMgTotal.Text = Format(price, "0.00")
+                RentAddToCart.Enabled = True
             Else
                 MsgBox("Not enough copies on hand!" & vbCrLf & " # of Copies available: " & copiesSubRent & "", vbOK, "MangaKissa")
+                RentAddToCart.Enabled = False
             End If
         End If
     End Sub
@@ -1591,6 +1601,7 @@ Public Class Form1
 
     Private Sub CheckReturnDetailsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckReturnDetailsToolStripMenuItem.Click
         Try
+            RentDetailsForm.Close()
             Dim lvNameCms As ContextMenuStrip = CType(ViewToolStripMenuItem.Owner, ContextMenuStrip)
             viewReturnDetails(lvNameCms.SourceControl)
             RentDetailsForm.Show()
@@ -2189,7 +2200,7 @@ Public Class Form1
             Dim sqlQuery As String = "INSERT INTO employeetable(empName, empEmail, empPassword, empPosition, empUsername) VALUES('" & EmployeeName.Text & "','" & EmployeeEmail.Text & "','" & Replace(EmployeePass.Text, "'", "''") & "','" & EmpPosSelection.Text & "', '" & EmployeeUsername.Text & "')"
             createNonQuery(sqlQuery)
 
-            MsgBox("Employee added succesfully!", vbOK, "Mangakisaa")
+            MsgBox("Employee added succesfully!", vbOK, "Mangakissa")
             populateEmployeeLV()
 
         Else
@@ -2270,7 +2281,7 @@ Public Class Form1
         Dim sqlQuery As String = "UPDATE employeetable Set empName = '" & EmployeeName.Text & "', empEmail = '" & EmployeeEmail.Text & "', empPassword = '" & EmployeePass.Text & "', empPosition = '" & EmpPosSelection.Text & "', empUsername = '" & EmployeeUsername.Text & "' WHERE empID = '" & empIDCurrent & "'"
         createNonQuery(sqlQuery)
 
-        MsgBox("Employee details updated!", vbOK, "Mangakisaa")
+        MsgBox("Employee details updated!", vbOK, "Mangakissa")
         populateEmployeeLV()
 
 
@@ -2293,7 +2304,7 @@ Public Class Form1
                     .ExecuteNonQuery()
                 End With
 
-                MsgBox("User deleted succesfully!", MsgBoxStyle.Information)
+                MsgBox("User deleted succesfully!", MsgBoxStyle.Information, "MangaKissa")
                 populateEmployeeLV()
             End If
 
